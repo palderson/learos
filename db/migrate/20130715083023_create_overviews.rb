@@ -1,7 +1,7 @@
 class CreateOverviews < ActiveRecord::Migration
   def change
     create_table :overviews do |t|
-      t.string :description
+      t.text :description
       t.references :project
 
       t.timestamps
