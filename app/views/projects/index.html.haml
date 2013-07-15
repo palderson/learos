@@ -1,0 +1,9 @@
+%h1 Projects
+
+#projects_list
+  %ul.unstyled
+    = render @projects
+
+%br
+
+= link_to 'New Project', new_project_path, id: "new_project_link", remote: true
