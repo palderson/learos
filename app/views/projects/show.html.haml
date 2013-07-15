@@ -4,3 +4,11 @@
   = link_to 'Change Name', edit_project_path(@project)
   |
   = link_to 'Delete Project', @projects, method: :delete, data: { confirm: 'Are you sure?'}
+
+.tabbable.tabs-left
+  %ul.nav.nav-tabs
+    %li.active
+      %a{ href: '#overview_tab', "data-toggle" => 'tab' }Overview
+  .tab-content
+    #overview_tab.tab-pane.active
+      = render partial: 'shared/form', locals: { project: @project }
