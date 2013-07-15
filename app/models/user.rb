@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :stripe_token, :coupon
   attr_accessor :stripe_token, :coupon
-  before_save :update_stripe
-  before_destroy :cancel_subscription
+  # before_save :update_stripe
+  # before_destroy :cancel_subscription
 
   def update_plan(role)
     self.role_ids = []
@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
     errors.add :base, "Unable to update your subscription. #{e.message}."
     false
   end
-  
+
   def update_stripe
     return if email.include?(ENV['ADMIN_EMAIL'])
     return if email.include?('@example.com') and not Rails.env.production?
@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
     self.stripe_token = nil
     false
   end
-  
+
   def cancel_subscription
     unless customer_id.nil?
       customer = Stripe::Customer.retrieve(customer_id)
@@ -82,10 +82,10 @@ class User < ActiveRecord::Base
     errors.add :base, "Unable to cancel your subscription. #{e.message}."
     false
   end
-  
+
   def expire
     UserMailer.expire_email(self).deliver
     destroy
   end
-  
+
 end
