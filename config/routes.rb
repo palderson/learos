@@ -1,4 +1,7 @@
 Learos::Application.routes.draw do
+  resources :projects
+
+
   mount StripeEvent::Engine => '/stripe'
   get "content/gold"
   get "content/silver"
