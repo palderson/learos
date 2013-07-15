@@ -1,0 +1,4 @@
+<%= simple_form_for @project, html: { class: 'form-horizontal active-table-form' }, remote: true do |f| %>
+  <%= f.text_field :title %>
+  <%= f.submit 'Create New Project', class: 'btn btn-primary' %>
+<% end %>

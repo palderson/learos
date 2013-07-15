@@ -1,0 +1,11 @@
+<h1>Projects</h1>
+
+<div id='projects_list'>
+  <ul class='unstyled'>
+    <%= render @projects %>
+  </ul>
+</div>
+
+<br>
+
+<%= link_to 'New Project', new_project_path, id: "new_project_link", remote: true %>

@@ -1,0 +1,25 @@
+<p>
+  <b><%= @project.title %></b>
+  |
+  <%= link_to 'Change Name', edit_project_path(@project) %>
+  |
+  <%= link_to 'Delete Project', @projects, method: :delete, data: { confirm: 'Are you sure?'} %>
+
+<div class='tabbable tabs-left'>
+  <ul class='nav nav-tabs'>
+    <li class='active'>
+      <a href='#overview_tab', data-toggle="tab">Overview</a>
+    </li>
+    <li>
+      <a href='#goals_tab', data-toggle='tab', remote: true>Goals</a>
+    </li>
+  </ul>
+  <div class='tab-content'>
+    <div id='overview_tab', class='tab-pane active'>
+      <%= render partial: 'shared/form', locals: { project: @project } %>
+    </div>
+    <div id='goals_tab', class='tab-pane'>
+      <%= render partial: 'goals/new', locals: { :goals => @project.goals.build } %>
+    </div>
+  </div>
+</div>
