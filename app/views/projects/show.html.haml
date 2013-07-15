@@ -1,9 +1,6 @@
-%p#notice= notice
-
 %p
-  %b Title:
-  = @project.title
-
-= link_to 'Edit', edit_project_path(@project)
-\|
-= link_to 'Back', projects_path
+  %b= @project.title
+  |
+  = link_to 'Change Name', edit_project_path(@project)
+  |
+  = link_to 'Delete Project', @projects, method: :delete, data: { confirm: 'Are you sure?'}
