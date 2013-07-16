@@ -1,7 +1,7 @@
 class CreateTestClients < ActiveRecord::Migration
   def change
     create_table :test_clients do |t|
-      t.text :description
+      t.string :description
       t.references :project
 
       t.timestamps

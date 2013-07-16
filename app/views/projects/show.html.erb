@@ -55,7 +55,7 @@
       <%= render partial: 'profile/form', locals: { project: @project }%>
     </div>
     <div id='goals_tab', class='tab-pane'>
-      <%= render partial: 'goals/form', locals: { goals: @project.goals.build } %>
+      <%= render partial: 'goals/form', locals: { project: @project } %>
     </div>
     <div id='product_tab', class='tab-pane'>
       <%= render partial: 'product/form', locals: { project: @project } %>
@@ -67,7 +67,7 @@
       <%= render partial: 'billing/form', locals: { project: @project } %>
     </div>
     <div id='test_clients_tab', class='tab-pane'>
-      <%= render partial: 'test_clients/form', locals: { test_client: @project.test_clients.build } %>
+      <%= render partial: 'test_clients/form', locals: { project: @project} %>
     </div>
     <div id='onboarding_tab', class='tab-pane'>
       <%= render partial: 'onboarding/form', locals: { project: @project } %>

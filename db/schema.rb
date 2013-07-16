@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20130716130510) do
   add_index "client_trainings", ["project_id"], :name => "index_client_trainings_on_project_id"
 
   create_table "goals", :force => true do |t|
-    t.text     "description"
+    t.string   "description"
     t.integer  "project_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
@@ -142,7 +142,7 @@ ActiveRecord::Schema.define(:version => 20130716130510) do
   add_index "servicings", ["project_id"], :name => "index_servicings_on_project_id"
 
   create_table "test_clients", :force => true do |t|
-    t.text     "description"
+    t.string   "description"
     t.integer  "project_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false

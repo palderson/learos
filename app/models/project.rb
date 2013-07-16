@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  attr_accessible :title, :overview_attributes, :profile_attributes, :product_attributes, :marketing_attributes, :billing_attributes, :onboarding_attributes, :servicing_attributes, :plan_attributes, :internal_training_attributes, :client_training_attributes, :rollout_attributes, :user_id
+  attr_accessible :title, :overview_attributes, :goals_attributes, :test_clients_attributes, :profile_attributes, :product_attributes, :marketing_attributes, :billing_attributes, :onboarding_attributes, :servicing_attributes, :plan_attributes, :internal_training_attributes, :client_training_attributes, :rollout_attributes, :user_id
 
   belongs_to :user
   has_one :overview
@@ -15,7 +15,7 @@ class Project < ActiveRecord::Base
   has_one :internal_training
   has_one :client_training
   has_one :rollout
-  accepts_nested_attributes_for :overview, :profile, :product, :billing, :marketing, :onboarding, :servicing, :plan, :internal_training, :client_training, :rollout
+  accepts_nested_attributes_for :overview, :profile, :product, :billing, :goals, :test_clients, :marketing, :onboarding, :servicing, :plan, :internal_training, :client_training, :rollout
 
 
   after_create do
@@ -30,5 +30,13 @@ class Project < ActiveRecord::Base
     self.create_internal_training
     self.create_client_training
     self.create_rollout
+  end
+
+  def with_blank_fields(n=3)
+    n.times do
+      goals.build
+      test_clients.build
+    end
+    self
   end
 end
