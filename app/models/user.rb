@@ -88,4 +88,9 @@ class User < ActiveRecord::Base
     destroy
   end
 
+  def get_role
+    return 'platinum' if self.has_role?(:platinum)
+    return 'gold' if self.has_role?(:gold)
+    return 'silver' if self.has_role?(:silver)
+  end
 end
