@@ -11,15 +11,81 @@
       <a href='#overview_tab', data-toggle="tab">Overview</a>
     </li>
     <li>
+      <a href='#profile_tab', data-toggle='tab', remote: true>Client Profile</a>
+    </li>
+    <li>
       <a href='#goals_tab', data-toggle='tab', remote: true>Goals</a>
+    </li>
+    <li>
+      <a href='#product_tab', data-toggle='tab', remote: true>Product Development</a>
+    </li>
+    <li>
+      <a href='#marketing_tab', data-toggle='tab', remote: true>Marketing</a>
+    </li>
+    <li>
+      <a href='#billing_tab', data-toggle='tab', remote: true>Billing</a>
+    </li>
+    <li>
+      <a href='#test_clients_tab', data-toggle='tab', remote: true>Test Clients</a>
+    </li>
+    <li>
+      <a href='#onboarding_tab', data-toggle='tab', remote: true>Client Onboarding</a>
+    </li>
+    <li>
+      <a href='#servicing_tab', data-toggle='tab', remote: true>Client Servicing</a>
+    </li>
+    <li>
+      <a href='#plan_tab', data-toggle='tab', remote: true>Sales Plan</a>
+    </li>
+    <li>
+      <a href='#internal_training_tab', data-toggle='tab', remote: true>Internal Training</a>
+    </li>
+    <li>
+      <a href='#client_training_tab', data-toggle='tab', remote: true>Client Training</a>
+    </li>
+    <li>
+      <a href='#rollout_tab', data-toggle='tab', remote: true>Rollout Retrospective</a>
     </li>
   </ul>
   <div class='tab-content'>
     <div id='overview_tab', class='tab-pane active'>
-      <%= render partial: 'shared/form', locals: { project: @project } %>
+      <%= render partial: 'overview/form', locals: { project: @project }%>
+    </div>
+    <div id='profile_tab', class='tab-pane'>
+      <%= render partial: 'profile/form', locals: { project: @project }%>
     </div>
     <div id='goals_tab', class='tab-pane'>
-      <%= render partial: 'goals/new', locals: { :goals => @project.goals.build } %>
+      <%= render partial: 'goals/form', locals: { goals: @project.goals.build } %>
+    </div>
+    <div id='product_tab', class='tab-pane'>
+      <%= render partial: 'product/form', locals: { project: @project } %>
+    </div>
+    <div id='marketing_tab', class='tab-pane'>
+      <%= render partial: 'marketing/form', locals: { project: @project } %>
+    </div>
+    <div id='billing_tab', class='tab-pane'>
+      <%= render partial: 'billing/form', locals: { project: @project } %>
+    </div>
+    <div id='test_clients_tab', class='tab-pane'>
+      <%= render partial: 'test_clients/form', locals: { test_client: @project.test_clients.build } %>
+    </div>
+    <div id='onboarding_tab', class='tab-pane'>
+      <%= render partial: 'onboarding/form', locals: { project: @project } %>
+    </div>
+    <div id='servicing_tab', class='tab-pane'>
+      <%= render partial: 'plan/form', locals: { project: @project } %>
+    </div>
+    <div id='plan_tab', class='tab-pane'>
+      <%= render partial: 'plan/form', locals: { project: @project } %>
+    </div>
+    <div id='internal_training_tab', class='tab-pane'>
+      <%= render partial: 'internal_training/form', locals: { project: @project } %>
+    </div>
+    <div id='client_training_tab', class='tab-pane'>
+      <%= render partial: 'client_training/form', locals: { project: @project } %>
+    </div>
+    <div id='rollout_tab', class='tab-pane'>
+      <%= render partial: 'rollout/form', locals: { project: @project } %>
     </div>
   </div>
 </div>
