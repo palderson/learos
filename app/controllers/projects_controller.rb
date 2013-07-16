@@ -69,4 +69,9 @@ class ProjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+  def count_remaining_projects
+    "#{current_user.projects.count} of #{Project.get_max_projects(current_user.get_role).to_s} Projects"
+  end
 end

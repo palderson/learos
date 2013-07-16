@@ -8,4 +8,8 @@
 
 <br>
 
-<%= link_to 'New Project', new_project_path, id: "new_project_link", remote: true %>
+<% if can? :create, current_user %>
+  <%= link_to 'New Project', new_project_path, id: "new_project_link", remote: true %>
+<% end %>
+
+<p><%= @projects_info %></p>
