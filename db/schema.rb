@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130715100256) do
+ActiveRecord::Schema.define(:version => 20130716085743) do
+
+  create_table "billings", :force => true do |t|
+    t.text     "description"
+    t.integer  "project_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "billings", ["project_id"], :name => "index_billings_on_project_id"
+
+  create_table "client_trainings", :force => true do |t|
+    t.text     "description"
+    t.integer  "project_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "client_trainings", ["project_id"], :name => "index_client_trainings_on_project_id"
 
   create_table "goals", :force => true do |t|
     t.text     "description"
@@ -22,6 +40,33 @@ ActiveRecord::Schema.define(:version => 20130715100256) do
 
   add_index "goals", ["project_id"], :name => "index_goals_on_project_id"
 
+  create_table "internal_trainings", :force => true do |t|
+    t.text     "description"
+    t.integer  "project_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "internal_trainings", ["project_id"], :name => "index_internal_trainings_on_project_id"
+
+  create_table "marketings", :force => true do |t|
+    t.text     "description"
+    t.integer  "project_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "marketings", ["project_id"], :name => "index_marketings_on_project_id"
+
+  create_table "onboardings", :force => true do |t|
+    t.text     "description"
+    t.integer  "project_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "onboardings", ["project_id"], :name => "index_onboardings_on_project_id"
+
   create_table "overviews", :force => true do |t|
     t.text     "description"
     t.integer  "project_id"
@@ -30,6 +75,33 @@ ActiveRecord::Schema.define(:version => 20130715100256) do
   end
 
   add_index "overviews", ["project_id"], :name => "index_overviews_on_project_id"
+
+  create_table "plans", :force => true do |t|
+    t.text     "description"
+    t.integer  "project_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "plans", ["project_id"], :name => "index_plans_on_project_id"
+
+  create_table "products", :force => true do |t|
+    t.text     "description"
+    t.integer  "project_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "products", ["project_id"], :name => "index_products_on_project_id"
+
+  create_table "profiles", :force => true do |t|
+    t.text     "description"
+    t.integer  "project_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "profiles", ["project_id"], :name => "index_profiles_on_project_id"
 
   create_table "projects", :force => true do |t|
     t.string   "title"
@@ -47,6 +119,33 @@ ActiveRecord::Schema.define(:version => 20130715100256) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "rollouts", :force => true do |t|
+    t.text     "description"
+    t.integer  "project_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "rollouts", ["project_id"], :name => "index_rollouts_on_project_id"
+
+  create_table "servicings", :force => true do |t|
+    t.text     "description"
+    t.integer  "project_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "servicings", ["project_id"], :name => "index_servicings_on_project_id"
+
+  create_table "test_clients", :force => true do |t|
+    t.text     "description"
+    t.integer  "project_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "test_clients", ["project_id"], :name => "index_test_clients_on_project_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

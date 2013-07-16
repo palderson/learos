@@ -1,6 +1,7 @@
 Learos::Application.routes.draw do
   resources :projects do
-    resources :goals
+    resources :goals, only: :create
+    resources :test_clients, only: :create
   end
 
   mount StripeEvent::Engine => '/stripe'
