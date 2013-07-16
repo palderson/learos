@@ -95,4 +95,10 @@ class User < ActiveRecord::Base
     return 'gold' if self.has_role?(:gold)
     return 'silver' if self.has_role?(:silver)
   end
+
+  def has_free_projects?
+    plan = get_role
+    return true if plan == 'platinum'
+    Project.get_max_projects(plan) - self.projects.count > 0 ? true : false
+  end
 end

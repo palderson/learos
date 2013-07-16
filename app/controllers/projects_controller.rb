@@ -34,6 +34,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    authorize! :create, current_user
     @project = Project.create!(params[:project].merge(user_id: current_user.id))
 
     respond_to do |format|

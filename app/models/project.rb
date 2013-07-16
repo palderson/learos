@@ -39,4 +39,10 @@ class Project < ActiveRecord::Base
     end
     self
   end
+
+  def self.get_max_projects(plan)
+    return 3 if plan == 'silver'
+    return 10 if plan == 'gold'
+    return 'Unlimited' if plan == 'platinum'
+  end
 end

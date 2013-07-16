@@ -10,5 +10,6 @@ class Ability
       can :view, :gold if user.has_role? :gold
       can :view, :platinum if user.has_role? :platinum
     end
+    can :create, :all if user.has_free_projects?
   end
 end
