@@ -1,6 +1,7 @@
 class Project < ActiveRecord::Base
-  attr_accessible :title, :overview_attributes, :profile_attributes, :product_attributes, :marketing_attributes, :billing_attributes, :onboarding_attributes, :servicing_attributes, :plan_attributes, :internal_training_attributes, :client_training_attributes, :rollout_attributes
+  attr_accessible :title, :overview_attributes, :profile_attributes, :product_attributes, :marketing_attributes, :billing_attributes, :onboarding_attributes, :servicing_attributes, :plan_attributes, :internal_training_attributes, :client_training_attributes, :rollout_attributes, :user_id
 
+  belongs_to :user
   has_one :overview
   has_one :profile
   has_one :product
@@ -15,6 +16,7 @@ class Project < ActiveRecord::Base
   has_one :client_training
   has_one :rollout
   accepts_nested_attributes_for :overview, :profile, :product, :billing, :marketing, :onboarding, :servicing, :plan, :internal_training, :client_training, :rollout
+
 
   after_create do
     self.create_overview

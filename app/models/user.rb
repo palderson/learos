@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :stripe_token, :coupon
   attr_accessor :stripe_token, :coupon
+
+  has_many :projects
   # before_save :update_stripe
   # before_destroy :cancel_subscription
 
