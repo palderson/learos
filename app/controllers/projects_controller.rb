@@ -4,7 +4,8 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = current_user.projects
+    @projects_info = count_remaining_projects
 
     respond_to do |format|
       format.html # index.html.erb
@@ -33,7 +34,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.create!(params[:project])
+    @project = Project.create!(params[:project].merge(user_id: current_user.id))
 
     respond_to do |format|
       format.html { redirect_to @project, notice: 'Project was successfully created.' }
