@@ -39,7 +39,6 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to @project, notice: 'Project was successfully created.' }
-      format.js
     end
   end
 
