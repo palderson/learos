@@ -5,7 +5,9 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = current_user.projects
-    @projects_info = count_remaining_projects
+    @projects_info = get_remaining_projects
+    @trial_info = get_remaining_days unless current_user.has_subscribed?
+    @show = show_upgrade_message?
 
     respond_to do |format|
       format.html # index.html.erb
@@ -71,7 +73,17 @@ class ProjectsController < ApplicationController
   end
 
   private
-  def count_remaining_projects
-    "#{current_user.projects.count} of #{Project.get_max_projects(current_user.get_role).to_s} Projects"
+  def get_remaining_projects
+    "#{current_user.projects.count} of #{Project.get_max_projects(current_user).to_s} Projects"
+  end
+
+  def get_remaining_days
+    "#{current_user.trial_days_count.to_i} remaining trial days"
+  end
+
+  def show_upgrade_message?
+    plan = current_user.get_role
+    return true if current_user.has_subscribed? && (plan == 'silver' || plan == 'gold')
+    return true if !current_user.has_subscribed? && current_user.has_trial_days?
   end
 end

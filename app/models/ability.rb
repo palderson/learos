@@ -10,6 +10,6 @@ class Ability
       can :view, :gold if user.has_role? :gold
       can :view, :platinum if user.has_role? :platinum
     end
-    can :create, :all if user.has_free_projects?
+    can :create, :all if user.has_free_projects? && (user.has_subscribed? || user.has_trial_days?)
   end
 end

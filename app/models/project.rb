@@ -41,8 +41,9 @@ class Project < ActiveRecord::Base
     self
   end
 
-  def self.get_max_projects(plan)
-    return 3 if plan == 'silver'
+  def self.get_max_projects(user)
+    plan = user.get_role
+    return 3 if plan == 'silver' || !user.customer_id.present?
     return 10 if plan == 'gold'
     return 'Unlimited' if plan == 'platinum'
   end

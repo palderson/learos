@@ -13,3 +13,7 @@
 <% end %>
 
 <p><%= @projects_info %></p>
+<p><%= @trial_info %></p>
+<% if @show %>
+  <p><%= link_to "Upgrade your account", edit_user_registration_path %>
+<% end %>

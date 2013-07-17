@@ -98,7 +98,20 @@ class User < ActiveRecord::Base
 
   def has_free_projects?
     plan = get_role
-    return true if plan == 'platinum'
-    Project.get_max_projects(plan) - self.projects.count > 0 ? true : false
+    return true if plan == 'platinum' && self.customer_id.present?
+    Project.get_max_projects(self) - self.projects.count > 0 ? true : false
+  end
+
+  def has_subscribed?
+    return true if self.customer_id.present?
+    return false
+  end
+
+  def has_trial_days?
+    trial_days_count > 0
+  end
+
+  def trial_days_count
+    30 - (DateTime.now.to_date - self.created_at.to_date).to_i
   end
 end
