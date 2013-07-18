@@ -33,7 +33,7 @@ class Project < ActiveRecord::Base
     self.create_rollout
   end
 
-  def with_blank_fields(n=1)
+  def with_blank_fields(n=2)
     n.times do
       goals.build
       test_clients.build

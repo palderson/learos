@@ -72,6 +72,11 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def change_name
+    @project = Project.find(params[:project_id])
+    render "change_name"
+  end
+
   private
   def get_remaining_projects
     "#{current_user.projects.count} of #{Project.get_max_projects(current_user).to_s} Projects"

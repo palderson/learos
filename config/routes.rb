@@ -1,5 +1,7 @@
 Learos::Application.routes.draw do
-  resources :projects
+  resources :projects do
+    get 'change_name', to: 'projects#change_name'
+  end
 
   mount StripeEvent::Engine => '/stripe'
   get "content/gold"
