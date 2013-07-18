@@ -40,7 +40,7 @@ class ProjectsController < ApplicationController
     @project = Project.create!(params[:project].merge(user_id: current_user.id))
 
     respond_to do |format|
-      format.html { redirect_to @project, notice: 'Project was successfully created.' }
+      format.html { redirect_to edit_project_path @project, notice: 'Project was successfully created.' }
     end
   end
 

@@ -1,7 +1,7 @@
 <p>
   <b><%= @project.title %></b>
   |
-  <%= link_to 'Change Name', edit_project_path(@project) %>
+  <%= link_to 'Change Name', project_change_name_path(@project) %>
   |
   <%= link_to 'Delete Project', @projects, method: :delete, data: { confirm: 'Are you sure?'} %>
 
@@ -47,76 +47,46 @@
       <a href='#rollout_tab', data-toggle='tab', remote: true>Rollout Retrospective</a>
     </li>
   </ul>
-  <%= simple_form_for((@project.with_blank_fields), html: { class: 'form-horizontal active-table-form' }) do |f| %>
   <div class='tab-content'>
-      <div id='overview_tab', class='tab-pane active'>
-        <%= f.simple_fields_for :overview do |nf| %>
-          <%= render partial: 'shared/form', locals: { f: nf } %>
-        <% end %>
+    <div id='overview_tab', class='tab-pane active'>
+      <%= render partial: 'overview/show', locals: { project: @project } %>
     </div>
     <div id='profile_tab', class='tab-pane'>
-        <%= f.simple_fields_for :profile do |nf| %>
-          <%= render partial: 'shared/form', locals: { f: nf } %>
-        <% end %>
+      <%= render partial: 'profile/show', locals: { project: @project } %>
     </div>
     <div id='goals_tab', class='tab-pane'>
-        <%= f.simple_fields_for :goals do |nf| %>
-          <%= render partial: 'shared/form', locals: { f: nf } %>
-        <% end %>
+      <%= render partial: 'goals/show', locals: { project: @project } %>
     </div>
     <div id='product_tab', class='tab-pane'>
-        <%= f.simple_fields_for :product do |nf| %>
-          <%= render partial: 'shared/form', locals: { f: nf } %>
-        <% end %>
+      <%= render partial: 'product/show', locals: { project: @project } %>
     </div>
     <div id='marketing_tab', class='tab-pane'>
-        <%= f.simple_fields_for :marketing do |nf| %>
-          <%= render partial: 'shared/form', locals: { f: nf } %>
-        <% end %>
+      <%= render partial: 'marketing/show', locals: { project: @project } %>
     </div>
     <div id='billing_tab', class='tab-pane'>
-        <%= f.simple_fields_for :billing do |nf| %>
-          <%= render partial: 'shared/form', locals: { f: nf } %>
-        <% end %>
+      <%= render partial: 'billing/show', locals: { project: @project } %>
     </div>
     <div id='test_clients_tab', class='tab-pane'>
-        <%= f.simple_fields_for :test_clients do |nf| %>
-          <%= render partial: 'shared/form', locals: { f: nf } %>
-        <% end %>
+      <%= render partial: 'test_clients/show', locals: { project: @project } %>
     </div>
     <div id='onboarding_tab', class='tab-pane'>
-        <%= f.simple_fields_for :onboarding do |nf| %>
-          <%= render partial: 'shared/form', locals: { f: nf } %>
-        <% end %>
+      <%= render partial: 'onboarding/show', locals: { project: @project } %>
     </div>
     <div id='servicing_tab', class='tab-pane'>
-        <%= f.simple_fields_for :servicing do |nf| %>
-          <%= render partial: 'shared/form', locals: { f: nf } %>
-        <% end %>
+      <%= render partial: 'servicing/show', locals: { project: @project } %>
     </div>
     <div id='plan_tab', class='tab-pane'>
-        <%= f.simple_fields_for :plan do |nf| %>
-          <%= render partial: 'shared/form', locals: { f: nf } %>
-        <% end %>
+      <%= render partial: 'plan/show', locals: { project: @project } %>
     </div>
     <div id='internal_training_tab', class='tab-pane'>
-        <%= f.simple_fields_for :internal_training do |nf| %>
-          <%= render partial: 'shared/form', locals: { f: nf } %>
-        <% end %>
+      <%= render partial: 'internal_training/show', locals: { project: @project } %>
     </div>
     <div id='client_training_tab', class='tab-pane'>
-        <%= f.simple_fields_for :client_training do |nf| %>
-          <%= render partial: 'shared/form', locals: { f: nf } %>
-        <% end %>
+      <%= render partial: 'client_training/show', locals: { project: @project } %>
     </div>
     <div id='rollout_tab', class='tab-pane'>
-        <%= f.simple_fields_for :rollout do |nf| %>
-          <%= render partial: 'shared/form', locals: { f: nf } %>
-        <% end %>
+      <%= render partial: 'rollout/show', locals: { project: @project } %>
     </div>
-    <div class="form-actions">
-      <%= f.submit 'Save', class: 'btn btn-primary' %>
-    </div>
-  <% end %>
+    <%= link_to 'Edit', edit_project_path(@project) %>
   </div>
 </div>
