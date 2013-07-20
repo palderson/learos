@@ -1,7 +1,9 @@
 class CreateGoals < ActiveRecord::Migration
   def change
     create_table :goals do |t|
-      t.string :description
+      t.text :six_week_goals
+      t.text :three_month_goals
+      t.text :six_month_goals
       t.references :project
 
       t.timestamps

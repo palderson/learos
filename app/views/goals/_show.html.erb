@@ -1,5 +1,7 @@
 <ul>
   <% project.goals.each do |goal| %>
-  <li><%= goal.description %>
+  <li><%= goal.six_week_goals %>
+  <li><%= goal.three_month_goals %>
+  <li><%= goal.six_month_goals %>
   <% end %>
 </ul>

@@ -1,4 +1,4 @@
 class Onboarding < ActiveRecord::Base
   belongs_to :project
-  attr_accessible :description
+  attr_accessible :step_one, :step_two, :step_three, :step_four, :step_five
 end

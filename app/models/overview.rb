@@ -1,4 +1,4 @@
 class Overview < ActiveRecord::Base
   belongs_to :project
-  attr_accessible :description
+  attr_accessible :elevator_pitch, :value_proposition, :internal_motivations
 end
