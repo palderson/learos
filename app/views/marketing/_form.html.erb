@@ -1,6 +1,9 @@
-<%= f.input :overview %>
+<%= f.input :overview, :placeholder => 'Something' %>
 <%= f.input :external_messaging %>
 <%= f.input :internal_messaging %>
 <%= f.input :marketing_budget %>
 <%= f.input :alpha_invite_email %>
 <%= f.input :beta_invite_email %>
+
+<%= f.label :file_url, "Upload Marketing Materials" %>
+<%= f.filepicker_field :file_url, :dragdrop => 'true', :button_class => 'btn' %>

@@ -2,4 +2,6 @@
 <%= f.input :value_proposition %>
 <%= f.input :internal_motivations %>
 
+<%= f.label :file_url, "Upload General Files" %>
+<%= f.filepicker_field :file_url, :dragdrop => 'true', :button_class => 'btn' %>
 

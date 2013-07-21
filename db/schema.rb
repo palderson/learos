@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130716130510) do
+ActiveRecord::Schema.define(:version => 20130721220840) do
 
   create_table "billings", :force => true do |t|
     t.text     "payment_processing_method"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20130716130510) do
     t.integer  "project_id"
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
+    t.string   "file_url"
   end
 
   add_index "client_trainings", ["project_id"], :name => "index_client_trainings_on_project_id"
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20130716130510) do
     t.integer  "project_id"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+    t.string   "file_url"
   end
 
   add_index "internal_trainings", ["project_id"], :name => "index_internal_trainings_on_project_id"
@@ -66,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20130716130510) do
     t.integer  "project_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.string   "file_url"
   end
 
   add_index "marketings", ["project_id"], :name => "index_marketings_on_project_id"
@@ -90,6 +93,7 @@ ActiveRecord::Schema.define(:version => 20130716130510) do
     t.integer  "project_id"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+    t.string   "file_url"
   end
 
   add_index "overviews", ["project_id"], :name => "index_overviews_on_project_id"

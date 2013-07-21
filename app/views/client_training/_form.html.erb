@@ -1,2 +1,5 @@
 <%= f.input :company_training_materials %>
 <%= f.input :user_training_materials %>
+
+<%= f.label :file_url, "Upload Training Materials" %>
+<%= f.filepicker_field :file_url, :dragdrop => 'true', :button_class => 'btn' %>
