@@ -1,4 +1,15 @@
-<%= project.client_training.company_training_materials %>
-<%= project.client_training.user_training_materials %>
+<div>	
+	<p>Company Training Materials</p>
+	<p><%= project.client_training.company_training_materials %></p>
+</div>
+<br />
+<div>	
+	<p>User Training Materials</p>
+	<p><%= project.client_training.user_training_materials %></p>
+</div>
+<br />
+<div>	
+	<p>Training Materials</p>
+	<%= project.client_training.file_url %>
+</div>
 
-<%= project.client_training.file_url %>

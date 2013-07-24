@@ -1,5 +1,21 @@
-<%= project.overview.elevator_pitch %>
-<%= project.overview.value_proposition %>
-<%= project.overview.internal_motivations %>
+<div>
+	<p>Elevator Pitch</p>
+	<p><%= project.overview.elevator_pitch %></p>
+</div>
+<br />
+<div>
+	<p>Value Proposition</p>
+	<p><%= project.overview.value_proposition %></p>
+</div>
+<br />
+<div>
+	<p>Internal Motivations</p>
+	<p><%= project.overview.internal_motivations %></p>
+</div>
+<br />
+<div>
+	<p>Attachments</p>
+	<%= project.overview.file_url %>
+</div>
 
-<%= project.overview.file_url %>
+
