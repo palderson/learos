@@ -17,3 +17,14 @@
 <% if @show %>
   <p><%= link_to "Upgrade your account", edit_user_registration_path %>
 <% end %>
+
+<div id='collaborations_projects_list'>
+  <ul class='unstyled'>
+    <% @collaborations.each do |cp| %>
+      <li>
+        <span class="label label-important">Collaborator</span>
+        <strong><%= link_to cp.project.title, cp.project %></strong>
+      </li>
+    <% end %>
+  </ul>
+</div>

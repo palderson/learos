@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = current_user.projects
+    @collaborations = current_user.collaborations
     @projects_info = get_remaining_projects
     @trial_info = get_remaining_days unless current_user.has_subscribed?
     @show = show_upgrade_message?

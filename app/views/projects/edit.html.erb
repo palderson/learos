@@ -4,6 +4,10 @@
   <%= link_to 'Change Name', project_change_name_path(@project) %>
   |
   <%= link_to 'Delete Project', @projects, method: :delete, data: { confirm: 'Are you sure?'} %>
+  |
+  <%= link_to 'Invite User', new_project_collaboration_path(@project) %>
+  |
+  <%= link_to 'Manage Collaborators', project_collaborations_path(@project) %>
 
 <div class='tabbable tabs-left'>
   <ul class='nav nav-tabs'>
