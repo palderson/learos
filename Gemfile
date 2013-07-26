@@ -22,8 +22,9 @@ gem 'stripe_event'
 gem 'thin'
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
+  gem 'binding_of_caller'
   gem 'quiet_assets'
+  gem 'letter_opener'
 end
 group :development, :test do
   gem 'factory_girl_rails'
