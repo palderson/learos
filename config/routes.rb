@@ -1,6 +1,7 @@
 Learos::Application.routes.draw do
   resources :projects do
     get 'change_name', to: 'projects#change_name'
+    resources :collaborations
   end
 
   mount StripeEvent::Engine => '/stripe'

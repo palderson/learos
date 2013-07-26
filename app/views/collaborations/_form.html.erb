@@ -1,0 +1,12 @@
+<h2>Invite User to Project</h2>
+
+<%= simple_form_for [@project, @collaboration], html: { class: 'form-horizontal' } do |f| %>
+
+  <%= f.input :email, label: 'Email' %>
+
+  <div class="control-group">
+    <div class="controls">
+      <%= f.button :submit, "Invite" %>
+    </div>
+  </div>
+<% end %>

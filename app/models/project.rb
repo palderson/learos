@@ -15,6 +15,7 @@ class Project < ActiveRecord::Base
   has_one :internal_training
   has_one :client_training
   has_one :rollout
+  has_many :collaborations
   accepts_nested_attributes_for :overview, :profile, :product, :billing, :marketing, :onboarding, :servicing, :plan, :internal_training, :client_training, :rollout
   accepts_nested_attributes_for :goals, :test_clients, reject_if: lambda { |attrs| attrs.all? {|key, value| value.blank?} }
 

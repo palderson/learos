@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   attr_accessor :stripe_token, :coupon
 
   has_many :projects
+  has_many :collaborations
   # before_save :update_stripe
   # before_destroy :cancel_subscription
 
