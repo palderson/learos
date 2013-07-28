@@ -1,5 +1,5 @@
 class CollaborationsController < ApplicationController
-  before_filter :find_project, authorize! :invite, @project
+  before_filter :find_project, :check_auth
 
   def index
     @collaborations = @project.collaborations
@@ -18,6 +18,10 @@ class CollaborationsController < ApplicationController
 
   def find_project
     @project = Project.find(params[:project_id])
+  end
+
+  def check_auth
+    authorize!(:invite, @project)
   end
 
 private
