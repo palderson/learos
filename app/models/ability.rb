@@ -11,5 +11,8 @@ class Ability
       can :view, :platinum if user.has_role? :platinum
     end
     can :create, :all if user.has_free_projects? && (user.has_subscribed? || user.has_trial_days?)
+    can :invite, Project do |project|
+      !user.is_invited?(project)
+    end
   end
 end

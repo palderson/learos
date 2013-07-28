@@ -116,4 +116,8 @@ class User < ActiveRecord::Base
   def trial_days_count
     30 - (DateTime.now.to_date - self.created_at.to_date).to_i
   end
+
+  def is_invited?(project)
+    project.collaborations.map(&:user).include?(self)
+  end
 end
