@@ -1,10 +1,10 @@
 <p>
   <b><%= @project.title %></b>
+<% if can? :invite, @project %>
   |
   <%= link_to 'Change Name', project_change_name_path(@project) %>
   |
   <%= link_to 'Delete Project', @projects, method: :delete, data: { confirm: 'Are you sure?'} %>
-<% if can? :invite, @project %>
   |
   <%= link_to 'Invite User', new_project_collaboration_path(@project) %>
   |

@@ -65,6 +65,7 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1.json
   def destroy
     @project = Project.find(params[:id])
+    authorize! :invite, @project
     @project.destroy
 
     respond_to do |format|
@@ -75,6 +76,7 @@ class ProjectsController < ApplicationController
 
   def change_name
     @project = Project.find(params[:project_id])
+    authorize! :invite, @project
     render "change_name"
   end
 

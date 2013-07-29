@@ -1,7 +1,18 @@
-<h2>Manage Project Collaborators</h2>
-
-<div id='collaborators_list'>
-  <ul class='unstyled'>
-    <%= render @collaborations %>
-  </ul>
+<div class='page-header'>
+  <h2>Manage Collaborators</h2>
 </div>
+
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @collaborations %>
+  </tbody>
+</table>
+
+<%= link_to 'Invite New Collaborator', new_project_collaboration_path(@project), class: "btn btn-link" %>
