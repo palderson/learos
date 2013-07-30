@@ -51,7 +51,7 @@
       <a href='#rollout_tab', data-toggle='tab', remote: true>Rollout Retrospective</a>
     </li>
   </ul>
-  <%= simple_form_for((@project.with_blank_fields), html: { class: 'form-horizontal active-table-form' }) do |f| %>
+  <%= simple_form_for(@project, html: { class: 'form-horizontal active-table-form' }) do |f| %>
   <div class='tab-content'>
       <div id='overview_tab', class='tab-pane active'>
         <%= f.simple_fields_for :overview do |nf| %>
@@ -64,7 +64,7 @@
         <% end %>
     </div>
     <div id='goals_tab', class='tab-pane'>
-        <%= f.simple_fields_for :goals do |nf| %>
+        <%= f.simple_fields_for :goal do |nf| %>
           <%= render partial: 'goals/form', locals: { f: nf } %>
         <% end %>
     </div>
@@ -84,7 +84,7 @@
         <% end %>
     </div>
     <div id='test_clients_tab', class='tab-pane'>
-        <%= f.simple_fields_for :test_clients do |nf| %>
+        <%= f.simple_fields_for :test_client do |nf| %>
           <%= render partial: 'test_clients/form', locals: { f: nf } %>
         <% end %>
     </div>

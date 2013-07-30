@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Collaborator do
+describe Collaboration do
   pending "add some examples to (or delete) #{__FILE__}"
 end

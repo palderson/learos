@@ -1,7 +1,18 @@
-<ul>
-  <% project.goals.each do |goal| %>
-  <li><%= goal.six_week_goals %></li>
-  <li><%= goal.three_month_goals %></li>
-  <li><%= goal.six_month_goals %></li>
-  <% end %>
-</ul>
+<div>
+  <p>Six Week Goals</p>
+  <p><%= project.goal.six_week_goals %></p>
+</div>
+<br />
+<div>
+  <p>Three Month Goals</p>
+  <p><%= project.goal.three_month_goals %></p>
+</div>
+<br />
+<div>
+  <p>Six Month Goals</p>
+  <%= project.goal.six_month_goals %>
+</div>
+
+<%= link_to 'Edit', edit_project_path(@project) %>
+
+<%= render partial: 'comments/form', locals: { project: @project, nested: :goal } %>
