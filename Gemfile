@@ -20,6 +20,7 @@ gem 'simple_form'
 gem 'stripe'
 gem 'stripe_event'
 gem 'thin'
+gem 'acts_as_commentable_with_threading'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
