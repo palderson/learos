@@ -1,7 +1,8 @@
 class CollaborationsController < ApplicationController
-  before_filter :find_project, :check_auth
+  before_filter :find_project
 
   def index
+    authorize!(:invite, @project)
     @collaborations = @project.collaborations
   end
 
@@ -21,6 +22,7 @@ class CollaborationsController < ApplicationController
   end
 
   def destroy
+    authorize!(:invite, @project)
     @collaboration = @project.collaborations.find(params[:id])
     @collaboration.destroy
 
@@ -29,10 +31,6 @@ class CollaborationsController < ApplicationController
 
   def find_project
     @project = Project.find(params[:project_id])
-  end
-
-  def check_auth
-    authorize!(:invite, @project)
   end
 
 private
