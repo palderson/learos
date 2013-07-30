@@ -1,20 +1,24 @@
-<div>	
+<div>
 	<p>Payment Processing Method</p>
 	<p><%= project.billing.payment_processing_method %></p>
 </div>
 <br />
-<div>	
+<div>
 	<p>Bill Processing Steps</p>
 	<p><%= project.billing.billing_process_steps %></p>
 </div>
-<br />	
-<div>	
+<br />
+<div>
 	<p>Bill Update Requirements</p>
 	<p><%= project.billing.billing_update_requirements %></p>
 </div>
-<br />	
-<div>	
+<br />
+<div>
 	<p>Contract Requirements</p>
 	<p><%= project.billing.contract_requirements %></p>
 </div>
-<br />	
+<br />
+
+<%= link_to 'Edit', edit_project_path(@project) %>
+
+<%= render partial: 'comments/form', locals: { project: @project, nested: :billing } %>

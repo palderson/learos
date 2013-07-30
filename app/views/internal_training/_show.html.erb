@@ -1,14 +1,18 @@
-<div>	
+<div>
 	<p>Internal Training Materials</p>
 	<p><%= project.internal_training.individual_training_materials %></p>
 </div>
 <br />
-<div>	
+<div>
 	<p>Group Training Materials</p>
 	<p><%= project.internal_training.group_training_materials %></p>
 </div>
 <br />
-<div>	
+<div>
 	<p>Training Materials</p>
 	<%= project.internal_training.file_url %>
 </div>
+
+<%= link_to 'Edit', edit_project_path(@project) %>
+
+<%= render partial: 'comments/form', locals: { project: @project, nested: :internal_training } %>

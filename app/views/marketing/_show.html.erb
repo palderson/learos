@@ -1,34 +1,38 @@
-<div>	
+<div>
 	<p>Marketing Overview</p>
 	<p><%= project.marketing.overview %></p>
 </div>
 <br />
-<div>	
+<div>
 	<p>External Messaging</p>
 	<p><%= project.marketing.external_messaging %></p>
 </div>
 <br />
-<div>	
+<div>
 	<p>Internal Messaging</p>
 	<p><%= project.marketing.internal_messaging %></p>
 </div>
 <br />
-<div>	
+<div>
 	<p>Marketing Budget</p>
 	<p><%= project.marketing.marketing_budget %></p>
 </div>
 <br />
-<div>	
+<div>
 	<p>Alpha Invite Email</p>
 	<p><%= project.marketing.alpha_invite_email %></p>
 </div>
 <br />
-<div>	
+<div>
 	<p>Beta Invite Email</p>
 	<p><%= project.marketing.beta_invite_email %></p>
 </div>
 <br />
-<div>	
+<div>
 	<p>Marketing Materials</p>
 	<%= project.marketing.file_url %>
 </div>
+
+<%= link_to 'Edit', edit_project_path(@project) %>
+
+<%= render partial: 'comments/form', locals: { project: @project, nested: :marketing } %>

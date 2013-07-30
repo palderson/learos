@@ -3,3 +3,7 @@
 <%= project.onboarding.step_three %>
 <%= project.onboarding.step_four %>
 <%= project.onboarding.step_five %>
+
+<%= link_to 'Edit', edit_project_path(@project) %>
+
+<%= render partial: 'comments/form', locals: { project: @project, nested: :onboarding } %>

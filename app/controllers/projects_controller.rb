@@ -81,7 +81,14 @@ class ProjectsController < ApplicationController
   end
 
   def comments
-    fail
+    @project = Project.find(params[:project_id])
+    @comment = Comment.build_from(@project.send(params[:model]), current_user.id, params[:body])
+    @comment.subject = params[:subject]
+    if @comment.save
+      redirect_to @project, notice: 'Comment was successfully added.'
+    else
+      redirect_to @project, notice: 'Unable to add comment. Check your input.'
+    end
   end
 
   private

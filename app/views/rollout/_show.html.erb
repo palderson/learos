@@ -2,3 +2,7 @@
 <%= project.rollout.what_could_have_gone_better %>
 <%= project.rollout.what_surprised_you %>
 <%= project.rollout.lesson_learned %>
+
+<%= link_to 'Edit', edit_project_path(@project) %>
+
+<%= render partial: 'comments/form', locals: { project: @project, nested: :rollout } %>

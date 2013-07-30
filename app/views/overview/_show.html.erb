@@ -20,4 +20,4 @@
 
 <%= link_to 'Edit', edit_project_path(@project) %>
 
-<%= render partial: 'comments/form', locals: { project: @project } %>
+<%= render partial: 'comments/form', locals: { project: @project, nested: :overview } %>
