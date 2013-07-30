@@ -80,6 +80,10 @@ class ProjectsController < ApplicationController
     render "change_name"
   end
 
+  def comments
+    fail
+  end
+
   private
   def get_remaining_projects
     "#{current_user.projects.count} of #{Project.get_max_projects(current_user).to_s} Projects"

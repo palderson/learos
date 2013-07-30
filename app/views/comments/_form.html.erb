@@ -1,0 +1,8 @@
+<%= simple_form_for(@project, url: project_comments_path(@project), html: { class: 'form-horizontal active-table-form' }) do |f| %>
+  <%= text_field_tag :subject %>
+  <%= text_area_tag :body %>
+
+  <%= hidden_field_tag 'model', 'overview' %>
+
+  <%= submit_tag "Send" %>
+<% end %>
