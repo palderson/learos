@@ -83,7 +83,6 @@ class ProjectsController < ApplicationController
   def comments
     @project = Project.find(params[:project_id])
     @comment = Comment.build_from(@project.send(params[:model]), current_user.id, params[:body])
-    @comment.subject = params[:subject]
     if @comment.save
       redirect_to @project, notice: 'Comment was successfully added.'
     else
