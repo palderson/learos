@@ -1,23 +1,28 @@
-<%= simple_form_for(@project, url: project_comments_path(@project), html: { class: 'form-horizontal active-table-form' }) do |f| %>
-<fieldset>
-  <legend>Comments</legend>
+<hr>
+<div>
+  <fieldset>
+    <legend>Comments</legend>
 
-  <div class="control-group">
-    <%= label_tag :subject %>
-    <div class="controls">
-      <%= text_field_tag :subject %>
+    <div class="span6">
+      <% @project.send(nested).root_comments.each do |comment| %>
+      <blockquote>
+        <p><%= comment.body %></p>
+        <small><%="#{comment.user.name} (#{comment.user.email})"%></small>
+      </blockquote>
+      <% end %>
+      <%= simple_form_for(@project, url: project_comments_path(@project)) do |f| %>
+        <div class="control-group">
+          <div class="controls">
+            <%= text_area_tag :body, nil, placeholder: "Write your comment here...", class: 'span6' %>
+          </div>
+        </div>
+
+        <%= hidden_field_tag 'model', nested %>
+
+        <div class="form-actions">
+          <%= submit_tag "Send", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
     </div>
-  </div>
-  <div class="control-group">
-    <%= label_tag :body %>
-    <div class="controls">
-      <%= text_area_tag :body %>
-    </div>
-  </div>
-
-  <%= hidden_field_tag 'model', nested %>
-
-  <div class="form-actions">
-    <%= submit_tag "Send", class: 'btn btn-primary' %>
-  </div>
-<% end %>
+  </fieldset>
+</div>
