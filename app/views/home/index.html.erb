@@ -1,7 +1,12 @@
-<div id="welcome" class="hero-unit span7">
-  <h2>From Idea to Traction</h2>
-  <h3>Manage your entire software development lifecycle</h3>
-</div>
+<div>
+  <h2>Manage your projects end-to-end.</h2>
+  <h4>Manage your entire software development lifecycle</h4>
+    <%= link_to new_user_registration_path(:plan => 'silver'), :id => 'trial_btn', :class => 'btn btn-primary btn-large', :style => 'float:right' do %>
+      Try It Free Today
+    <% end %>   
+<br />       
+</div>      
+<br />
 <div class="row span8 plans">
   <div class="span2 well">
     <div class="plan"><h2>Silver</h2></div>
