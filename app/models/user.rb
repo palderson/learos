@@ -4,13 +4,15 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable,
+         :validatable, :confirmable, :invitable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :stripe_token, :coupon
   attr_accessor :stripe_token, :coupon
 
   has_many :projects
+  has_many :collaborations
   # before_save :update_stripe
   # before_destroy :cancel_subscription
 
@@ -113,5 +115,9 @@ class User < ActiveRecord::Base
 
   def trial_days_count
     30 - (DateTime.now.to_date - self.created_at.to_date).to_i
+  end
+
+  def is_invited?(project)
+    project.collaborations.map(&:user).include?(self)
   end
 end

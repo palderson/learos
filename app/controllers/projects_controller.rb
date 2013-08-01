@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = current_user.projects
+    @collaborations = current_user.collaborations
     @projects_info = get_remaining_projects
     @trial_info = get_remaining_days unless current_user.has_subscribed?
     @show = show_upgrade_message?
@@ -64,6 +65,7 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1.json
   def destroy
     @project = Project.find(params[:id])
+    authorize! :invite, @project
     @project.destroy
 
     respond_to do |format|
@@ -74,7 +76,18 @@ class ProjectsController < ApplicationController
 
   def change_name
     @project = Project.find(params[:project_id])
+    authorize! :invite, @project
     render "change_name"
+  end
+
+  def comments
+    @project = Project.find(params[:project_id])
+    @comment = Comment.build_from(@project.send(params[:model]), current_user.id, params[:body])
+    if @comment.save
+      redirect_to @project, notice: 'Comment was successfully added.'
+    else
+      redirect_to @project, notice: 'Unable to add comment. Check your input.'
+    end
   end
 
   private

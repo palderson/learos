@@ -2,3 +2,7 @@
 	<p>Description</p>
 	<p><%= project.servicing.description %></p>
 </div>
+
+<%= link_to 'Edit', edit_project_path(@project) %>
+
+<%= render partial: 'comments/form', locals: { project: @project, nested: :servicing } %>

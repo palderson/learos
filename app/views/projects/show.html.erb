@@ -1,9 +1,15 @@
 <p>
   <b><%= @project.title %></b>
+<% if can? :invite, @project %>
   |
   <%= link_to 'Change Name', project_change_name_path(@project) %>
   |
   <%= link_to 'Delete Project', @projects, method: :delete, data: { confirm: 'Are you sure?'} %>
+  |
+  <%= link_to 'Manage Collaborators', project_collaborations_path(@project) %>
+  |
+<% end %>
+  <%= link_to 'Invite User', new_project_collaboration_path(@project) %>
 
 <div class='tabbable tabs-left'>
   <ul class='nav nav-tabs'>
@@ -87,6 +93,5 @@
     <div id='rollout_tab', class='tab-pane'>
       <%= render partial: 'rollout/show', locals: { project: @project } %>
     </div>
-    <%= link_to 'Edit', edit_project_path(@project) %>
   </div>
 </div>

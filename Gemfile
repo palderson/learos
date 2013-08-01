@@ -13,16 +13,19 @@ gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'cancan'
 gem 'devise'
+gem 'devise_invitable', '~> 1.1.0'
 gem 'figaro'
 gem 'rolify'
 gem 'simple_form'
 gem 'stripe'
 gem 'stripe_event'
 gem 'thin'
+gem 'acts_as_commentable_with_threading'
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
+  gem 'binding_of_caller'
   gem 'quiet_assets'
+  gem 'letter_opener'
 end
 group :development, :test do
   gem 'factory_girl_rails'

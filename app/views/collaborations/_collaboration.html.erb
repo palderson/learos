@@ -1,0 +1,8 @@
+<tr>
+  <td><%= collaboration.user.name %></td>
+  <td><%= collaboration.user.email %></td>
+  <td>
+    <%= link_to "Remove", project_collaboration_path(@project, collaboration), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-mini btn-danger' %>
+  </td>
+</tr>
+
