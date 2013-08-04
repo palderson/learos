@@ -59,7 +59,7 @@ class Subscription < ActiveRecord::Base
   rescue Stripe::StripeError => e
     logger.error "Stripe Error: " + e.message
     errors.add :base, "#{e.message}."
-    self.stripe_token = nil
+    self.stripe_card_token = nil
     false
   end
 
