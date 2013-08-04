@@ -3,6 +3,8 @@ class Subscription < ActiveRecord::Base
   belongs_to :subscription_plan
   attr_accessible :subscription_plan_id, :stripe_card_token, :user_id
 
+  default_scope order('created_at DESC')
+
   attr_accessor :stripe_card_token, :coupon
 
   def update_plan(plan_id)
