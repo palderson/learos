@@ -8,6 +8,9 @@ class SubscriptionsController < ApplicationController
   end
 
   def update
+    if @subscription.stripe_customer_token.present? && params[:subscription][:subscription_plan_id] != @subscription.subscription_plan.id
+      @subscription.update_plan(params[:subscription][:subscription_plan_id])
+    end
     @subscription.update_attributes(params[:subscription].merge(user_id: current_user.id))
     if @subscription.update_stripe
       redirect_to root_path, notice: 'Thank you for subscribing!'

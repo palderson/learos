@@ -5,19 +5,17 @@ class Subscription < ActiveRecord::Base
 
   attr_accessor :stripe_card_token, :coupon
 
-  # def update_plan(role)
-  #   self.role_ids = []
-  #   self.add_role(role.name)
-  #   unless customer_id.nil?
-  #     customer = Stripe::Customer.retrieve(customer_id)
-  #     customer.update_subscription(:plan => role.name)
-  #   end
-  #   true
-  # rescue Stripe::StripeError => e
-  #   logger.error "Stripe Error: " + e.message
-  #   errors.add :base, "Unable to update your subscription. #{e.message}."
-  #   false
-  # end
+  def update_plan(plan_id)
+    unless stripe_customer_token.nil?
+      customer = Stripe::Customer.retrieve(stripe_customer_token)
+      customer.update_subscription(:plan => plan_id)
+    end
+    true
+  rescue Stripe::StripeError => e
+    logger.error "Stripe Error: " + e.message
+    errors.add :base, "Unable to update your subscription. #{e.message}."
+    false
+  end
 
   def update_stripe
     return if user.email.include?(ENV['ADMIN_EMAIL'])
