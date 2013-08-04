@@ -7,7 +7,8 @@ class ProjectsController < ApplicationController
     @projects = current_user.projects
     @collaborations = current_user.collaborations
     @projects_info = get_remaining_projects
-    @trial_info = get_remaining_days unless current_user.has_subscribed?
+    @trial_info = "no info"
+    # @trial_info = get_remaining_days unless current_user.has_subscribed?
     @show = show_upgrade_message?
 
     respond_to do |format|
@@ -100,6 +101,7 @@ class ProjectsController < ApplicationController
   end
 
   def show_upgrade_message?
+    return true
     plan = current_user.get_role
     return true if current_user.has_subscribed? && (plan == 'silver' || plan == 'gold')
     return true if !current_user.has_subscribed? && current_user.has_trial_days?
