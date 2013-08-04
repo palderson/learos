@@ -25,4 +25,4 @@ subscription =
       $('#subscription_stripe_card_token').val(response.id)
       $('.card_form')[0].submit()
     else
-      $('#stripe_error').text(response.error.message)
+      $('#stripe_error').text(response.error.message).show()
