@@ -15,7 +15,7 @@
 <p><%= @projects_info %></p>
 <p><%= @trial_info %></p>
 <% if @show %>
-  <p><%= link_to "Upgrade your account", edit_user_registration_path %>
+  <p><%= link_to "Upgrade your account", edit_user_subscription_path(current_user, current_user.current_subscription) %>
 <% end %>
 
 <div id='collaborations_projects_list'>
