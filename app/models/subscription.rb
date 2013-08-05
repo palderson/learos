@@ -51,6 +51,7 @@ class Subscription < ActiveRecord::Base
       end
       customer.email = user.email
       customer.description = user.name
+      customer.update_subscription(:plan => self.subscription_plan.id)
       customer.save
     end
     self.last_4_digits = customer.cards.first.last4
