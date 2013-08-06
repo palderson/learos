@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   def has_free_projects?
     plan = get_plan
     return true if (plan == 'platinum' || plan == 'trial')
-    Project.get_max_projects(self) - self.projects.count > 0 ? true : false
+    Project.get_max_projects(self) - self.projects.unarchived.count > 0 ? true : false
   end
 
   def has_subscribed?

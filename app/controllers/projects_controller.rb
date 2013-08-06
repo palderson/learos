@@ -4,9 +4,9 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = current_user.projects
+    @projects = current_user.projects.unarchived
     @collaborations = current_user.collaborations
-    @projects_info = get_remaining_projects
+    @projects_info = get_remaining_projects(@projects.count)
     @trial_info = get_remaining_days unless current_user.has_subscribed?
     @show = show_upgrade_message?
 
@@ -90,9 +90,16 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def archive
+    @project = Project.find(params[:project_id])
+    @project.archived = true
+    @project.save!
+    redirect_to projects_path, notice: 'Project successfully archived.'
+  end
+
   private
-  def get_remaining_projects
-    "#{current_user.projects.count} of #{Project.get_max_projects(current_user).to_s} Projects"
+  def get_remaining_projects(num)
+    "#{num} of #{Project.get_max_projects(current_user).to_s} Projects"
   end
 
   def get_remaining_days
