@@ -2,7 +2,12 @@ Learos::Application.routes.draw do
   resources :projects do
     get 'change_name', to: 'projects#change_name'
     put 'comments', to: 'projects#comments'
+    get 'archive', to: 'projects#archive'
     resources :collaborations
+  end
+
+  resources :archives do
+    get 'unarchive', to: 'archives#unarchive'
   end
 
   mount StripeEvent::Engine => '/stripe'

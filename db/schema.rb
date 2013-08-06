@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130804145036) do
+ActiveRecord::Schema.define(:version => 20130806085724) do
 
   create_table "billings", :force => true do |t|
     t.text     "payment_processing_method"
@@ -162,9 +162,10 @@ ActiveRecord::Schema.define(:version => 20130804145036) do
 
   create_table "projects", :force => true do |t|
     t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "user_id"
+    t.boolean  "archived",   :default => false
   end
 
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
