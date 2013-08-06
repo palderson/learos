@@ -18,6 +18,9 @@ class Project < ActiveRecord::Base
   has_many :collaborations
   accepts_nested_attributes_for :overview, :profile, :product, :billing, :marketing, :onboarding, :servicing, :plan, :internal_training, :client_training, :rollout, :goal, :test_client
 
+  scope :unarchived, where(archived: false)
+  scope :archived, where(archived: true)
+
   after_create do
     self.create_overview
     self.create_profile
