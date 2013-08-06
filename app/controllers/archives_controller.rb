@@ -7,6 +7,7 @@ class ArchivesController < ApplicationController
 
   def unarchive
     @project = Project.find(params[:archive_id])
+    authorize! :invite, @project
     @project.archived = false
     @project.save!
     redirect_to projects_path, notice: 'Project successfully unarchived.'

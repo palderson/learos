@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = current_user.projects.unarchived
-    @collaborations = current_user.collaborations
+    @collaborations = current_user.collaborations.map(&:project).select { |p| p.archived == false }
     @projects_info = get_remaining_projects(@projects.count)
     @trial_info = get_remaining_days unless current_user.has_subscribed?
     @show = show_upgrade_message?
@@ -34,6 +34,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     @project = Project.find(params[:id])
+    authorize! :edit, @project, message: "Unarchive the project to edit."
   end
 
   def create
@@ -49,6 +50,7 @@ class ProjectsController < ApplicationController
   # PUT /projects/1.json
   def update
     @project = Project.find(params[:id])
+    authorize! :edit, @project, message: "Unarchive the project to edit."
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
@@ -82,6 +84,7 @@ class ProjectsController < ApplicationController
 
   def comments
     @project = Project.find(params[:project_id])
+    authorize! :edit, @project, message: "Unarchive the project to add comments."
     @comment = Comment.build_from(@project.send(params[:model]), current_user.id, params[:body])
     if @comment.save
       redirect_to @project, notice: 'Comment was successfully added.'
@@ -92,6 +95,7 @@ class ProjectsController < ApplicationController
 
   def archive
     @project = Project.find(params[:project_id])
+    authorize! :invite, @project
     @project.archived = true
     @project.save!
     redirect_to projects_path, notice: 'Project successfully archived.'

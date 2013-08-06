@@ -28,6 +28,8 @@
 	<p><%= project.profile.product_user %></p>
 </div>
 
-<%= link_to 'Edit', edit_project_path(@project) %>
+<% if can? :edit, @project %>
+  <%= link_to 'Edit', edit_project_path(@project) %>
+<% end %>
 
 <%= render partial: 'comments/form', locals: { project: @project, nested: :profile } %>

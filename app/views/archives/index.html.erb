@@ -14,7 +14,9 @@
           <td><%= link_to project.title, project %></td>
           <td>
             <%= link_to "Show", project_path(project), class: 'btn btn-mini' %>
+          <% if can? :invite, project %>
             <%= link_to "Unarchive", archive_unarchive_path(project), class: 'btn btn-mini btn-inverse' %>
+          <% end %>
           </td>
         </tr>
       <% end %>

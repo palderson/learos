@@ -18,6 +18,8 @@
 	<p><%= project.plan.action %></p>
 </div>
 
-<%= link_to 'Edit', edit_project_path(@project) %>
+<% if can? :edit, @project %>
+  <%= link_to 'Edit', edit_project_path(@project) %>
+<% end %>
 
 <%= render partial: 'comments/form', locals: { project: @project, nested: :plan } %>

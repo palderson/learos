@@ -3,6 +3,9 @@
   <p><%= project.test_client.description %></p>
 </div>
 
-<%= link_to 'Edit', edit_project_path(@project) %>
+<% if can? :edit, @project %>
+  <%= link_to 'Edit', edit_project_path(@project) %>
+<% end %>
+
 <%= render partial: 'comments/form', locals: { project: @project, nested: :test_client } %>
 
