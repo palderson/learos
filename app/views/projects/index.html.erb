@@ -1,11 +1,18 @@
 <h1>Projects</h1>
 
-<div id='projects_list'>
-  <ul class='unstyled'>
-    <%= render @projects %>
-  </ul>
-</div>
-
+<% unless @projects.empty? %>
+  <table class='table table-striped projects_list'>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @projects %>
+    </tbody>
+  </table>
+<% end %>
 <br>
 
 <% if can? :create, current_user %>

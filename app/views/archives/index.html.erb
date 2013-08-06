@@ -1,0 +1,23 @@
+<h1>Archives</h1>
+
+<% unless @projects.empty? %>
+  <table class='table table-striped projects_list'>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @projects.each do |project| %>
+        <tr>
+          <td><%= link_to project.title, project %></td>
+          <td>
+            <%= link_to "Show", project_path(project), class: 'btn btn-mini' %>
+            <%= link_to "Unarchive", archive_unarchive_path(project), class: 'btn btn-mini btn-inverse' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
