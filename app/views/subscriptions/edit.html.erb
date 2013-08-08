@@ -90,8 +90,11 @@
   </div>
   <div class="control-group">
     <div class="controls">
-      <%= f.submit "Subscribe", class: 'btn' %>
-      <%= link_to 'Unsubscribe', [current_user, @subscription], method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+      <%= f.submit "#{@subscription.status == 'active' ? 'Change Subscription' : 'Subscribe'}", class: 'btn btn-primary' %>
+      <% if @subscription.status == 'active' %>
+        or
+        <%= link_to 'cancel your subscription', [current_user, @subscription], method: :delete, data: { confirm: 'Are you sure?'} %>
+      <% end %>
     </div>
   </div>
 <% end %>
