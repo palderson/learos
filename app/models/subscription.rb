@@ -8,10 +8,11 @@ class Subscription < ActiveRecord::Base
   attr_accessor :update_stripe, :stripe_card_token, :coupon
 
   def update_plan(plan_id)
+    self.subscription_plan_id = plan_id
+    raise Stripe::StripeError.new("Archive or delete projects to downgrade") unless can_downgrade?(user)
     unless stripe_customer_token.nil?
       customer = Stripe::Customer.retrieve(stripe_customer_token)
       customer.update_subscription(:plan => plan_id)
-      self.subscription_plan_id = plan_id
       save!
     end
     true
@@ -24,6 +25,7 @@ class Subscription < ActiveRecord::Base
   def update_stripe
     return if user.email.include?(ENV['ADMIN_EMAIL'])
     return if user.email.include?('@example.com') and not Rails.env.production?
+    raise Stripe::StripeError.new("Archive or delete projects to downgrade") unless can_downgrade?(user)
     if stripe_customer_token.nil?
       unless stripe_card_token.present?
         raise "Stripe token not present. Can't create account."
@@ -66,20 +68,25 @@ class Subscription < ActiveRecord::Base
     false
   end
 
-  # def cancel_subscription
-  #   unless customer_id.nil?
-  #     customer = Stripe::Customer.retrieve(customer_id)
-  #     unless customer.nil? or customer.respond_to?('deleted')
-  #       if customer.subscription.status == 'active'
-  #         customer.cancel_subscription
-  #       end
-  #     end
-  #   end
-  # rescue Stripe::StripeError => e
-  #   logger.error "Stripe Error: " + e.message
-  #   errors.add :base, "Unable to cancel your subscription. #{e.message}."
-  #   false
-  # end
+  def can_downgrade?(user)
+    user.projects.unarchived.count <= self.subscription_plan.number_of_projects
+  end
+
+  def cancel_subscription
+    unless stripe_customer_token.nil?
+      customer = Stripe::Customer.retrieve(stripe_customer_token)
+      fail
+      unless customer.nil? or customer.respond_to?('deleted')
+        if customer.subscription.status == 'active'
+          customer.cancel_subscription
+        end
+      end
+    end
+  rescue Stripe::StripeError => e
+    logger.error "Stripe Error: " + e.message
+    errors.add :base, "Unable to cancel your subscription. #{e.message}."
+    false
+  end
 
   def expire
     UserMailer.expire_email(self).deliver

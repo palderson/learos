@@ -8,8 +8,17 @@ class ArchivesController < ApplicationController
   def unarchive
     @project = Project.find(params[:archive_id])
     authorize! :invite, @project
-    @project.archived = false
-    @project.save!
-    redirect_to projects_path, notice: 'Project successfully unarchived.'
+    if can_unarchive?(current_user)
+      @project.archived = false
+      @project.save!
+      redirect_to projects_path, notice: 'Project successfully unarchived.'
+    else
+      redirect_to projects_path, alert: 'Delete/archive active projects or upgrade plan to unarchive.'
+    end
+  end
+
+private
+  def can_unarchive?(user)
+    user.projects.unarchived.count < user.subscription.subscription_plan.number_of_projects
   end
 end
