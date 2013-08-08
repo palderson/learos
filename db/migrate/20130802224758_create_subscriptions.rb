@@ -2,6 +2,7 @@ class CreateSubscriptions < ActiveRecord::Migration
   def change
     create_table :subscriptions do |t|
       t.string :stripe_customer_token
+      t.string :status
       t.datetime :expire_date
       t.integer :last_4_digits
       t.references :user

@@ -8,24 +8,21 @@ class User < ActiveRecord::Base
          :validatable, :confirmable, :invitable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :stripe_token, :coupon
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :stripe_token, :coupon, :subscription_attributes
   attr_accessor :stripe_token, :coupon
 
-  has_many :subscriptions
+  has_one :subscription
   has_many :projects
   has_many :collaborations
   after_create :create_subscription
 
-  def current_subscription
-    subscriptions.first
-  end
-
   def create_subscription
-    self.subscriptions.create
+    subscription = self.build_subscription
+    subscription.save!
   end
 
   def get_plan
-    current_subscription.stripe_customer_token.present? ? current_subscription.subscription_plan.name : 'trial'
+    subscription.stripe_customer_token.present? ? subscription.subscription_plan.name : 'trial'
   end
 
   def has_free_projects?
@@ -35,7 +32,7 @@ class User < ActiveRecord::Base
   end
 
   def has_subscribed?
-    return true if current_subscription.stripe_customer_token.present?
+    return true if subscription.stripe_customer_token.present?
     return false
   end
 

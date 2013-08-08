@@ -212,6 +212,7 @@ ActiveRecord::Schema.define(:version => 20130806085724) do
 
   create_table "subscriptions", :force => true do |t|
     t.string   "stripe_customer_token"
+    t.string   "status"
     t.datetime "expire_date"
     t.integer  "last_4_digits"
     t.integer  "user_id"
