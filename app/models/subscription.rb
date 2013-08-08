@@ -13,6 +13,8 @@ class Subscription < ActiveRecord::Base
     unless stripe_customer_token.nil?
       customer = Stripe::Customer.retrieve(stripe_customer_token)
       customer.update_subscription(:plan => plan_id)
+      self.expire_date = Time.at(customer.subscription.current_period_end.to_i)
+      self.status = "active"
       save!
     end
     true
@@ -59,7 +61,8 @@ class Subscription < ActiveRecord::Base
     self.last_4_digits = customer.cards.first.last4
     self.stripe_customer_token = customer.id
     self.stripe_card_token = nil
-    self.expire_date = DateTime.now + 1.month
+    self.expire_date = Time.at(customer.subscription.current_period_end.to_i)
+    self.status = "active"
     save!
   rescue Stripe::StripeError => e
     logger.error "Stripe Error: " + e.message
@@ -75,10 +78,11 @@ class Subscription < ActiveRecord::Base
   def cancel_subscription
     unless stripe_customer_token.nil?
       customer = Stripe::Customer.retrieve(stripe_customer_token)
-      fail
       unless customer.nil? or customer.respond_to?('deleted')
         if customer.subscription.status == 'active'
           customer.cancel_subscription
+          self.status = "canceled"
+          save!
         end
       end
     end
