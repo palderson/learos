@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
          :validatable, :confirmable, :invitable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :stripe_token, :coupon
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :stripe_token, :coupon, :subscription_attributes
   attr_accessor :stripe_token, :coupon
 
   has_one :subscription
@@ -17,7 +17,8 @@ class User < ActiveRecord::Base
   after_create :create_subscription
 
   def create_subscription
-    self.subscriptions.create
+    subscription = self.build_subscription
+    subscription.save!
   end
 
   def get_plan
