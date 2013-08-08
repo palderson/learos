@@ -1,3 +1,10 @@
-<li>
-  <strong><%= link_to project.title, project %></strong>
-</li>
+<tr>
+  <td><%= link_to project.title, project %></td>
+  <td>
+    <%= link_to "Show", project_path(project), class: 'btn btn-mini' %>
+    <% if can? :invite, project %>
+      <%= link_to "Archive", project_archive_path(project), class: 'btn btn-mini btn-inverse' %>
+      <%= link_to 'Delete Project', @project, method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-mini btn-danger' %>
+    <% end %>
+  </td>
+</tr>

@@ -1,0 +1,96 @@
+<% content_for :head do %>
+  <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
+<% end %>
+
+<h2>Edit Subscription</h2>
+<div class="hero-unit">
+  <div class="row plans">
+    <div class="span2 well">
+      <div class="plan"><h2>Silver</h2></div>
+      <ul class="unstyled">
+        <li>Manage up to 3 projects</li>
+      </ul>
+      <h3>$24/month</h3>
+    </div>
+    <div class="span2 well featured">
+      <div class="plan featured-plan"><h2>Gold</h2></div>
+      <ul class="unstyled">
+        <li>Manage up to 10 projects</li>
+      </ul>
+      <h3>$49/month</h3>
+    </div>
+    <div class="span2 well">
+      <div class="plan"><h2>Platinum</h2></div>
+      <ul class="unstyled">
+        <li>Manage Unlimited projects</li>
+      </ul>
+      <h3>$99/month</h3>
+    </div>
+  </div>
+</div>
+
+<%= simple_form_for [@user, @subscription], :html => { :class => 'form-horizontal card_form' } do |f| %>
+  <% if @subscription.errors.any? %>
+    <div class="error_messages">
+      <h3><%= pluralize(@subscription.errors.count, "error") %> prohibited this subscription from being saved:</h3>
+      <ul>
+      <% @subscription.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div id="stripe_error" class="alert alert-error" style="display:none" ></div>
+
+  <%= f.input :subscription_plan_id, collection: SubscriptionPlan.all, as: :radio_buttons, value_method: :id, label_method: lambda {|t| t.name.titleize}, label: "Choose Plan", item_wrapper_class: 'inline', checked: @subscription.subscription_plan_id || SubscriptionPlan.first.id %>
+
+  <% if @subscription.stripe_customer_token.present? %>
+    <%= f.input :update_stripe, as: :boolean, label: 'Change card', :input_html => { checked: false, class: 'different_card' } %>
+  <% end %>
+
+  <%= f.hidden_field :stripe_card_token %>
+
+  <% if @subscription.stripe_card_token.present? %>
+    Credit card has been provided.
+  <% else %>
+    <div class="card_fields">
+      <div class="control-group">
+        <%= label_tag :card_number, "Credit Card Number", class: "control-label" %>
+        <div class="controls">
+          <%= text_field_tag :card_number, nil, name: nil %>
+          <% if @subscription.last_4_digits.present? %>
+            <span class="help-block">Currently using card ending with <%= @subscription.last_4_digits %>.</span>
+          <% end %>
+         </div>
+      </div>
+      <div class="control-group">
+        <%= label_tag :card_code, "Card Security Code (CVV)", class: "control-label" %>
+        <div class="controls">
+          <%= text_field_tag :card_code, nil, name: nil %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= label_tag :card_month, "Card Expiration", class: "control-label" %>
+        <div class="controls">
+          <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}%>
+          <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "card_year"}%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= label_tag :coupon, "Promotional Coupon (if any)", class: "control-label" %>
+        <div class="controls">
+          <%= text_field_tag :coupon %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div id="stripe_error">
+    <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit "Subscribe", class: 'btn' %>
+    </div>
+  </div>
+<% end %>

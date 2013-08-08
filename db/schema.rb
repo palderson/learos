@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130730102820) do
+ActiveRecord::Schema.define(:version => 20130806085724) do
 
   create_table "billings", :force => true do |t|
     t.text     "payment_processing_method"
@@ -162,9 +162,10 @@ ActiveRecord::Schema.define(:version => 20130730102820) do
 
   create_table "projects", :force => true do |t|
     t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "user_id"
+    t.boolean  "archived",   :default => false
   end
 
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
@@ -201,6 +202,27 @@ ActiveRecord::Schema.define(:version => 20130730102820) do
 
   add_index "servicings", ["project_id"], :name => "index_servicings_on_project_id"
 
+  create_table "subscription_plans", :force => true do |t|
+    t.string   "name"
+    t.decimal  "price"
+    t.integer  "number_of_projects"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "subscriptions", :force => true do |t|
+    t.string   "stripe_customer_token"
+    t.datetime "expire_date"
+    t.integer  "last_4_digits"
+    t.integer  "user_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.integer  "subscription_plan_id"
+  end
+
+  add_index "subscriptions", ["subscription_plan_id"], :name => "index_subscriptions_on_subscription_plan_id"
+  add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
+
   create_table "test_clients", :force => true do |t|
     t.string   "description"
     t.integer  "project_id"
@@ -228,8 +250,6 @@ ActiveRecord::Schema.define(:version => 20130730102820) do
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
     t.string   "name"
-    t.string   "customer_id"
-    t.string   "last_4_digits"
     t.string   "invitation_token",       :limit => 60
     t.datetime "invitation_sent_at"
     t.datetime "invitation_accepted_at"

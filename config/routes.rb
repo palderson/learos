@@ -2,7 +2,12 @@ Learos::Application.routes.draw do
   resources :projects do
     get 'change_name', to: 'projects#change_name'
     put 'comments', to: 'projects#comments'
+    get 'archive', to: 'projects#archive'
     resources :collaborations
+  end
+
+  resources :archives do
+    get 'unarchive', to: 'archives#unarchive'
   end
 
   mount StripeEvent::Engine => '/stripe'
@@ -13,10 +18,12 @@ Learos::Application.routes.draw do
     root :to => 'home#index'
   end
   root :to => "home#index"
-  devise_for :users, :controllers => { :registrations => 'registrations' }
+  devise_for :users
   devise_scope :user do
     put 'update_plan', :to => 'registrations#update_plan'
-    put 'update_card', :to => 'registrations#update_card'
+    put 'update_card', :to => 'subscriptions#update_card'
   end
-  resources :users
+  resources :users do
+    resources :subscriptions
+  end
 end

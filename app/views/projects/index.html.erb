@@ -1,11 +1,18 @@
 <h1>Projects</h1>
 
-<div id='projects_list'>
-  <ul class='unstyled'>
-    <%= render @projects %>
-  </ul>
-</div>
-
+<% unless @projects.empty? %>
+  <table class='table table-striped projects_list'>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @projects %>
+    </tbody>
+  </table>
+<% end %>
 <br>
 
 <% if can? :create, current_user %>
@@ -15,16 +22,30 @@
 <p><%= @projects_info %></p>
 <p><%= @trial_info %></p>
 <% if @show %>
-  <p><%= link_to "Upgrade your account", edit_user_registration_path %>
+  <p><%= link_to "Upgrade your account", edit_user_subscription_path(current_user, current_user.current_subscription) %>
 <% end %>
 
-<div id='collaborations_projects_list'>
-  <ul class='unstyled'>
-    <% @collaborations.each do |cp| %>
-      <li>
-        <span class="label label-important">Collaborator</span>
-        <strong><%= link_to cp.project.title, cp.project %></strong>
-      </li>
-    <% end %>
-  </ul>
-</div>
+<% unless @collaborations.empty? %>
+  <div id='collaborations_projects_list'>
+    <table class='table table-striped projects_list'>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Actions</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @collaborations.each do |project| %>
+          <tr>
+            <td><%= link_to project.title, project %></td>
+            <td>
+              <%= link_to "Show", project_path(project), class: 'btn btn-mini' %>
+            </td>
+            <td><span class="label label-important">Collaborator</span></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

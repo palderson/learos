@@ -3,6 +3,8 @@
 <%= project.rollout.what_surprised_you %>
 <%= project.rollout.lesson_learned %>
 
-<%= link_to 'Edit', edit_project_path(@project) %>
+<% if can? :edit, @project %>
+  <%= link_to 'Edit', edit_project_path(@project) %>
+<% end %>
 
 <%= render partial: 'comments/form', locals: { project: @project, nested: :rollout } %>

@@ -18,6 +18,9 @@ class Project < ActiveRecord::Base
   has_many :collaborations
   accepts_nested_attributes_for :overview, :profile, :product, :billing, :marketing, :onboarding, :servicing, :plan, :internal_training, :client_training, :rollout, :goal, :test_client
 
+  scope :unarchived, where(archived: false)
+  scope :archived, where(archived: true)
+
   after_create do
     self.create_overview
     self.create_profile
@@ -35,9 +38,9 @@ class Project < ActiveRecord::Base
   end
 
   def self.get_max_projects(user)
-    plan = user.get_role
-    return 3 if plan == 'silver' || !user.customer_id.present?
+    plan = user.get_plan
+    return 3 if plan == 'silver'
     return 10 if plan == 'gold'
-    return 'Unlimited' if plan == 'platinum'
+    return 'Unlimited' if plan == 'platinum' || plan == 'trial'
   end
 end
