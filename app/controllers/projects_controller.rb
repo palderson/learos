@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :sub_check
 
   # GET /projects
   # GET /projects.json
@@ -102,6 +102,10 @@ class ProjectsController < ApplicationController
   end
 
   private
+  def sub_check
+    redirect_to root_path, alert: 'Subscribe to view/edit projects!' unless check_subscription_status
+  end
+
   def get_remaining_projects(num)
     "#{num} of #{Project.get_max_projects(current_user).to_s} Projects"
   end
@@ -111,7 +115,6 @@ class ProjectsController < ApplicationController
   end
 
   def show_upgrade_message?
-    return true
     plan = current_user.get_plan
     return true if current_user.has_subscribed? && (plan == 'silver' || plan == 'gold')
     return true if !current_user.has_subscribed? && current_user.has_trial_days?
