@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 gem 'rails', '3.2.13'
 gem 'pg'
+gem 'activerecord-postgres-hstore'
 gem 'filepicker-rails'
 
 group :assets do
