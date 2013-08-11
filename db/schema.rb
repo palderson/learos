@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130806085724) do
+ActiveRecord::Schema.define(:version => 20130811112529) do
 
   create_table "billings", :force => true do |t|
     t.text     "payment_processing_method"
@@ -121,8 +121,10 @@ ActiveRecord::Schema.define(:version => 20130806085724) do
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
     t.string   "file_url"
+    t.hstore   "data"
   end
 
+  add_index "overviews", ["data"], :name => "index_overviews_on_data"
   add_index "overviews", ["project_id"], :name => "index_overviews_on_project_id"
 
   create_table "plans", :force => true do |t|
