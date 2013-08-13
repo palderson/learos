@@ -43,4 +43,12 @@ class Project < ActiveRecord::Base
     return 10 if plan == 'gold'
     return 'Unlimited' if plan == 'platinum' || plan == 'trial'
   end
+
+  # After data field is added to all models: empty data attributes when all data fields are removed
+  # def update_attributes(attributes)
+  #   if attributes.is_a?(Hash)
+  #     attributes.each {|attr| attr.last["data"] = nil unless attr.last["data"] }
+  #     super(attributes)
+  #   end
+  # end
 end
