@@ -13,9 +13,18 @@
 	<p><%= project.overview.internal_motivations %></p>
 </div>
 <br />
+
+<% @project.overview.data.try(:each) do |key, value| %>
+  <div>
+    <p><%= key %></p>
+    <%= value%>
+  </div>
+  <br />
+<% end %>
+
 <div>
-	<p>Attachments</p>
-	<%= project.overview.file_url %>
+  <p>Attachments</p>
+  <%= project.overview.file_url %>
 </div>
 
 <% if can? :edit, @project %>

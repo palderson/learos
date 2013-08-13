@@ -2,43 +2,34 @@
 <%= f.input :value_proposition %>
 <%= f.input :internal_motivations %>
 
-<%= f.label :file_url, "Upload General Files" %>
-<%= f.filepicker_field :file_url, :dragdrop => 'true', :button_class => 'btn' %>
-
-<br>
-
 <div class='clearfix attributeContainer'>
-  <label class="label" for="project_overview_data">Data Attributes</label>
-  <div class='row'>
-    <p class='span3 underline'>Name</p>
-    <p class='span3 underline'>Value</p>
-  </div>
-
   <%= f.simple_fields_for :data do |d| %>
     <% @project.overview.data.try(:each) do |key, value| %>
         <div class="row">
-          <p class='span3'>
-            <%= text_field_tag key, key, :class => 'text_field dynamicAttributeName' %>
+          <p class='span2'>
+            <%= text_field_tag key, key, :class => 'text_field dynamicAttributeName span2' %>
           </p>
-          <p class='span3'>
-            <%= d.text_field key, :class => 'text_field', :value => value %>
+          <p class='span4'>
+            <%= d.text_area key, :class => 'text_field span4', :value => value, style: 'resize:none' %>
           </p>
-          <p class='span1'>
-            <a herf='#' class='btn removeRow'>X</a>
-          </p>
+          <p class='span2'><a herf='#' class='btn btn-link removeRow'>Remove field</a></p>
         </div>
     <% end %>
   <% end %>
 
   <div class='row attributeTemplate <%= 'hide' if @project.overview.data.present? %>'>
-    <p class='span3'>
-      <input class='text_field dynamicAttributeName' id='' name='' placeholder='New Attribute name' size='30' type='text' />
+    <p class='span2'>
+      <input class='span2 text_field dynamicAttributeName' id='' name='' placeholder='Label' size='30' type='text' />
     </p>
-    <p class='span3'><input class='text_field' id='bar' name='' placeholder='value' size='30'  type='text'  /></p>
-    <p class='span1'><a herf='#' class='btn removeRow'>X</a></p>
+    <p class='span4'><textarea class="text_field span4" cols="40" id="bar" name="" placeholder='Add field value here...' rows="20" style="resize:none"></textarea></p>
+    <p class='span2'><a herf='#' class='btn btn-link removeRow'>Remove field</a></p>
   </div>
-  <%= link_to 'Add Attribute', '#', :class => 'btn addAttribute btn-primary' %>
+  <%= link_to 'Add new field', '#', :class => 'btn btn-link addAttribute btn-primary' %>
 </div>
+<br>
+
+<%= f.label :file_url, "Upload General Files" %>
+<%= f.filepicker_field :file_url, :dragdrop => 'true', :button_class => 'btn' %>
 
 <%= content_for :js do %>
   <script type='text/javascript'>
@@ -47,12 +38,10 @@
      valueElem = nameElem.closest('.row').children('p').children('.text_field')
      value     = nameElem.val().toLowerCase();
      valueElem.attr('id',          'project' + value       );
-     valueElem.attr('name',        'project[overview_attributes][data][' + value + ']');
-     valueElem.attr('placeholder', 'value for ' + value          );
+     valueElem.attr('name',        'project[overview_attributes][data][' + nameElem.val() + ']');
    })
 
    $('.attributeContainer').delegate('.removeRow', 'click', function(){
-     console.log($(this).closest('.row'))
      $(this).closest('.row').html('');
    })
 
