@@ -1,53 +1,10 @@
-<%= f.input :elevator_pitch %>
-<%= f.input :value_proposition %>
-<%= f.input :internal_motivations %>
-
-<div class='clearfix attributeContainer'>
-  <%= f.simple_fields_for :data do |d| %>
-    <% @project.overview.data.try(:each) do |key, value| %>
-        <div class="row">
-          <p class='span2'>
-            <%= text_field_tag key, key, :class => 'text_field dynamicAttributeName span2' %>
-          </p>
-          <p class='span4'>
-            <%= d.text_area key, :class => 'text_field span4', :value => value, style: 'resize:none' %>
-          </p>
-          <p class='span2'><a herf='#' class='btn btn-link removeRow'>Remove field</a></p>
-        </div>
-    <% end %>
+<div class='default_fields'>
+  <% [:elevator_pitch, :value_proposition, :internal_motivations].each do |field| %>
+    <%= f.input field unless @project.overview.send(field) == '#removed' %>
   <% end %>
-
-  <div class='row attributeTemplate <%= 'hide' if @project.overview.data.present? %>'>
-    <p class='span2'>
-      <input class='span2 text_field dynamicAttributeName' id='' name='' placeholder='Label' size='30' type='text' />
-    </p>
-    <p class='span4'><textarea class="text_field span4" cols="40" id="bar" name="" placeholder='Add field value here...' rows="20" style="resize:none"></textarea></p>
-    <p class='span2'><a herf='#' class='btn btn-link removeRow'>Remove field</a></p>
-  </div>
-  <%= link_to 'Add new field', '#', :class => 'btn btn-link addAttribute btn-primary' %>
 </div>
-<br>
+
+<%= render partial: 'shared/data_fields', locals: { df: f, project: @project, project_model: :overview } %>
 
 <%= f.label :file_url, "Upload General Files" %>
 <%= f.filepicker_field :file_url, :dragdrop => 'true', :button_class => 'btn' %>
-
-<%= content_for :js do %>
-  <script type='text/javascript'>
-   $('.attributeContainer').delegate('.dynamicAttributeName', 'keyup', function(event){
-     nameElem  = $(this);
-     valueElem = nameElem.closest('.row').children('p').children('.text_field')
-     value     = nameElem.val().toLowerCase();
-     valueElem.attr('id',          'project' + value       );
-     valueElem.attr('name',        'project[overview_attributes][data][' + nameElem.val() + ']');
-   })
-
-   $('.attributeContainer').delegate('.removeRow', 'click', function(){
-     $(this).closest('.row').html('');
-   })
-
-   $('.addAttribute').on('click', function(){
-     contents = "<div class='row'>" + $('.attributeTemplate').html() + '</div>';
-     $(this).before(contents);
-   })
-  </script>
-<% end %>

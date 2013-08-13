@@ -1,22 +1,16 @@
-<div>
-	<p>Elevator Pitch</p>
-	<p><%= project.overview.elevator_pitch %></p>
-</div>
-<br />
-<div>
-	<p>Value Proposition</p>
-	<p><%= project.overview.value_proposition %></p>
-</div>
-<br />
-<div>
-	<p>Internal Motivations</p>
-	<p><%= project.overview.internal_motivations %></p>
-</div>
-<br />
+<% [:elevator_pitch, :value_proposition, :internal_motivations].each do |field| %>
+  <% unless @project.overview.send(field) == '#removed' %>
+    <div>
+      <p><%= field.to_s.titleize %></p>
+      <p><%= @project.overview.send(field) %></p>
+    </div>
+    <br>
+  <% end %>
+<% end %>
 
 <% @project.overview.data.try(:each) do |key, value| %>
   <div>
-    <p><%= key %></p>
+    <p><%= key.titleize %></p>
     <%= value%>
   </div>
   <br />

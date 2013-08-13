@@ -1,0 +1,55 @@
+<div class='clearfix attributeContainer'>
+  <%= df.simple_fields_for :data do |d| %>
+    <% @project.send(project_model).data.try(:each) do |key, value| %>
+        <div class="row">
+          <p class='span2'>
+            <%= text_field_tag key, key, :class => 'text_field dynamicAttributeName span2' %>
+          </p>
+          <p class='span4'>
+            <%= d.text_area key, :class => 'text_field span4', :value => value, style: 'resize:none' %>
+          </p>
+          <p class='span2'><a herf='#' class='btn btn-link removeRow'>Remove field</a></p>
+        </div>
+    <% end %>
+  <% end %>
+
+  <div class='row attributeTemplate hide'>
+    <p class='span2'>
+      <input class='span2 text_field dynamicAttributeName' id='' name='' placeholder='Label' size='30' type='text' />
+    </p>
+    <p class='span4'><textarea class="text_field span4" cols="40" id="bar" name="" placeholder='Add field value here...' rows="20" style="resize:none"></textarea></p>
+    <p class='span2'><a herf='#' class='btn btn-link removeRow'>Remove field</a></p>
+  </div>
+  <%= link_to 'Add new field', '#', :class => 'btn btn-link addAttribute btn-primary' %>
+</div>
+<br>
+
+<%= content_for :js do %>
+  <script type='text/javascript'>
+   $('.default_fields').find('.controls').each(function() {
+    $(this).append('<a herf="#" class="btn btn-link removeDefaultRow">Remove field</a>');
+   })
+   $('.attributeContainer').delegate('.dynamicAttributeName', 'keyup', function(event){
+     nameElem  = $(this);
+     model = '<%= project_model.to_s %>'
+     valueElem = nameElem.closest('.row').children('p').children('.text_field')
+     value     = nameElem.val().toLowerCase();
+     valueElem.attr('id',          'project' + value       );
+     valueElem.attr('name',        'project[' + model + '_attributes][data][' + value + ']');
+   })
+
+   $('.attributeContainer').delegate('.removeRow', 'click', function(){
+     $(this).closest('.row').html('');
+   })
+
+   $('.default_fields').delegate('.removeDefaultRow', 'click', function(){
+     $(this).siblings('textarea').val('#removed');
+     $(this).closest('div.control-group').hide();
+   })
+
+   $('.addAttribute').on('click', function(){
+     contents = "<div class='row'>" + $('.attributeTemplate').html() + '</div>';
+     $(this).before(contents);
+   })
+  </script>
+<% end %>
