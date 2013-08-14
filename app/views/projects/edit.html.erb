@@ -125,3 +125,32 @@
   </div>
 </div>
 
+<%= content_for :js do %>
+  <script type='text/javascript'>
+   $('.default_fields').find('.controls').each(function() {
+    $(this).append('<a herf="#" class="btn btn-link removeDefaultRow">Remove field</a>');
+   })
+
+   $('.attributeContainer').delegate('.dynamicAttributeName', 'keyup', function(event){
+     nameElem  = $(this);
+     valueElem = nameElem.closest('.row').children('p').children('.text_field')
+     value     = nameElem.val().toLowerCase();
+     valueElem.attr('id',          'project' + value       );
+     valueElem.attr('name',        'project[' + model + '_attributes][data][' + value + ']');
+   })
+
+   $('.attributeContainer').delegate('.removeRow', 'click', function(){
+     $(this).closest('.row').html('');
+   })
+
+   $('.default_fields').delegate('.removeDefaultRow', 'click', function(){
+     $(this).siblings('textarea, input').val('#removed');
+     $(this).closest('div.control-group').hide();
+   })
+
+   $('.addAttribute').on('click', function(){
+     contents = "<div class='row'>" + $('.attributeTemplate').html() + '</div>';
+     $(this).before(contents);
+   })
+  </script>
+<% end %>
