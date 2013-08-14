@@ -1,17 +1,20 @@
-<div>
-  <p>Six Week Goals</p>
-  <p><%= project.goal.six_week_goals %></p>
-</div>
-<br />
-<div>
-  <p>Three Month Goals</p>
-  <p><%= project.goal.three_month_goals %></p>
-</div>
-<br />
-<div>
-  <p>Six Month Goals</p>
-  <%= project.goal.six_month_goals %>
-</div>
+<% [:six_week_goals, :three_month_goals, :six_month_goals].each do |field| %>
+  <% unless @project.goal.send(field) == '#removed' %>
+    <div>
+      <p><%= field.to_s.titleize %></p>
+      <p><%= @project.goal.send(field) %></p>
+    </div>
+    <br>
+  <% end %>
+<% end %>
+
+<% @project.goal.data.try(:each) do |key, value| %>
+  <div>
+    <p><%= key.titleize %></p>
+    <%= value%>
+  </div>
+  <br />
+<% end %>
 
 <% if can? :edit, @project %>
   <%= link_to 'Edit', edit_project_path(@project) %>

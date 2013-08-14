@@ -1,22 +1,20 @@
-<div>
-	<p>Attention</p>
-	<p><%= project.plan.attention %></p>
-</div>
-<br />
-<div>
-	<p>Interest</p>
-	<p><%= project.plan.interest %></p>
-</div>
-<br />
-<div>
-	<p>Desire</p>
-	<p><%= project.plan.desire %></p>
-</div>
-<br />
-<div>
-	<p>Action</p>
-	<p><%= project.plan.action %></p>
-</div>
+<% [:attention, :interest, :desire, :action].each do |field| %>
+  <% unless @project.plan.send(field) == '#removed' %>
+    <div>
+      <p><%= field.to_s.titleize %></p>
+      <p><%= @project.plan.send(field) %></p>
+    </div>
+    <br>
+  <% end %>
+<% end %>
+
+<% @project.plan.data.try(:each) do |key, value| %>
+  <div>
+    <p><%= key.titleize %></p>
+    <%= value %>
+  </div>
+  <br />
+<% end %>
 
 <% if can? :edit, @project %>
   <%= link_to 'Edit', edit_project_path(@project) %>

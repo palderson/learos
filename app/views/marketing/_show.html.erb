@@ -1,33 +1,21 @@
-<div>
-	<p>Marketing Overview</p>
-	<p><%= project.marketing.overview %></p>
-</div>
-<br />
-<div>
-	<p>External Messaging</p>
-	<p><%= project.marketing.external_messaging %></p>
-</div>
-<br />
-<div>
-	<p>Internal Messaging</p>
-	<p><%= project.marketing.internal_messaging %></p>
-</div>
-<br />
-<div>
-	<p>Marketing Budget</p>
-	<p><%= project.marketing.marketing_budget %></p>
-</div>
-<br />
-<div>
-	<p>Alpha Invite Email</p>
-	<p><%= project.marketing.alpha_invite_email %></p>
-</div>
-<br />
-<div>
-	<p>Beta Invite Email</p>
-	<p><%= project.marketing.beta_invite_email %></p>
-</div>
-<br />
+<% [:external_messaging, :internal_messaging, :marketing_budget, :alpha_invite_email, :beta_invite_email].each do |field| %>
+  <% unless @project.marketing.send(field) == '#removed' %>
+    <div>
+      <p><%= field.to_s.titleize %></p>
+      <p><%= @project.marketing.send(field) %></p>
+    </div>
+    <br>
+  <% end %>
+<% end %>
+
+<% @project.marketing.data.try(:each) do |key, value| %>
+  <div>
+    <p><%= key.titleize %></p>
+    <%= value%>
+  </div>
+  <br />
+<% end %>
+
 <div>
 	<p>Marketing Materials</p>
 	<%= project.marketing.file_url %>

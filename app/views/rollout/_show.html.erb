@@ -1,7 +1,20 @@
-<%= project.rollout.what_went_well %>
-<%= project.rollout.what_could_have_gone_better %>
-<%= project.rollout.what_surprised_you %>
-<%= project.rollout.lesson_learned %>
+<% [:what_went_well, :what_could_have_gone_better, :what_surprised_you, :lesson_learned].each do |field| %>
+  <% unless @project.rollout.send(field) == '#removed' %>
+    <div>
+      <p><%= field.to_s.titleize %></p>
+      <p><%= @project.rollout.send(field) %></p>
+    </div>
+    <br>
+  <% end %>
+<% end %>
+
+<% @project.rollout.data.try(:each) do |key, value| %>
+  <div>
+    <p><%= key.titleize %></p>
+    <%= value %>
+  </div>
+  <br />
+<% end %>
 
 <% if can? :edit, @project %>
   <%= link_to 'Edit', edit_project_path(@project) %>

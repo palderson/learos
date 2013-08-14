@@ -1,5 +1,10 @@
-<%= f.input :individual_training_materials %>
-<%= f.input :group_training_materials %>
+<div class='default_fields'>
+  <% [:individual_training_materials, :group_training_materials].each do |field| %>
+    <%= f.input field unless @project.internal_training.send(field) == '#removed' %>
+  <% end %>
+</div>
+
+<%= render partial: 'data_fields', locals: { df: f, project: @project, project_model: :internal_training } %>
 
 <%= f.label :file_url, "Upload Training Materials" %>
 <%= f.filepicker_field :file_url, :dragdrop => 'true', :button_class => 'btn' %>

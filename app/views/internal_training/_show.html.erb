@@ -1,16 +1,24 @@
+<% [:individual_training_materials, :group_training_materials].each do |field| %>
+  <% unless @project.internal_training.send(field) == '#removed' %>
+    <div>
+      <p><%= field.to_s.titleize %></p>
+      <p><%= @project.internal_training.send(field) %></p>
+    </div>
+    <br>
+  <% end %>
+<% end %>
+
+<% @project.internal_training.data.try(:each) do |key, value| %>
+  <div>
+    <p><%= key.titleize %></p>
+    <%= value %>
+  </div>
+  <br />
+<% end %>
+
 <div>
-	<p>Internal Training Materials</p>
-	<p><%= project.internal_training.individual_training_materials %></p>
-</div>
-<br />
-<div>
-	<p>Group Training Materials</p>
-	<p><%= project.internal_training.group_training_materials %></p>
-</div>
-<br />
-<div>
-	<p>Training Materials</p>
-	<%= project.internal_training.file_url %>
+  <p>Training Materials</p>
+  <%= project.internal_training.file_url %>
 </div>
 
 <% if can? :edit, @project %>

@@ -1,23 +1,20 @@
-<div>
-	<p>Payment Processing Method</p>
-	<p><%= project.billing.payment_processing_method %></p>
-</div>
-<br />
-<div>
-	<p>Bill Processing Steps</p>
-	<p><%= project.billing.billing_process_steps %></p>
-</div>
-<br />
-<div>
-	<p>Bill Update Requirements</p>
-	<p><%= project.billing.billing_update_requirements %></p>
-</div>
-<br />
-<div>
-	<p>Contract Requirements</p>
-	<p><%= project.billing.contract_requirements %></p>
-</div>
-<br />
+<% [:payment_processing_method, :billing_process_steps, :billing_update_requirements, :contract_requirements].each do |field| %>
+  <% unless @project.billing.send(field) == '#removed' %>
+    <div>
+      <p><%= field.to_s.titleize %></p>
+      <p><%= @project.billing.send(field) %></p>
+    </div>
+    <br>
+  <% end %>
+<% end %>
+
+<% @project.billing.data.try(:each) do |key, value| %>
+  <div>
+    <p><%= key.titleize %></p>
+    <%= value%>
+  </div>
+  <br />
+<% end %>
 
 <% if can? :edit, @project %>
   <%= link_to 'Edit', edit_project_path(@project) %>

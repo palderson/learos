@@ -1,1 +1,5 @@
-<%= f.input :description %>
+<div class='default_fields'>
+  <%= f.input :description unless @project.product.description == '#removed' %>
+</div>
+
+<%= render partial: 'data_fields', locals: { df: f, project: @project, project_model: :product } %>

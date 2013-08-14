@@ -1,4 +1,7 @@
-<%= f.input :attention %>
-<%= f.input :interest %>
-<%= f.input :desire %>
-<%= f.input :action %>
+<div class='default_fields'>
+  <% [:attention, :interest, :desire, :action].each do |field| %>
+    <%= f.input field unless @project.plan.send(field) == '#removed' %>
+  <% end %>
+</div>
+
+<%= render partial: 'data_fields', locals: { df: f, project: @project, project_model: :plan } %>

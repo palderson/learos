@@ -1,4 +1,7 @@
-<%= f.input :what_went_well %>
-<%= f.input :what_could_have_gone_better %>
-<%= f.input :what_surprised_you %>
-<%= f.input :lesson_learned %>
+<div class='default_fields'>
+  <% [:what_went_well, :what_could_have_gone_better, :what_surprised_you, :lesson_learned].each do |field| %>
+    <%= f.input field unless @project.rollout.send(field) == '#removed' %>
+  <% end %>
+</div>
+
+<%= render partial: 'data_fields', locals: { df: f, project: @project, project_model: :rollout } %>

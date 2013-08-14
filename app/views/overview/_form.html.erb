@@ -4,7 +4,7 @@
   <% end %>
 </div>
 
-<%= render partial: 'shared/data_fields', locals: { df: f, project: @project, project_model: :overview } %>
+<%= render partial: 'data_fields', locals: { df: f, project: @project, project_model: :overview } %>
 
 <%= f.label :file_url, "Upload General Files" %>
 <%= f.filepicker_field :file_url, :dragdrop => 'true', :button_class => 'btn' %>

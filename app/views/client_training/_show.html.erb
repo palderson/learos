@@ -1,16 +1,24 @@
+<% [:company_training_materials, :user_training_materials].each do |field| %>
+  <% unless @project.client_training.send(field) == '#removed' %>
+    <div>
+      <p><%= field.to_s.titleize %></p>
+      <p><%= @project.client_training.send(field) %></p>
+    </div>
+    <br>
+  <% end %>
+<% end %>
+
+<% @project.client_training.data.try(:each) do |key, value| %>
+  <div>
+    <p><%= key.titleize %></p>
+    <%= value %>
+  </div>
+  <br />
+<% end %>
+
 <div>
-	<p>Company Training Materials</p>
-	<p><%= project.client_training.company_training_materials %></p>
-</div>
-<br />
-<div>
-	<p>User Training Materials</p>
-	<p><%= project.client_training.user_training_materials %></p>
-</div>
-<br />
-<div>
-	<p>Training Materials</p>
-	<%= project.client_training.file_url %>
+  <p>Training Materials</p>
+  <%= project.client_training.file_url %>
 </div>
 
 <% if can? :edit, @project %>

@@ -1,4 +1,18 @@
-<%= project.product.description %>
+<% unless @project.product.description == '#removed' %>
+  <div>
+    <p>Description</p>
+    <p><%= @project.product.description %></p>
+  </div>
+  <br>
+<% end %>
+
+<% @project.product.data.try(:each) do |key, value| %>
+  <div>
+    <p><%= key.titleize %></p>
+    <%= value%>
+  </div>
+  <br />
+<% end %>
 
 <% if can? :edit, @project %>
   <%= link_to 'Edit', edit_project_path(@project) %>

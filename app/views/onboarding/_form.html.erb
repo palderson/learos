@@ -1,5 +1,7 @@
-<%= f.input :step_one %>
-<%= f.input :step_two %>
-<%= f.input :step_three %>
-<%= f.input :step_four %>
-<%= f.input :step_five %>
+<div class='default_fields'>
+  <% [:step_one, :step_two, :step_three, :step_four, :step_five].each do |field| %>
+    <%= f.input field unless @project.onboarding.send(field) == '#removed' %>
+  <% end %>
+</div>
+
+<%= render partial: 'data_fields', locals: { df: f, project: @project, project_model: :onboarding } %>

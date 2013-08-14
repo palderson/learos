@@ -1,8 +1,20 @@
-<%= project.onboarding.step_one %>
-<%= project.onboarding.step_two %>
-<%= project.onboarding.step_three %>
-<%= project.onboarding.step_four %>
-<%= project.onboarding.step_five %>
+<% [:step_one, :step_two, :step_three, :step_four, :step_five].each do |field| %>
+  <% unless @project.onboarding.send(field) == '#removed' %>
+    <div>
+      <p><%= field.to_s.titleize %></p>
+      <p><%= @project.onboarding.send(field) %></p>
+    </div>
+    <br>
+  <% end %>
+<% end %>
+
+<% @project.onboarding.data.try(:each) do |key, value| %>
+  <div>
+    <p><%= key.titleize %></p>
+    <%= value%>
+  </div>
+  <br />
+<% end %>
 
 <% if can? :edit, @project %>
   <%= link_to 'Edit', edit_project_path(@project) %>

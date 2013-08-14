@@ -1,4 +1,7 @@
-<%= f.input :payment_processing_method %>
-<%= f.input :billing_process_steps %>
-<%= f.input :billing_update_requirements %>
-<%= f.input :contract_requirements %>
+<div class='default_fields'>
+  <% [:payment_processing_method, :billing_process_steps, :billing_update_requirements, :contract_requirements].each do |field| %>
+    <%= f.input field unless @project.billing.send(field) == '#removed' %>
+  <% end %>
+</div>
+
+<%= render partial: 'data_fields', locals: { df: f, project: @project, project_model: :billing } %>
