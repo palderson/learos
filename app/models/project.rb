@@ -2,20 +2,20 @@ class Project < ActiveRecord::Base
   attr_accessible :title, :overview_attributes, :goal_attributes, :test_client_attributes, :profile_attributes, :product_attributes, :marketing_attributes, :billing_attributes, :onboarding_attributes, :servicing_attributes, :plan_attributes, :internal_training_attributes, :client_training_attributes, :rollout_attributes, :user_id
 
   belongs_to :user
-  has_one :overview
-  has_one :profile
-  has_one :product
-  has_one :goal
-  has_one :marketing
-  has_one :billing
-  has_one :test_client
-  has_one :onboarding
-  has_one :servicing
-  has_one :plan
-  has_one :internal_training
-  has_one :client_training
-  has_one :rollout
-  has_many :collaborations
+  has_one :overview, dependent: :destroy
+  has_one :profile, dependent: :destroy
+  has_one :product, dependent: :destroy
+  has_one :goal, dependent: :destroy
+  has_one :marketing, dependent: :destroy
+  has_one :billing, dependent: :destroy
+  has_one :test_client, dependent: :destroy
+  has_one :onboarding, dependent: :destroy
+  has_one :servicing, dependent: :destroy
+  has_one :plan, dependent: :destroy
+  has_one :internal_training, dependent: :destroy
+  has_one :client_training, dependent: :destroy
+  has_one :rollout, dependent: :destroy
+  has_many :collaborations, dependent: :destroy
   accepts_nested_attributes_for :overview, :profile, :product, :billing, :marketing, :onboarding, :servicing, :plan, :internal_training, :client_training, :rollout, :goal, :test_client
 
   scope :unarchived, where(archived: false)
