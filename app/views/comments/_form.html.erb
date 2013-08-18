@@ -2,26 +2,22 @@
   <hr>
   <div>
     <fieldset>
-      <legend>Comments</legend>
-
-      <div class="span6">
-        <% @project.send(nested).root_comments.each do |comment| %>
-        <blockquote>
-          <p><%= comment.body %></p>
-          <small><%="#{comment.user.name} (#{comment.user.email})"%></small>
-        </blockquote>
-        <% end %>
+      <div class="span5">
         <%= simple_form_for(@project, url: project_comments_path(@project)) do |f| %>
           <div class="control-group">
             <div class="controls">
-              <%= text_area_tag :body, nil, placeholder: "Write your comment here...", class: 'span6' %>
+              <%= text_area_tag :body, nil, placeholder: "Write a comment..." %>
             </div>
           </div>
 
           <%= hidden_field_tag 'model', nested %>
-
-          <div class="form-actions">
-            <%= submit_tag "Send", class: 'btn btn-primary' %>
+          <%= submit_tag "Send", class: 'btn btn-primary pull-right', :id => 'comment_submit' %>
+        <% end %>
+        <% @project.send(nested).root_comments.each do |comment| %>
+          <div id="comment_body">  
+            <p><%= comment.body.gsub(/\n/, '<br/>').html_safe %></p>
+            <p>- <%="#{comment.user.name} (#{comment.user.email})"%></p>
+            <br>
           </div>
         <% end %>
       </div>

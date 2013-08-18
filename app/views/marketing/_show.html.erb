@@ -22,7 +22,7 @@
 </div>
 
 <% if can? :edit, @project %>
-  <%= link_to 'Edit', edit_project_path(@project) %>
+  <%= link_to 'Edit', edit_project_path(@project), :class => 'btn btn-success' %>
 <% end %>
 
 <%= render partial: 'comments/form', locals: { project: @project, nested: :marketing } %>

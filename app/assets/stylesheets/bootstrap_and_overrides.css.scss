@@ -1,6 +1,8 @@
 @import "bootstrap";
 
-body { padding-top: 60px; }
+body { 
+	padding-top: 60px; 
+}
 
 textarea {
 	height: 50px;
@@ -10,8 +12,36 @@ textarea {
 	margin-top: -55px;
 }
 
+#top_header {
+	margin-left: 43px;
+}
+
+#trial_button {
+	float: right;
+	margin-top: -40px;
+	margin-right: -28px;
+}
+
+#home_hero {
+	margin-top: 20px;
+}
+
 #home_background {
 	background-image: url("/assets/binding_dark.png");
+}
+
+#body {
+	width: 556px;
+	margin-left: -30px;
+}
+
+#comment_submit {
+	margin-right: -70px;
+	margin-top: -10px;
+}
+
+#comment_body {
+	margin-left: -28px;
 }
 
 @import "bootstrap-responsive";

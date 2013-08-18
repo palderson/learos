@@ -2,7 +2,7 @@
   <%= df.simple_fields_for :data do |d| %>
     <% @project.send(project_model).data.try(:each) do |key, value| %>
         <div class="row">
-          <p class='span2'>
+          <p class='span4'>
             <%= text_field_tag key, key, :class => 'text_field dynamicAttributeName span2' %>
           </p>
           <p class='span4'>

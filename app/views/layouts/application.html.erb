@@ -14,11 +14,41 @@
     <div class="navbar navbar-fixed-top">
       <nav class="navbar-inner">
         <div class="container">
-          <%= render 'layouts/navigation' %>
+          <div class="row">
+            <div class="span1"></div>
+            <div class="span10">
+              <%= render 'layouts/navigation' %>
+            </div> 
+            <div class="span1"></div> 
+          </div>  
         </div>
       </nav>
     </div>
     <div id="main" role="main">
+      <%- if current_page? root_path %>
+        <div class="row">
+          <div class="span1"></div>
+          <div class="span10">
+            <div id="top_header">
+              <h3>Projects title</h3>
+              <%= link_to 'Begin Your 30 Day Free Trial', new_user_registration_path, :class => 'btn-large btn-success', :id => 'trial_button' %>
+              <h5>This is some text that sounds awesome</h5>
+            </div>  
+          </div>  
+          <div class="span1"></div>  
+        </div>
+        <div id="home_hero">
+          <div class="hero-unit">
+            <center>
+              <br />
+              <h1>Main Header</h1>
+              <br />
+              <h3>More text</h3>
+              <br />
+            </center>
+          </div>
+        </div>  
+      <% end %>
       <div class="container">
         <div class="content">
            <div class="row">

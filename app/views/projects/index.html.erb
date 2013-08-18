@@ -24,6 +24,9 @@
 <% if @show %>
   <p><%= link_to "Upgrade your account", edit_user_subscription_path(current_user, current_user.subscription) %>
 <% end %>
+<br>
+<%= link_to 'Archives', archives_path %>
+<br>
 
 <% unless @collaborations.empty? %>
   <div id='collaborations_projects_list'>
