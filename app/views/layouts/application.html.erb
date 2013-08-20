@@ -33,20 +33,25 @@
               <h3>Projects title</h3>
               <%= link_to 'Begin Your 30 Day Free Trial', new_user_registration_path, :class => 'btn-large btn-success', :id => 'trial_button' %>
               <h5>This is some text that sounds awesome</h5>
+              <br>
             </div>  
           </div>  
           <div class="span1"></div>  
         </div>
         <div id="home_hero">
           <div class="hero-unit">
-            <center>
-              <br />
-              <h1>Main Header</h1>
-              <br />
-              <h3>More text</h3>
-              <br />
-            </center>
+            <div class='row'>  
+              <div class="span1"></div>  
+              <div class='span10'>
+                <h3>Main Header</h3>
+                <h3>More text</h3>
+                <h3>More text</h3>
+                <br>
+              </div>
+              <div class="span1"></div>  
+            </div>      
           </div>
+          <%= image_tag "macbook.png", :id => 'macbook' %>
         </div>  
       <% end %>
       <div class="container">

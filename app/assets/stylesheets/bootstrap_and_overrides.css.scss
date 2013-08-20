@@ -22,9 +22,24 @@ textarea {
 	margin-right: -28px;
 }
 
+.hero-unit {
+	background-image: url("/assets/binding_dark.png");
+}
+
 #home_hero {
 	margin-top: 20px;
 }
+
+#macbook {
+	margin-top: -473px;
+	float: right;
+}
+
+#home_page_well {
+	width: 920px;
+	margin-left: 100px;
+	margin-top: -55px;
+}	
 
 #home_background {
 	background-image: url("/assets/binding_dark.png");
@@ -33,6 +48,10 @@ textarea {
 #body {
 	width: 556px;
 	margin-left: -30px;
+}
+
+#project_heading {
+	padding-top: 10px;
 }
 
 #comment_submit {
