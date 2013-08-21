@@ -2,6 +2,7 @@
 
 body { 
 	padding-top: 60px; 
+	background-image: url("/assets/satinweave.png");
 }
 
 textarea {
@@ -24,6 +25,12 @@ textarea {
 
 .hero-unit {
 	background-image: url("/assets/binding_dark.png");
+	border-radius: 0px;
+}
+
+.well {
+	box-shadow: 0px 0px 1px #CCCCCC;
+	background-color: #FFFFFF;
 }
 
 #home_hero {
