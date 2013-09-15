@@ -9,6 +9,7 @@
     <%= filepicker_js_include_tag %>
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
+    <link href='http://fonts.googleapis.com/css?family=Gudea' rel='stylesheet' type='text/css'>
   </head>
   <body class="<%= controller_name %> <%= action_name %>">
     <div class="navbar navbar-fixed-top">
@@ -30,9 +31,9 @@
           <div class="span1"></div>
           <div class="span10">
             <div id="top_header">
-              <h3>Business Intelligence at the Project Level</h3>
+              <h2>Business Intelligence at the Project Level</h2>
               <%= link_to 'Begin Your 30 Day Free Trial', new_user_registration_path, :class => 'btn-large btn-success', :id => 'trial_button' %>
-              <h5>This is some text that sounds awesome</h5>
+              <h4 style='color:gray'>See the impact of every feature release in real-time</h4>
               <br>
             </div>  
           </div>  
@@ -43,7 +44,11 @@
             <div class='row'>  
               <div class="span1"></div>  
               <div class='span10'>
-                <h3>Double down on<br>what's working<br>& kill what's not</h3>
+                <ul id='hero_list'>
+                  <li>Create your release plan</li><br>
+                  <li>Define your objectives</li><br>
+                  <li>Track the feature impact</li>
+                </ul>  
                 <br>
               </div>
               <div class="span1"></div>  

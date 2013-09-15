@@ -5,6 +5,46 @@ body {
 	background-image: url("/assets/satinweave.png");
 }
 
+li {
+	font-family: 'Gudea', sans-serif;
+}
+
+h1 {
+	font-family: 'Gudea', sans-serif;
+}
+
+h2 {
+	font-family: 'Gudea', sans-serif;
+}
+
+h3 {
+	font-family: 'Gudea', sans-serif;
+}
+
+h4 {
+	font-family: 'Gudea', sans-serif;
+}
+
+h5 {
+	font-family: 'Gudea', sans-serif;
+}
+
+h6 {
+	font-family: 'Gudea', sans-serif;
+}
+
+.default_fields {
+	font-family: 'Gudea', sans-serif;	
+}
+
+a {
+	font-family: 'Gudea', sans-serif;	
+}
+
+p, ol, ul, td {
+	font-family: 'Gudea', sans-serif;	
+}
+
 textarea {
 	height: 50px;
 }
@@ -15,6 +55,7 @@ textarea {
 
 #top_header {
 	margin-left: 43px;
+	font-family: 'Gudea', sans-serif;
 }
 
 #trial_button {
@@ -26,6 +67,12 @@ textarea {
 .hero-unit {
 	background-image: url("/assets/binding_dark.png");
 	border-radius: 0px;
+	#hero_list {
+		font-family: 'Gudea', sans-serif;
+		color:#FFFFFF;
+		font-size: 28px;
+		margin-top: 30px;
+	}
 }
 
 .well {
@@ -38,7 +85,7 @@ textarea {
 }
 
 #macbook {
-	margin-top: -473px;
+	margin-top: -478px;
 	float: right;
 }
 
@@ -46,6 +93,7 @@ textarea {
 	width: 920px;
 	margin-left: 100px;
 	margin-top: -55px;
+	font-family: 'Gudea', sans-serif;
 }	
 
 #home_background {

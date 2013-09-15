@@ -122,7 +122,7 @@
     </div>
   </div>
   <div class='span2'>
-    <%= link_to 'Invite User', new_project_collaboration_path(@project), :class => 'btn btn-primary' %>
+    <%= link_to 'Invite User', new_project_collaboration_path(@project), :class => 'btn btn-primary' %><br />
     <br />
     <% @project.collaborations.each do |collaboration| %>
       <%= collaboration.user.name %><br>
