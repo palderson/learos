@@ -61,6 +61,21 @@ textarea {
 	padding-top: 10px;
 }
 
+.tab-content {
+	box-shadow: 0px 0px 1px #CCCCCC;
+	background-color: #FFFFFF;
+	border-radius: 4px;
+}
+
+#content_spread {
+	margin-left: -20px;
+	margin-right: -20px;
+}
+
+#content_buffer {
+	margin-left: 20px;
+}
+
 #comment_submit {
 	margin-right: -70px;
 	margin-top: -10px;

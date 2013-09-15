@@ -1,6 +1,6 @@
 <p>
   <b><%= @project.title %></b>
-  <%= link_to 'Change Name', project_change_name_path(@project) %>
+  <%= link_to 'Edit', project_change_name_path(@project) %>
 </p>
 
 <div class='row'>
@@ -49,68 +49,68 @@
   </div>
   <div class='span6'>    
     <%= simple_form_for(@project, html: { class: 'form-horizontal active-table-form' }) do |f| %>
-    <div class='tab-content'>
-        <div id='overview_tab', class='tab-pane active'>
+    <div class='tab-content' id='content_spread'>
+        <div id='overview_tab', class='tab-pane active' style='padding:20px'>
           <%= f.simple_fields_for :overview do |nf| %>
             <%= render partial: 'overview/form', locals: { f: nf } %>
           <% end %>
       </div>
-      <div id='profile_tab', class='tab-pane'>
+      <div id='profile_tab', class='tab-pane' style='padding:20px'>
           <%= f.simple_fields_for :profile do |nf| %>
             <%= render partial: 'profile/form', locals: { f: nf } %>
           <% end %>
       </div>
-      <div id='goals_tab', class='tab-pane'>
+      <div id='goals_tab', class='tab-pane' style='padding:20px'>
           <%= f.simple_fields_for :goal do |nf| %>
             <%= render partial: 'goals/form', locals: { f: nf } %>
           <% end %>
       </div>
-      <div id='product_tab', class='tab-pane'>
+      <div id='product_tab', class='tab-pane' style='padding:20px'>
           <%= f.simple_fields_for :product do |nf| %>
             <%= render partial: 'product/form', locals: { f: nf } %>
           <% end %>
       </div>
-      <div id='marketing_tab', class='tab-pane'>
+      <div id='marketing_tab', class='tab-pane' style='padding:20px'>
           <%= f.simple_fields_for :marketing do |nf| %>
             <%= render partial: 'marketing/form', locals: { f: nf } %>
           <% end %>
       </div>
-      <div id='billing_tab', class='tab-pane'>
+      <div id='billing_tab', class='tab-pane' style='padding:20px'>
           <%= f.simple_fields_for :billing do |nf| %>
             <%= render partial: 'billing/form', locals: { f: nf } %>
           <% end %>
       </div>
-      <div id='test_clients_tab', class='tab-pane'>
+      <div id='test_clients_tab', class='tab-pane' style='padding:20px'>
           <%= f.simple_fields_for :test_client do |nf| %>
             <%= render partial: 'test_clients/form', locals: { f: nf } %>
           <% end %>
       </div>
-      <div id='onboarding_tab', class='tab-pane'>
+      <div id='onboarding_tab', class='tab-pane' style='padding:20px'>
           <%= f.simple_fields_for :onboarding do |nf| %>
             <%= render partial: 'onboarding/form', locals: { f: nf } %>
           <% end %>
       </div>
-      <div id='servicing_tab', class='tab-pane'>
+      <div id='servicing_tab', class='tab-pane' style='padding:20px'>
           <%= f.simple_fields_for :servicing do |nf| %>
             <%= render partial: 'servicing/form', locals: { f: nf } %>
           <% end %>
       </div>
-      <div id='plan_tab', class='tab-pane'>
+      <div id='plan_tab', class='tab-pane' style='padding:20px'>
           <%= f.simple_fields_for :plan do |nf| %>
             <%= render partial: 'plan/form', locals: { f: nf } %>
           <% end %>
       </div>
-      <div id='internal_training_tab', class='tab-pane'>
+      <div id='internal_training_tab', class='tab-pane' style='padding:20px'>
           <%= f.simple_fields_for :internal_training do |nf| %>
             <%= render partial: 'internal_training/form', locals: { f: nf } %>
           <% end %>
       </div>
-      <div id='client_training_tab', class='tab-pane'>
+      <div id='client_training_tab', class='tab-pane' style='padding:20px'>
           <%= f.simple_fields_for :client_training do |nf| %>
             <%= render partial: 'client_training/form', locals: { f: nf } %>
           <% end %>
       </div>
-      <div id='rollout_tab', class='tab-pane'>
+      <div id='rollout_tab', class='tab-pane' style='padding:20px'>
           <%= f.simple_fields_for :rollout do |nf| %>
             <%= render partial: 'rollout/form', locals: { f: nf } %>
           <% end %>
@@ -124,9 +124,10 @@
   <div class='span2'>
     <%= link_to 'Invite User', new_project_collaboration_path(@project), :class => 'btn btn-primary' %>
     <br />
-    <%= @project.collaborations.each do |collaboration| %>
-      <%= collaboration.user.name %>
-    <% end %>  
+    <% @project.collaborations.each do |collaboration| %>
+      <%= collaboration.user.name %><br>
+      <%= collaboration.user.email %><br>
+    <% end %>   
     <br />
     <%= link_to 'Manage Collaborators', project_collaborations_path(@project) %>
   </div>    

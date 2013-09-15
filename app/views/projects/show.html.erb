@@ -1,6 +1,6 @@
 <p id='project_heading'>
   <b><%= @project.title %></b>
-  <%= link_to 'Change Name', project_change_name_path(@project) %>
+  <%= link_to 'Edit', project_change_name_path(@project) %>
 </p>
 <br>
 <div class='row'>
@@ -48,44 +48,44 @@
     </ul>
   </div>
   <div class='span6'>  
-    <div class='tab-content'>
-      <div id='overview_tab', class='tab-pane active'>
+    <div class='tab-content' id='content_spread'>
+      <div id='overview_tab', class='tab-pane active' style='padding:20px'>
         <%= render partial: 'overview/show', locals: { project: @project } %>
       </div>
-      <div id='profile_tab', class='tab-pane'>
+      <div id='profile_tab', class='tab-pane' style='padding:20px'>
         <%= render partial: 'profile/show', locals: { project: @project } %>
       </div>
-      <div id='goals_tab', class='tab-pane'>
+      <div id='goals_tab', class='tab-pane' style='padding:20px'>
         <%= render partial: 'goals/show', locals: { project: @project } %>
       </div>
-      <div id='product_tab', class='tab-pane'>
+      <div id='product_tab', class='tab-pane' style='padding:20px'>
         <%= render partial: 'product/show', locals: { project: @project } %>
       </div>
-      <div id='marketing_tab', class='tab-pane'>
+      <div id='marketing_tab', class='tab-pane' style='padding:20px'>
         <%= render partial: 'marketing/show', locals: { project: @project } %>
       </div>
-      <div id='billing_tab', class='tab-pane'>
+      <div id='billing_tab', class='tab-pane' style='padding:20px'>
         <%= render partial: 'billing/show', locals: { project: @project } %>
       </div>
-      <div id='test_clients_tab', class='tab-pane'>
+      <div id='test_clients_tab', class='tab-pane' style='padding:20px'>
         <%= render partial: 'test_clients/show', locals: { project: @project } %>
       </div>
-      <div id='onboarding_tab', class='tab-pane'>
+      <div id='onboarding_tab', class='tab-pane' style='padding:20px'>
         <%= render partial: 'onboarding/show', locals: { project: @project } %>
       </div>
-      <div id='servicing_tab', class='tab-pane'>
+      <div id='servicing_tab', class='tab-pane' style='padding:20px'>
         <%= render partial: 'servicing/show', locals: { project: @project } %>
       </div>
-      <div id='plan_tab', class='tab-pane'>
+      <div id='plan_tab', class='tab-pane' style='padding:20px'>
         <%= render partial: 'plan/show', locals: { project: @project } %>
       </div>
-      <div id='internal_training_tab', class='tab-pane'>
+      <div id='internal_training_tab', class='tab-pane' style='padding:20px'>
         <%= render partial: 'internal_training/show', locals: { project: @project } %>
       </div>
-      <div id='client_training_tab', class='tab-pane'>
+      <div id='client_training_tab', class='tab-pane' style='padding:20px'>
         <%= render partial: 'client_training/show', locals: { project: @project } %>
       </div>
-      <div id='rollout_tab', class='tab-pane'>
+      <div id='rollout_tab', class='tab-pane' style='padding:20px'>
         <%= render partial: 'rollout/show', locals: { project: @project } %>
       </div>
     </div>
