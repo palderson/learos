@@ -49,6 +49,12 @@ textarea {
 	height: 50px;
 }
 
+.brand {
+	font-weight: bold;
+	font-weight: 20px;
+	font-family: 'Cherry Swash', cursive;
+}
+
 #trial_btn {
 	margin-top: -55px;
 }
@@ -64,12 +70,14 @@ textarea {
 	margin-right: -28px;
 }
 
+#trial_button:visited { color:#FFF; }
+
 .hero-unit {
 	background-image: url("/assets/binding_dark.png");
 	border-radius: 0px;
 	#hero_list {
 		font-family: 'Gudea', sans-serif;
-		color:#FFFFFF;
+		color: #C8C8C8;
 		font-size: 28px;
 		margin-top: 30px;
 	}

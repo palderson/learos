@@ -9,7 +9,7 @@
     <%= filepicker_js_include_tag %>
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
-    <link href='http://fonts.googleapis.com/css?family=Gudea' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Gudea|Cherry+Swash' rel='stylesheet' type='text/css'>
   </head>
   <body class="<%= controller_name %> <%= action_name %>">
     <div class="navbar navbar-fixed-top">
@@ -32,7 +32,9 @@
           <div class="span10">
             <div id="top_header">
               <h2>Business Intelligence at the Project Level</h2>
-              <%= link_to 'Begin Your 30 Day Free Trial', new_user_registration_path, :class => 'btn-large btn-success', :id => 'trial_button' %>
+              <%= link_to new_user_registration_path, :class => 'btn btn-large btn-success', :id => 'trial_button' do %>
+                Start Your 30 Day FREE Trial
+              <% end %> 
               <h4 style='color:gray'>See the impact of every feature release in real-time</h4>
               <br>
             </div>  
