@@ -57,10 +57,6 @@ textarea {
 
 #brand:hover { color:#FFF; }
 
-#trial_btn {
-	margin-top: -55px;
-}
-
 #top_header {
 	margin-left: 43px;
 	font-family: 'Gudea', sans-serif;
@@ -70,9 +66,11 @@ textarea {
 	float: right;
 	margin-top: -40px;
 	margin-right: -28px;
+	font-weight: bold;
 }
 
 #trial_button:visited { color:#FFF; }
+#upgrade_from_projects:visited { color:#FFF; }
 
 .hero-unit {
 	background-image: url("/assets/binding_dark.png");
@@ -88,6 +86,14 @@ textarea {
 .well {
 	box-shadow: 0px 0px 1px #CCCCCC;
 	background-color: #FFFFFF;
+}
+
+#new_project_link {
+	margin-top: 7px;
+}
+
+#name_project {
+	float: right;
 }
 
 #home_hero {
@@ -116,7 +122,8 @@ textarea {
 }
 
 #project_heading {
-	padding-top: 10px;
+	margin-top: 5px;
+	font-weight: bold;
 }
 
 #project_container {

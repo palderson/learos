@@ -1,22 +1,26 @@
 <div class='inline'>
-  <h3>You have <%= @projects.count %> active project
+  <h3>Your Project List
   <% if can? :create, current_user %>
-    <%= link_to 'New Project', new_project_path, :class => 'btn btn-success pull-right', id: "new_project_link", remote: true %>
+    <%= link_to new_project_path, :class => 'btn btn-success pull-right', id: "new_project_link", remote: true do %>
+      <i class='icon-plus icon-white'></i> Create a New Project
+    <% end %>
   <% end %></h3>
 </div>
-<br>  
-<div id='project_container' style='padding:20px'>
-    <% @projects.each do |project| %>
-      <span><h4><%= link_to project.title, project %></h4><p>Project collaborators: <%= project.collaborations.count %></p></span>
-      <span>  
-        <%= truncate(project.overview.elevator_pitch, :ommision => "...", :length => 100) %>
-        <span style='float:right'>  
-          <%= link_to "Archive", project_archive_path(project) %> | 
-          <%= link_to 'Delete Project', @project, method: :delete, data: { confirm: 'Are you sure?'} %>
+<br> 
+<div>
+  <% @projects.each do |project| %> 
+      <div id='project_container' style='padding:20px'>
+        <span><h4><%= link_to project.title, project %></h4><p>Project collaborators: <%= project.  collaborations.count %></p></span>
+        <span>  
+          <%= truncate(project.overview.elevator_pitch, :ommision => "...", :length => 100) %>
+          <span style='float:right'>  
+            <%= link_to "Archive", project_archive_path(project) %> | 
+            <%= link_to 'Delete Project', @project, method: :delete, data: { confirm: 'Are you sure?'} %>
+          </span>
         </span>
-      </span>
-      <br>
-    <% end %>    
+      </div> 
+      <br> 
+  <% end %> 
 </div>  
 <br>
 <hr>
@@ -24,7 +28,7 @@
   <li><%= @projects_info %></li>
   <li><%= @trial_info %></li>
   <% if @show %>
-    <li><%= link_to "Upgrade your account", edit_user_subscription_path(current_user, current_user.subscription), :class => 'btn btn-info'  %>
+    <li><%= link_to "Upgrade your account", edit_user_subscription_path(current_user, current_user.subscription), :class => 'btn btn-info', :id => 'upgrade_from_projects'  %>
   <% end %>
   <li><%= link_to 'Archives', archives_path %></li>
 </ul>

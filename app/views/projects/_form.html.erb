@@ -1,4 +1,6 @@
-<%= simple_form_for @project, html: { class: 'form-horizontal active-table-form' } do |f| %>
-  <%= f.text_field :title %>
-  <%= f.submit 'Create New Project', class: 'btn btn-primary' %>
-<% end %>
+<span id='name_project'>
+	<%= simple_form_for @project, html: { class: 'form-horizontal active-table-form' } do |f| %>
+	  <%= f.text_field :title %>
+	  <%= f.submit 'Name Project', class: 'btn btn-success' %>
+	<% end %>
+</span>

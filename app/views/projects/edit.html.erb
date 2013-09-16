@@ -1,8 +1,9 @@
-<p>
-  <b><%= @project.title %></b>
-  <%= link_to 'Edit', project_change_name_path(@project) %>
-</p>
-
+<span>
+  <h4 id='project_heading'><%= @project.title %>&nbsp;
+  <%= link_to project_change_name_path(@project) do %>
+     <i class="icon-edit" style='margin-top:5px'></i>
+  <% end %></h4><br>
+</span>
 <div class='row'>
   <div class='span2'>
     <ul class="nav nav-list">
@@ -122,12 +123,14 @@
     </div>
   </div>
   <div class='span2'>
-    <%= link_to 'Invite User', new_project_collaboration_path(@project), :class => 'btn btn-primary' %><br />
-    <br />
+    <%= link_to new_project_collaboration_path(@project), :class => 'btn btn-success' do %>
+      <i class='icon-plus icon-white'></i> Invite Collaborator
+    <% end %>  
+    <br>
     <% @project.collaborations.each do |collaboration| %>
       <%= collaboration.user.name %><br>
       <%= collaboration.user.email %><br>
-    <% end %>   
+    <% end %>  
     <br />
     <%= link_to 'Manage Collaborators', project_collaborations_path(@project) %>
   </div>    
