@@ -69,6 +69,12 @@ textarea {
 	font-weight: bold;
 }
 
+#trial_button_bottom {
+	float: center;
+	font-weight: bold;
+}
+
+#trial_button_bottom:visited { color:#FFF; }
 #trial_button:visited { color:#FFF; }
 #upgrade_from_projects:visited { color:#FFF; }
 
@@ -110,7 +116,14 @@ textarea {
 	margin-left: 100px;
 	margin-top: -55px;
 	font-family: 'Gudea', sans-serif;
-}	
+}
+
+#home_page_well_bottom {
+	width: 920px;
+	margin-left: 100px;
+	background-image: url("/assets/cream_pixels.png");
+	text-align: center;
+}
 
 #home_background {
 	background-image: url("/assets/binding_dark.png");
