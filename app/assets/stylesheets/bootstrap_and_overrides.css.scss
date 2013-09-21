@@ -41,7 +41,7 @@ a {
 	font-family: 'Gudea', sans-serif;	
 }
 
-p {
+.p {
 	font-family: 'Gudea', sans-serif;	
 }
 
@@ -58,14 +58,14 @@ textarea {
 #brand:hover { color:#FFF; }
 
 #top_header {
-	margin-left: 43px;
+	margin-left: 48px;
 	font-family: 'Gudea', sans-serif;
 }
 
 #trial_button {
 	float: right;
 	margin-top: -40px;
-	margin-right: -28px;
+	margin-right: -30px;
 	font-weight: bold;
 }
 
@@ -77,6 +77,7 @@ textarea {
 #trial_button_bottom:visited { color:#FFF; }
 #trial_button:visited { color:#FFF; }
 #upgrade_from_projects:visited { color:#FFF; }
+#invite_colab_button:visited { color:#FFF; }
 
 .hero-unit {
 	background-image: url("/assets/binding_dark.png");
@@ -86,6 +87,7 @@ textarea {
 		color: #C8C8C8;
 		font-size: 28px;
 		margin-top: 30px;
+		margin-left: 5px;
 	}
 }
 
@@ -106,9 +108,18 @@ textarea {
 	margin-top: 20px;
 }
 
+#invite_column > p {
+	font-family: 'Gudea', sans-serif;
+}
+
+#tab-pane {
+	font-family: 'Gudea', sans-serif;
+}
+
 #macbook {
 	margin-top: -478px;
 	float: right;
+	margin-right: 	0px;
 }
 
 #home_page_well {

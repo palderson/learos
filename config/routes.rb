@@ -17,7 +17,10 @@ Learos::Application.routes.draw do
   authenticated :user do
     root :to => 'home#index'
   end
+
   root :to => "home#index"
+  get 'landing', to: 'home#landing'
+
   devise_for :users
   devise_scope :user do
     put 'update_plan', :to => 'registrations#update_plan'

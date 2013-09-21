@@ -122,18 +122,19 @@
     <% end %>
     </div>
   </div>
-  <div class='span2'>
+  <div class='span2' id='invite_column'>
     <%= link_to new_project_collaboration_path(@project), :class => 'btn btn-success' do %>
       <i class='icon-plus icon-white'></i> Invite Collaborator
     <% end %>  
     <br>
     <% @project.collaborations.each do |collaboration| %>
-      <%= collaboration.user.name %><br>
-      <%= collaboration.user.email %><br>
+      <br>  
+      <p><%= collaboration.user.name %></p>
+      <p><%= collaboration.user.email %></p>
     <% end %>  
     <br />
     <%= link_to 'Manage Collaborators', project_collaborations_path(@project) %>
-  </div>    
+  </div>   
 </div>
 
 <%= content_for :js do %>
