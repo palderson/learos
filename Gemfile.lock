@@ -235,6 +235,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   letter_opener
+  mail
   pg
   quiet_assets
   rails (= 3.2.13)

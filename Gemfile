@@ -22,6 +22,8 @@ gem 'stripe'
 gem 'stripe_event'
 gem 'thin'
 gem 'acts_as_commentable_with_threading'
+gem 'mail'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
