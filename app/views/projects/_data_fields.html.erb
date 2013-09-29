@@ -14,10 +14,10 @@
   <% end %>
 
   <div class='row attributeTemplate hide'>
-    <p class='span2'>
+    <p id="dynamicLabel">
       <input class='span2 text_field dynamicAttributeName' id='' name='' placeholder='Label' size='30' type='text' />
     </p>
-    <p class='span4'><textarea class="text_field span4" cols="40" id="bar" name="" placeholder='Add field value here...' rows="20" style="resize:none"></textarea></p>
+    <p id="dynamicText"><textarea class="text_field span4" cols="40" id="bar" name="" placeholder='Add field value here...' rows="20" style="resize:none"></textarea></p>
     <p class='span2'><a herf='#' class='btn btn-link removeRow'>Remove field</a></p>
   </div>
   <%= link_to 'Add new field', '#', :class => 'btn btn-link addAttribute btn-primary' %>
