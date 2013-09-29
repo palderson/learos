@@ -17,7 +17,7 @@
 <% end %>
 
 <% if can? :edit, @project %>
-  <%= link_to 'Edit', edit_project_path(@project), :class => 'btn btn-success' %>
+  <%= link_to 'Edit', edit_project_path(@project), :id => 'edit_project_button', :class => 'btn btn-success' %>
 <% end %>
 
 <%= render partial: 'comments/form', locals: { project: @project, nested: :profile } %>
