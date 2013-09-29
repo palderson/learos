@@ -18,9 +18,9 @@
 
 <div>
   <p>Attachments</p>
-  <%= project.overview.file_url %>
+  <%= filepicker_save_button "Download", project.overview.file_url, "image/png" %></tr>
 </div>
-
+<br>
 <% if can? :edit, @project %>
   <%= link_to 'Edit', edit_project_path(@project), :class => 'btn btn-success' %>
 <% end %>

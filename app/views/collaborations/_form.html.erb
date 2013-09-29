@@ -1,13 +1,16 @@
-<h2>Invite User to Project</h2>
-
 <%= simple_form_for [@project, @collaboration], html: { class: 'form-horizontal' } do |f| %>
-
-  <%= f.input :name, label: 'Name', required: true %>
-  <%= f.input :email, label: 'Email', required: true %>
-
-  <div class="control-group">
-    <div class="controls">
-      <%= f.button :submit, "Invite" %>
-    </div>
+  <div id='invite_form'>
+  	<%= f.input :name, label:false, :wrapper => :prepend do %>
+  		<span class="add-on"><i class="icon-user"></i></span><%= f.input_field :name, :required => true, :placeholder 		=> 'Colleague'  %>
+  	<% end %>	
+	
+  	<%= f.input :email, label:false, :wrapper => :prepend do %>
+  		<span class="add-on"><i class="icon-envelope"></i></span><%= f.input_field :email, :required => true, :placeholder => 'Email'  %>
+  	<% end %>	
+	
+  	<div class="control-group">
+  	  <div class="controls">
+  	    <%= f.button :submit, "Invite Collaborator", :class => 'btn btn-success span2' %>
+  	  </div>
   </div>
 <% end %>

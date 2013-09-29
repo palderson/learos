@@ -18,7 +18,7 @@
 
 <div>
 	<p>Marketing Materials</p>
-	<%= project.marketing.file_url %>
+  <%= filepicker_save_button "Download", project.overview.file_url, "image/png" %></tr>
 </div>
 
 <% if can? :edit, @project %>
