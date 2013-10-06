@@ -1,8 +1,12 @@
-<div class='page-header'>
-  <h2>Manage Collaborators</h2>
+<div class='inline'>
+  <h3>Manage Collaborators
+    <%= link_to new_project_collaboration_path(@project), :id => 'invite_on_manage', :class => 'btn btn-success' do %>
+      <i class='icon-plus icon-white'></i> Invite Collaborator
+    <% end %> 
+  </h3>  
 </div>
 
-<table class='table table-striped'>
+<table class='table'>
   <thead>
     <tr>
       <th>Name</th>
@@ -14,5 +18,3 @@
     <%= render @collaborations %>
   </tbody>
 </table>
-
-<%= link_to 'Invite New Collaborator', new_project_collaboration_path(@project), class: "btn btn-link" %>
