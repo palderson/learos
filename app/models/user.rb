@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
          :validatable, :confirmable, :invitable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :filepicker_url, :password_confirmation, :remember_me, :stripe_token, :coupon, :subscription_attributes
+  attr_accessible :name, :email, :password, :filepicker_url, :password_confirmation, :remember_me, :stripe_token, :coupon, :subscription_attributes, :project_attributes
   attr_accessor :stripe_token, :coupon
 
   has_one :subscription
