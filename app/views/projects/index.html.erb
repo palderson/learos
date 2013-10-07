@@ -8,6 +8,9 @@
 </div>
 <br> 
 <div>
+
+<!--- Need a method to display projects that users have been invited to but not created -->
+
   <% @projects.each do |project| %> 
       <div id='project_container' style='padding:20px'>
         <span><h4><%= link_to project.title, project %></h4><p>Project collaborators: <%= project.  collaborations.count %></p></span>
