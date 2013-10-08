@@ -98,8 +98,10 @@
     <br>
     <% @project.collaborations.each do |collaboration| %>
       <br>  
-      <p><%= collaboration.user.name %></p>
-      <p><%= collaboration.user.email %></p>
+      <p>
+        <%= filepicker_image_tag collaboration.user.filepicker_url, w: 50, h: 50, fit: 'clip' %>
+        <%= link_to collaboration.user.name, url_for({ :controller => 'users', :action => 'show', :id => collaboration.user.id }) %>
+      </p>
     <% end %>  
     <br />
     <%= link_to 'Manage Collaborators', project_collaborations_path(@project) %>

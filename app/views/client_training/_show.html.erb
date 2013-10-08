@@ -16,11 +16,9 @@
   <br />
 <% end %>
 
-<div>
   <p>Training Materials</p>
-  <%= filepicker_save_button "Download", project.overview.file_url, "image/png" %></tr>
-</div>
-<br>
+  <%= filepicker_save_button "Download Attachments", project.client_training.file_url, "image/png", :class => 'btn btn' %></br>
+  <br>
 <% if can? :edit, @project %>
   <%= link_to 'Edit', edit_project_path(@project), :id => 'edit_project_button', :class => 'btn btn-success' %>
 <% end %>
