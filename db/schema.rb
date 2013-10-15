@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130811112529) do
+ActiveRecord::Schema.define(:version => 20131015165523) do
 
   create_table "billings", :force => true do |t|
     t.text     "payment_processing_method"
@@ -92,6 +92,15 @@ ActiveRecord::Schema.define(:version => 20130811112529) do
 
   add_index "internal_trainings", ["data"], :name => "index_internal_trainings_on_data"
   add_index "internal_trainings", ["project_id"], :name => "index_internal_trainings_on_project_id"
+
+  create_table "jira_integrations", :force => true do |t|
+    t.string   "jira_site_url"
+    t.string   "jira_consumer_key"
+    t.text     "jira_private_key"
+    t.integer  "user_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
   create_table "marketings", :force => true do |t|
     t.text     "overview"
