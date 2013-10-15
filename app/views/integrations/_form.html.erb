@@ -1,0 +1,11 @@
+<%= simple_form_for :integration, url: user_integrations_path(current_user, to: 'jira'), html: { class: 'form-horizontal' } do |f| %>
+  <%= f.input :jira_site_url, label: 'JIRA Site URL' %>
+  <%= f.input :jira_consumer_key, label: 'JIRA Consumer Key' %>
+  <%= f.input :jira_private_key, as: :text, label: 'JIRA Private Key' %>
+
+  <div class="control-group">
+    <div class="controls">
+      <%= f.button :submit, "Connect", :class => 'btn btn-success span2' %>
+    </div>
+</div>
+<% end %>
