@@ -6,8 +6,6 @@ Learos::Application.routes.draw do
     resources :collaborations
   end
 
-  resources :jira_sessions
-  get 'jira_authorize', to: 'jira_sessions#authorize'
 
   resources :archives do
     get 'unarchive', to: 'archives#unarchive'
@@ -38,5 +36,7 @@ Learos::Application.routes.draw do
     resources :jira do
       put 'verify', to: 'jira#verify'
     end
+    get 'jira_connect', to: 'jira_connect#connect'
+    get 'jira_authorize', to: 'jira_connect#authorize'
   end
 end

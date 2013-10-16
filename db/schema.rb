@@ -97,10 +97,11 @@ ActiveRecord::Schema.define(:version => 20131015165523) do
     t.string   "site_url"
     t.string   "consumer_key"
     t.text     "private_key"
-    t.string   "oauth_verifier"
+    t.string   "access_token"
+    t.string   "access_key"
     t.integer  "user_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "marketings", :force => true do |t|

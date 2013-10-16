@@ -1,6 +1,6 @@
 module Integrations
   class JiraController < ApplicationController
-    before_filter :find_jira
+    before_filter :find_jira, :get_jira_client
 
     def edit
     end
@@ -8,18 +8,19 @@ module Integrations
     def update
       if @jira.update_attributes(params[:jira].merge({user_id: current_user.id}))
         generate_key_file(@jira.private_key)
-        redirect_to new_jira_session_path
+        redirect_to integrations_jira_connect_path
       else
         render :edit
       end
     end
 
+    def destroy
+      @jira.update_attributes({ access_token: nil, access_key: nil })
+      render :edit
+    end
+
     def verify
-      if @jira.update_attributes(params[:jira])
-        redirect_to jira_authorize_path(oauth_verifier: @jira.oauth_verifier)
-      else
-        render :edit
-      end
+      redirect_to integrations_jira_authorize_path(oauth_verifier: params[:jira][:oauth_verifier])
     end
 
     def find_jira

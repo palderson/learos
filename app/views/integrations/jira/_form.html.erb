@@ -1,25 +1,30 @@
-<h2>Step 1</h2>
+<% if current_user.jira.access_token && current_user.jira.access_key %>
+  <%= link_to 'Disconnect', integrations_jira_path(@jira), method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-large btn-danger'%>
 
-<%= simple_form_for [:integrations, @jira], html: { target: '_blank', class: 'form-horizontal' } do |f| %>
-  <%= f.input :site_url, label: 'JIRA Site URL' %>
-  <%= f.input :consumer_key, label: 'JIRA Consumer Key' %>
-  <%= f.input :private_key, as: :text, label: 'JIRA Private Key' %>
+<% else %>
+  <h2>Step 1</h2>
 
-  <div class="control-group">
-    <div class="controls">
-      <%= f.button :submit, "Connect", class: 'btn btn-success span2', target: '_blank' %>
+  <%= simple_form_for [:integrations, @jira], html: { target: '_blank', class: 'form-horizontal' } do |f| %>
+    <%= f.input :site_url, label: 'JIRA Site URL' %>
+    <%= f.input :consumer_key, label: 'JIRA Consumer Key' %>
+    <%= f.input :private_key, as: :text, label: 'JIRA Private Key', input_html: { style: 'height: 300px; width: 550px' } %>
+
+    <div class="control-group">
+      <div class="controls">
+        <%= f.button :submit, "Connect", class: 'btn btn-success span2', target: '_blank' %>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
 
-<h2>Step 2</h2>
+  <h2>Step 2</h2>
 
-<%= simple_form_for @jira, url: integrations_jira_verify_path(@jira), html: { class: 'form-horizontal' } do |f| %>
-  <%= f.input :oauth_verifier, label: 'Verification Code' %>
+  <%= simple_form_for @jira, url: integrations_jira_verify_path(@jira), html: { class: 'form-horizontal' } do |f| %>
+    <%= f.input :oauth_verifier, label: 'Verification Code' %>
 
-  <div class="control-group">
-    <div class="controls">
-      <%= f.button :submit, "Verify", class: 'btn btn-success span2' %>
+    <div class="control-group">
+      <div class="controls">
+        <%= f.button :submit, "Verify", class: 'btn btn-success span2' %>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
