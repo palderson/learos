@@ -93,13 +93,14 @@ ActiveRecord::Schema.define(:version => 20131015165523) do
   add_index "internal_trainings", ["data"], :name => "index_internal_trainings_on_data"
   add_index "internal_trainings", ["project_id"], :name => "index_internal_trainings_on_project_id"
 
-  create_table "jira_integrations", :force => true do |t|
-    t.string   "jira_site_url"
-    t.string   "jira_consumer_key"
-    t.text     "jira_private_key"
+  create_table "jiras", :force => true do |t|
+    t.string   "site_url"
+    t.string   "consumer_key"
+    t.text     "private_key"
+    t.string   "oauth_verifier"
     t.integer  "user_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "marketings", :force => true do |t|
