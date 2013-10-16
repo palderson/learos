@@ -78,3 +78,6 @@ pickle-email-*.html
 
 # DotEnv development environment variables
 .env
+
+/rsacert.pem
+/rsakey.pem
