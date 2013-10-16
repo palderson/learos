@@ -4,7 +4,6 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    fail
     @projects = current_user.projects.unarchived
     @collaborations = current_user.collaborations.map(&:project).select { |p| p.archived == false }
     @projects_info = get_remaining_projects(@projects.count)

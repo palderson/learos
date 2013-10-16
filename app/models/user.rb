@@ -18,8 +18,8 @@ class User < ActiveRecord::Base
   after_create :create_subscription_and_integrations
 
   def create_subscription_and_integrations
-    subscription = self.build_subscription
-    subscription = self.build_jira_integration
+    subscription = self.create_subscription
+    subscription = self.create_jira
     subscription.save!
   end
 
