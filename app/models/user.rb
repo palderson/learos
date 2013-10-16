@@ -12,13 +12,14 @@ class User < ActiveRecord::Base
   attr_accessor :stripe_token, :coupon
 
   has_one :subscription
-  has_one :jira_integration
+  has_one :jira
   has_many :projects
   has_many :collaborations
-  after_create :create_subscription
+  after_create :create_subscription_and_integrations
 
-  def create_subscription
+  def create_subscription_and_integrations
     subscription = self.build_subscription
+    subscription = self.build_jira_integration
     subscription.save!
   end
 
