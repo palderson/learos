@@ -29,5 +29,16 @@ module Integrations
     def destroy
       session.data.delete(:jira_auth)
     end
+
+    def get_jira_client
+      options = {
+        :site => current_user.jira.site_url,
+        :context_path => '',
+        :private_key_file => 'rsakey.pem',
+        :consumer_key => current_user.jira.consumer_key
+      }
+
+      @jira_client = JIRA::Client.new(options)
+    end
   end
 end
