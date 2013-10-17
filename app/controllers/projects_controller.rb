@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
-  before_filter :authenticate_user!, :sub_check, :get_jira_client
+  before_filter :authenticate_user!, :sub_check
+  before_filter :get_jira_client, only: :show
 
   # GET /projects
   # GET /projects.json
@@ -20,6 +21,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
+    @jira_data = @jira_client.Project.find(@project.jira_project_key) if @project.jira_project_key
 
     respond_to do |format|
       format.html # show.html.erb

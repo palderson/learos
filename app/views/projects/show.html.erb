@@ -1,5 +1,11 @@
+<% if current_user.jira.access_token && current_user.jira.access_key && !@project.jira_project_key %>
+  <div class="alert">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Warning!</strong> JIRA Project Key is not set. Go to project settings to set it.
+</div>
+<% end %>
 <span>
-  <h4 id='project_heading'><%= @project.title %>&nbsp;
+    <h4 id='project_heading'><%= @project.title %>&nbsp;
   <%= link_to project_settings_path(@project) do %>
      <i class="icon-edit" style='margin-top:5px'></i>
   <% end %></h4><br>
@@ -107,3 +113,15 @@
     <%= link_to 'Manage Collaborators', project_collaborations_path(@project) %>
   </div>
 </div>
+
+<br>
+<% if @jira_data %>
+  <div class="well">
+    <strong>Jira Issues</strong>
+    <br>
+    <% @jira_data.issues.each do |issue| %>
+      <%= issue.summary %>
+      <br>
+    <% end %>
+  </div>
+<% end %>
