@@ -76,10 +76,10 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def change_name
+  def settings
     @project = Project.find(params[:project_id])
     authorize! :invite, @project
-    render "change_name"
+    render "settings"
   end
 
   def comments

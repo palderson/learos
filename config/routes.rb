@@ -1,6 +1,6 @@
 Learos::Application.routes.draw do
   resources :projects do
-    get 'change_name', to: 'projects#change_name'
+    get 'settings', to: 'projects#settings'
     put 'comments', to: 'projects#comments'
     get 'archive', to: 'projects#archive'
     resources :collaborations

@@ -1,6 +1,6 @@
 <span>
   <h4 id='project_heading'><%= @project.title %>&nbsp;
-  <%= link_to project_change_name_path(@project) do %>
+  <%= link_to project_settings_path(@project) do %>
      <i class="icon-edit" style='margin-top:5px'></i>
   <% end %></h4><br>
 </span>
@@ -48,7 +48,7 @@
       </li>
     </ul>
   </div>
-  <div class='span6'>  
+  <div class='span6'>
     <div class='tab-content' id='content_spread'>
       <div id='overview_tab', class='tab-pane active' style='padding:20px'>
         <%= render partial: 'overview/show', locals: { project: @project } %>
@@ -94,16 +94,16 @@
   <div class='span2' id='invite_column'>
     <%= link_to new_project_collaboration_path(@project), :id => 'invite_colab_button', :class => 'btn btn-success' do %>
       <i class='icon-plus icon-white'></i> Invite Collaborator
-    <% end %>  
+    <% end %>
     <br>
     <% @project.collaborations.each do |collaboration| %>
-      <br>  
+      <br>
       <p>
         <%= filepicker_image_tag collaboration.user.filepicker_url, w: 50, h: 50, fit: 'clip' %>
         <%= link_to collaboration.user.name, url_for({ :controller => 'users', :action => 'show', :id => collaboration.user.id }) %>
       </p>
-    <% end %>  
+    <% end %>
     <br />
     <%= link_to 'Manage Collaborators', project_collaborations_path(@project) %>
-  </div>  
-</div>  
+  </div>
+</div>
