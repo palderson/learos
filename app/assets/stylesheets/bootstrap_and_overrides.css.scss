@@ -45,6 +45,12 @@ a {
 	font-family: 'Gudea', sans-serif;
 }
 
+hr {
+	border-top: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
 .table {
 	font-family: 'Gudea', sans-serif;	
 }
@@ -255,6 +261,10 @@ textarea {
 
 #invite_on_manage {
 	float: right;
+}
+
+#user_profile_page_image {
+	box-shadow: 0px 0px 1px #CCCCCC;
 }
 
 @import "bootstrap-responsive";

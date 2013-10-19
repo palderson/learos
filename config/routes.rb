@@ -16,7 +16,7 @@ Learos::Application.routes.draw do
   get "content/platinum"
   authenticated :user do
     root :to => 'home#index'
-    get 'user', to: 'users#show'
+    get 'current_user', to: 'users#show'
   end
 
   root :to => "home#index"

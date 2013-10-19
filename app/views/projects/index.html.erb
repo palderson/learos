@@ -31,7 +31,7 @@
   <li><%= @projects_info %></li>
   <li><%= @trial_info %></li>
   <% if @show %>
-    <li><%= link_to "Upgrade your account", edit_user_subscription_path(current_user, current_user.subscription), :class => 'btn btn-info', :id => 'upgrade_from_projects'  %>
+    <li><%= link_to "Upgrade your account", edit_user_subscription_path(current_user, current_user.subscription), :id => 'upgrade_from_projects'  %>
   <% end %>
   <li><%= link_to 'Archives', archives_path %></li>
 </ul>
