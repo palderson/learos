@@ -1,4 +1,7 @@
 Learos::Application.routes.draw do
+  resources :dashboards
+
+
   resources :projects do
     get 'change_name', to: 'projects#change_name'
     put 'comments', to: 'projects#comments'
