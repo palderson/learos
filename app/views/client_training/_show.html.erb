@@ -21,6 +21,6 @@
   <br>
 <% if can? :edit, @project %>
   <%= link_to 'Edit', edit_project_path(@project), :id => 'edit_project_button', :class => 'btn btn-success' %>
-<% end %>
-
+<% end %><br>
+<br>
 <%= render partial: 'comments/form', locals: { project: @project, nested: :client_training } %>
