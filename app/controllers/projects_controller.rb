@@ -21,7 +21,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
-    @jira_data = @jira_client.Project.find(@project.jira_project_key) if !@project.jira_project_key.empty? && current_user.jira.access_token && current_user.jira.access_key
+    @jira_data = @jira_client.Project.find(@project.jira_project_key) if @project.jira_project_key.present? && current_user.jira.access_token && current_user.jira.access_key
 
     respond_to do |format|
       format.html # show.html.erb
