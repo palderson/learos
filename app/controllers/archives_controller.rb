@@ -23,6 +23,10 @@ private
   end
 
   def can_unarchive?(user)
-    user.projects.unarchived.count < user.subscription.subscription_plan.number_of_projects
+    if user.subscription.subscription_plan
+      user.projects.unarchived.count < user.subscription.subscription_plan.number_of_projects
+    else
+      true
+    end
   end
 end
