@@ -1,4 +1,7 @@
 Learos::Application.routes.draw do
+  resources :dashboards
+
+
   resources :projects do
     get 'change_name', to: 'projects#change_name'
     put 'comments', to: 'projects#comments'
@@ -16,7 +19,7 @@ Learos::Application.routes.draw do
   get "content/platinum"
   authenticated :user do
     root :to => 'home#index'
-    get 'user', to: 'users#show'
+    get 'current_user', to: 'users#show'
   end
 
   root :to => "home#index"

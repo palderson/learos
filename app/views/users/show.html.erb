@@ -1,9 +1,20 @@
-<h3>User</h3>
-<%= filepicker_image_tag @user.filepicker_url, w: 160, h: 160, fit: 'clip' %>
-<p>User: <%= @user.name %></p>
-<p>Email: <%= @user.email if @user.email %></p>
+<div class='row'>
+  <div class='span2'>
+	<span class='user_profile_page_image'><%= filepicker_image_tag @user.filepicker_url, w: 160, h: 160, fit: 'clip' %></span>
+  </div>
+  <div class='span5'>	
+	<h3><%= @user.name %></h3>
+	<h5><%= @user.email if @user.email %></h5>
+  </div>	
+</div>	
+<br>
 
-<h3>Projects I'm Working On</h3>
 <% current_user.projects.each do |project| %>
-	<p><%= link_to project.title, project %></p>
-<% end %>	
+   <div id='project_container' style='padding:20px'>
+     <span><h4><%= link_to project.title, project %></h4><p>Project collaborators: <%= project.collaborations.count %></p></span>
+     <span>  
+       <%= truncate(project.overview.elevator_pitch, :ommision => "...", :length => 100) %>
+     </span>
+   </div> 
+   <br> 
+<% end %> 
