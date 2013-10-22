@@ -1,7 +1,7 @@
 <div class='default_fields'>
-  <% [:elevator_pitch, :value_proposition, :internal_motivations].each do |field| %>
-    <%= f.input field unless @project.overview.send(field) == '#removed' %>
-  <% end %>
+  <%= f.input :elevator_pitch, as: :integer unless @project.overview.elevator_pitch == '#removed' %>
+  <%= f.input :value_proposition, placeholder: 'Enter value here...' unless @project.overview.value_proposition == '#removed' %>
+  <%= f.input :internal_motivations unless @project.overview.internal_motivations == '#removed' %>
 </div>
 
 <%= render partial: 'data_fields', locals: { df: f, project: @project, project_model: :overview } %>
