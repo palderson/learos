@@ -51,7 +51,7 @@
       </li>
     </ul>
   </div>
-  <div class='span6'>    
+  <div class='span6'>
     <%= simple_form_for(@project, html: { class: 'form-vertical active-table-form' }) do |f| %>
     <div class='tab-content' id='content_spread'>
       <div id='dashboard_tab', class='tab-pane active' style='padding:20px'>
@@ -131,18 +131,18 @@
   <div class='span2' id='invite_column'>
     <%= link_to new_project_collaboration_path(@project), :id => 'invite_colab_button', :class => 'btn btn-success' do %>
       <i class='icon-plus icon-white'></i> Invite Collaborator
-    <% end %>  
+    <% end %>
     <br>
     <% @project.collaborations.each do |collaboration| %>
-      <br>  
+      <br>
       <p>
         <%= filepicker_image_tag collaboration.user.filepicker_url, w: 50, h: 50, fit: 'clip' %>
         <%= link_to collaboration.user.name, url_for({ :controller => 'users', :action => 'show', :id => collaboration.user.id }) %>
       </p>
-    <% end %>  
+    <% end %>
     <br />
     <%= link_to 'Manage Collaborators', project_collaborations_path(@project) %>
-  </div>   
+  </div>
 </div>
 
 <%= content_for :js do %>
@@ -164,7 +164,8 @@
    })
 
    $('.default_fields').delegate('.removeDefaultRow', 'click', function(){
-     $(this).siblings('textarea, input').val('#removed');
+     var $input = $(this).siblings('input, :first');
+     $input.clone().attr('type', 'text').insertAfter($input).val('#removed').prev().remove();
      $(this).closest('div.control-group').hide();
    })
 
