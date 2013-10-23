@@ -3,7 +3,7 @@ class CreateOverviews < ActiveRecord::Migration
     create_table :overviews do |t|
       t.text :elevator_pitch
       t.text :value_proposition
-	  t.text :internal_motivations
+	    t.text :internal_motivations
       t.references :project
 
       t.timestamps

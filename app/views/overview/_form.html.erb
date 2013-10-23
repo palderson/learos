@@ -1,5 +1,5 @@
 <div class='default_fields'>
-  <%= f.input :elevator_pitch, as: :integer unless @project.overview.elevator_pitch == '#removed' %>
+  <%= f.input :elevator_pitch unless @project.overview.elevator_pitch == '#removed' %>
   <%= f.input :value_proposition, placeholder: 'Enter value here...' unless @project.overview.value_proposition == '#removed' %>
   <%= f.input :internal_motivations unless @project.overview.internal_motivations == '#removed' %>
 </div>

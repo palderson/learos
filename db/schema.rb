@@ -68,9 +68,12 @@ ActiveRecord::Schema.define(:version => 20131019155605) do
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "dashboards", :force => true do |t|
+    t.integer  "project_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "dashboards", ["project_id"], :name => "index_dashboards_on_project_id"
 
   create_table "goals", :force => true do |t|
     t.text     "six_week_goals"
@@ -97,17 +100,6 @@ ActiveRecord::Schema.define(:version => 20131019155605) do
 
   add_index "internal_trainings", ["data"], :name => "index_internal_trainings_on_data"
   add_index "internal_trainings", ["project_id"], :name => "index_internal_trainings_on_project_id"
-
-  create_table "jiras", :force => true do |t|
-    t.string   "site_url"
-    t.string   "consumer_key"
-    t.text     "private_key"
-    t.string   "access_token"
-    t.string   "access_key"
-    t.integer  "user_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
 
   create_table "marketings", :force => true do |t|
     t.text     "overview"
@@ -265,10 +257,12 @@ ActiveRecord::Schema.define(:version => 20131019155605) do
   add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
 
   create_table "test_clients", :force => true do |t|
-    t.string   "description"
+    t.string   "client_1"
+    t.string   "client_2"
+    t.string   "client_3"
     t.integer  "project_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.hstore   "data"
   end
 

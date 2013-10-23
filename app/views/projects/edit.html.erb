@@ -148,7 +148,7 @@
 <%= content_for :js do %>
   <script type='text/javascript'>
    $('.default_fields').find('.controls').each(function() {
-    $(this).append('<a herf="#" class="btn btn-link removeDefaultRow">Remove field</a>');
+    $(this).append('<a herf="#" class="btn btn-link removeDefaultRow"><span class="icon-remove"></span></a>');
    })
 
    $('.attributeContainer').delegate('.dynamicAttributeName', 'keyup', function(event){

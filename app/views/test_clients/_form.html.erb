@@ -1,5 +1,7 @@
 <div class='default_fields'>
-  <%= f.input :description unless @project.test_client.description == '#removed' %>
+  <%= f.input :client_1, label: 'Client 1' unless @project.test_client.client_1 == '#removed' %>
+  <%= f.input :client_2, label: 'Client 2' unless @project.test_client.client_2 == '#removed' %>
+  <%= f.input :client_3, label: 'Client 3' unless @project.test_client.client_3 == '#removed' %>
 </div>
 
 <%= render partial: 'data_fields', locals: { df: f, project: @project, project_model: :test_client } %>
