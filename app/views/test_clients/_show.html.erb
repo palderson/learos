@@ -1,15 +1,16 @@
-<% unless @project.test_client.description == '#removed' %>
-  <div>
-    <p>Description</p>
-    <p><%= @project.test_client.description %></p>
-  </div>
+<% [:client_1, :client_2, :client_3].each do |field| %>
+  <% unless @project.test_client.send(field) == '#removed' %>
+    <div>
+      <p><%= field.to_s.titleize %></p>
+      <p><%= @project.test_client.send(field) %></p>
+    </div>
   <br>
 <% end %>
 
 <% @project.test_client.data.try(:each) do |key, value| %>
   <div>
     <p><%= key.titleize %></p>
-    <%= value%>
+    <%= value %>
   </div>
   <br />
 <% end %>
