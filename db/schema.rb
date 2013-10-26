@@ -257,9 +257,9 @@ ActiveRecord::Schema.define(:version => 20131019155605) do
   add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
 
   create_table "test_clients", :force => true do |t|
-    t.string   "client_1"
-    t.string   "client_2"
-    t.string   "client_3"
+    t.string   "first"
+    t.string   "second"
+    t.string   "third"
     t.integer  "project_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

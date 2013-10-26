@@ -1,10 +1,11 @@
-<% [:client_1, :client_2, :client_3].each do |field| %>
+<% [:first, :second, :third].each do |field| %>
   <% unless @project.test_client.send(field) == '#removed' %>
     <div>
       <p><%= field.to_s.titleize %></p>
       <p><%= @project.test_client.send(field) %></p>
     </div>
-  <br>
+    <br>
+  <% end %>
 <% end %>
 
 <% @project.test_client.data.try(:each) do |key, value| %>
@@ -20,4 +21,3 @@
 <% end %><br>
 <br>
 <%= render partial: 'comments/form', locals: { project: @project, nested: :test_client } %>
-
