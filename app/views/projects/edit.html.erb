@@ -8,7 +8,10 @@
   <div class='span2'>
     <ul class="nav nav-list">
       <li class='active'>
-        <a href='#overview_tab', data-toggle="tab">Overview</a>
+        <a href='#dashboard_tab', data-toggle="tab">Dashboard</a>
+      </li>
+      <li>
+        <a href='#overview_tab', data-toggle='tab', remote: true>Overview</a>
       </li>
       <li>
         <a href='#profile_tab', data-toggle='tab', remote: true>Client Profile</a>
@@ -51,7 +54,10 @@
   <div class='span6'>
     <%= simple_form_for(@project, html: { class: 'form-vertical active-table-form' }) do |f| %>
     <div class='tab-content' id='content_spread'>
-        <div id='overview_tab', class='tab-pane active' style='padding:20px'>
+      <div id='dashboard_tab', class='tab-pane active' style='padding:20px'>
+        <%= render partial: 'dashboards/show', locals: { project: @project } %>
+      </div>
+        <div id='overview_tab', class='tab-pane' style='padding:20px'>
           <%= f.simple_fields_for :overview do |nf| %>
             <%= render partial: 'overview/form', locals: { f: nf } %>
           <% end %>

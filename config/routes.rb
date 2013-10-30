@@ -1,4 +1,7 @@
 Learos::Application.routes.draw do
+  resources :dashboards
+
+
   resources :projects do
     get 'settings', to: 'projects#settings'
     put 'comments', to: 'projects#comments'

@@ -1,7 +1,8 @@
 class Project < ActiveRecord::Base
-  attr_accessible :title, :overview_attributes, :goal_attributes, :test_client_attributes, :profile_attributes, :product_attributes, :marketing_attributes, :billing_attributes, :onboarding_attributes, :servicing_attributes, :plan_attributes, :internal_training_attributes, :client_training_attributes, :rollout_attributes, :collaboration_attributes, :jira_project_key, :user_id
+  attr_accessible :title, :dashboard_attributes, :overview_attributes, :goal_attributes, :test_client_attributes, :profile_attributes, :product_attributes, :marketing_attributes, :billing_attributes, :onboarding_attributes, :servicing_attributes, :plan_attributes, :internal_training_attributes, :client_training_attributes, :rollout_attributes, :collaboration_attributes, :user_id
 
   belongs_to :user
+  has_one :dashboard, dependent: :destroy
   has_one :overview, dependent: :destroy
   has_one :profile, dependent: :destroy
   has_one :product, dependent: :destroy
@@ -16,12 +17,13 @@ class Project < ActiveRecord::Base
   has_one :client_training, dependent: :destroy
   has_one :rollout, dependent: :destroy
   has_many :collaborations, dependent: :destroy
-  accepts_nested_attributes_for :overview, :profile, :product, :billing, :marketing, :onboarding, :servicing, :plan, :internal_training, :client_training, :rollout, :goal, :test_client, :collaborations
+  accepts_nested_attributes_for :dashboard, :overview, :profile, :product, :billing, :marketing, :onboarding, :servicing, :plan, :internal_training, :client_training, :rollout, :goal, :test_client, :collaborations
 
   scope :unarchived, where(archived: false)
   scope :archived, where(archived: true)
 
   after_create do
+    self.create_dashboard
     self.create_overview
     self.create_profile
     self.create_product
