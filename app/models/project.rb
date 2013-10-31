@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  attr_accessible :title, :dashboard_attributes, :overview_attributes, :goal_attributes, :test_client_attributes, :profile_attributes, :product_attributes, :marketing_attributes, :billing_attributes, :onboarding_attributes, :servicing_attributes, :plan_attributes, :internal_training_attributes, :client_training_attributes, :rollout_attributes, :collaboration_attributes, :user_id
+  attr_accessible :title, :dashboard_attributes, :overview_attributes, :goal_attributes, :test_client_attributes, :profile_attributes, :product_attributes, :marketing_attributes, :billing_attributes, :onboarding_attributes, :servicing_attributes, :plan_attributes, :internal_training_attributes, :client_training_attributes, :rollout_attributes, :collaboration_attributes, :jira_project_key, :user_id
 
   belongs_to :user
   has_one :dashboard, dependent: :destroy

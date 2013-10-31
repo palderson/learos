@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!, :sub_check
-  before_filter :get_jira_client, only: :show
+  before_filter :get_jira_client, only: [:show, :settings]
 
   # GET /projects
   # GET /projects.json
