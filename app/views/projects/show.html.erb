@@ -119,15 +119,3 @@
     <%= link_to 'Manage Collaborators', project_collaborations_path(@project) %>
   </div>
 </div>
-
-<br>
-<% if @jira_data %>
-  <div class="well">
-    <strong>Jira Issues</strong>
-    <br>
-    <% @jira_data.issues.each do |issue| %>
-      <%= issue.summary %>
-      <br>
-    <% end %>
-  </div>
-<% end %>

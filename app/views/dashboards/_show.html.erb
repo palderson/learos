@@ -9,3 +9,66 @@
 	<li>Amazon S3</li>
 	<li>Stripe</li>
 </ul>
+
+<% if @jira_data %>
+  <strong>Jira Issues</strong>
+  <div class="accordion" id="issues_accordion">
+    <% @jira_data.issues.each do |issue| %>
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+            <%= image_tag issue.priority.iconUrl%>
+            <%= issue.summary %>
+          </a>
+        </div>
+        <div id="collapseOne" class="accordion-body collapse in">
+          <div class="accordion-inner">
+            <dl class="dl-horizontal">
+              <dt>Type</dt>
+              <dd>
+                <%= image_tag issue.issuetype.iconUrl %>
+                <%= issue.issuetype.name %>
+              </dd>
+              <dt>Type Description<dt>
+              <dd><%= issue.issuetype.description %></dd>
+              <dt>Priority<dt>
+              <dd>
+                <%= image_tag issue.priority.iconUrl%>
+                <%= issue.priority.name %>
+              </dd>
+              <dt>Status<dt>
+              <dd>
+                <%= image_tag issue.status.iconUrl %>
+                <%= issue.status.name %>
+              <dd>
+              <dt>Assignee</dt>
+              <dd>
+                <%= image_tag issue.assignee.avatarUrls["16x16"] %>
+                <%= issue.assignee.displayName %>
+              </dd>
+              <dt>Assignee Email</dt>
+              <dd>
+                <%= issue.assignee.emailAddress %>
+              </dd>
+              <dt>Reporter</dt>
+              <dd>
+                <%= image_tag issue.reporter.avatarUrls["16x16"] %>
+                <%= issue.reporter.displayName %>
+              </dd>
+              <dt>Reporter Email</dt>
+              <dd>
+                <%= issue.reporter.emailAddress %>
+              </dd>
+              <dt>
+                Description
+              </dt>
+              <dd>
+                <%= issue.description %>
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
