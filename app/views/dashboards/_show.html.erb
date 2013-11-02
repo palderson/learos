@@ -27,10 +27,8 @@
               <dt>Type</dt>
               <dd>
                 <%= image_tag issue.issuetype.iconUrl %>
-                <%= issue.issuetype.name %>
+                <%= issue.issuetype.description.present? ? issue.issuetype.name.concat(" (#{issue.issuetype.description})") : issue.issuetype.name %>
               </dd>
-              <dt>Type Description<dt>
-              <dd><%= issue.issuetype.description %></dd>
               <dt>Priority<dt>
               <dd>
                 <%= image_tag issue.priority.iconUrl%>
