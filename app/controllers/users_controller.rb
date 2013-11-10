@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @collaborations = current_user.collaborations.map(&:project).select { |p| p.archived == false }
   end
   
   def update
