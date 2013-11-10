@@ -18,6 +18,7 @@ gem 'thin'
 gem 'acts_as_commentable_with_threading'
 gem 'mail'
 gem 'jira-ruby', :require => 'jira'
+gem 'sshkey'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
