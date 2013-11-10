@@ -1,12 +1,11 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!, :sub_check
-  before_filter :get_jira_client, only: [:show, :settings]
+  before_filter :get_jira_client, only: :settings
 
   # GET /projects
   # GET /projects.json
   def index
     @projects = current_user.projects.unarchived
-    @collaborations = current_user.collaborations.map(&:project).select { |p| p.archived == false }
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,8 +17,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
-    @jira_data = @jira_client.Project.find(@project.jira_project_key) if @project.jira_project_key.present? && current_user.jira.access_token && current_user.jira.access_key
-
+    get_jira_data
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
@@ -49,6 +48,7 @@ class ProjectsController < ApplicationController
   # PUT /projects/1.json
   def update
     @project = Project.find(params[:id])
+    params[:project][:jira_id] = current_user.jira.id if params[:project][:jira_project_key].present? && current_user.jira.access_key.present? && current_user.jira.access_token.present?
     authorize! :edit, @project, message: "Unarchive the project to edit."
 
     respond_to do |format|
@@ -99,9 +99,25 @@ class ProjectsController < ApplicationController
     @project.save!
     redirect_to projects_path, notice: 'Project successfully archived.'
   end
-
+  
+  def get_jira_data
+    if @project.jira.present?
+      jira = @project.jira
+      options = {
+        :site => jira.site_url,
+        :context_path => '',
+        :consumer_key => jira.consumer_key
+      }
+      @jira_client = JIRA::Client.new(options)
+      @jira_client.set_access_token(jira.access_token, jira.access_token)
+      @jira_data = @jira_client.Project.find(@project.jira_project_key) if @project.jira_project_key.present?
+     end
+  end
+  
   private
   def sub_check
     redirect_to root_path, alert: 'Subscribe to view/edit projects!' unless check_subscription_status
   end
+
+
 end

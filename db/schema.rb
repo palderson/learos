@@ -202,6 +202,7 @@ ActiveRecord::Schema.define(:version => 20131019155605) do
     t.datetime "updated_at",                          :null => false
     t.integer  "user_id"
     t.boolean  "archived",         :default => false
+    t.integer  "jira_id"
     t.string   "jira_project_key"
   end
 
