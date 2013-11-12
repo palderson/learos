@@ -2,9 +2,13 @@
 
 <%= simple_form_for @project, html: { class: 'form-horizontal active-table-form' } do |f| %>
   <%= f.input :title %>
-  <% if @jira_client.present? %>
+  <% unless current_user.jiras.empty? %>
+    <%= f.input :jira_id, label: 'JIRA Connection', collection: current_user.jiras.all, value_method: :id, label_method: :site_url %>
+  <% end %>
+  <% if @project.jira.present? && @jira_client.present? %>
     <%= f.input :jira_project_key, label: 'JIRA Project Key', collection: @jira_client.Project.all, value_method: :key %>
   <% end %>
+
 
   <div class='form-actions'>
     <%= f.submit 'Change', class: 'btn btn-primary' %>

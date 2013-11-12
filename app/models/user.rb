@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   attr_accessor :stripe_token, :coupon
 
   has_one :subscription
-  has_one :jira
+  has_many :jiras
   has_many :projects
   has_many :collaborations
   after_create :create_subscription_and_integrations

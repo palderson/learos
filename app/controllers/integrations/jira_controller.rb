@@ -1,7 +1,25 @@
 module Integrations
   class JiraController < ApplicationController
-    before_filter :find_jira, :get_jira_client
+    before_filter :find_jira, only: :destroy
 
+    def index
+    end
+
+    def new
+      @jira = Jira.new
+    end
+
+    def create
+      @jira = Jira.new(params[:jira].merge({user_id: current_user.id}))
+      
+      if @jira.save
+        generate_key_file(@jira.private_key)
+        redirect_to integrations_jira_connect_path(jira: { connect_to: @jira.id })
+      else
+        render :new
+      end
+    end
+    
     def edit
     end
 
@@ -15,16 +33,12 @@ module Integrations
     end
 
     def destroy
-      @jira.update_attributes({ access_token: nil, access_key: nil })
-      render :edit
-    end
-
-    def verify
-      redirect_to integrations_jira_authorize_path(oauth_verifier: params[:jira][:oauth_verifier])
+      @jira.destroy
+      redirect_to integrations_jira_index_path
     end
 
     def find_jira
-      @jira = current_user.jira
+      @jira = Jira.find(params[:id])
     end
 
     private

@@ -36,9 +36,8 @@ Learos::Application.routes.draw do
   end
 
   namespace :integrations, path: 'integration' do
-    resources :jira do
-      put 'verify', to: 'jira#verify'
-    end
+    resources :jira
+    post 'jira_verify', to: 'jira_connect#verify'
     get 'jira_connect', to: 'jira_connect#connect'
     get 'jira_authorize', to: 'jira_connect#authorize'
   end

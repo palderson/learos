@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131019155605) do
+ActiveRecord::Schema.define(:version => 20131112140156) do
 
   create_table "billings", :force => true do |t|
     t.text     "payment_processing_method"
@@ -105,8 +105,9 @@ ActiveRecord::Schema.define(:version => 20131019155605) do
     t.string   "access_token"
     t.string   "access_key"
     t.integer  "user_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.boolean  "verified",     :default => false
   end
 
   create_table "marketings", :force => true do |t|
