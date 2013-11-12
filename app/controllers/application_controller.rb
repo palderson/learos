@@ -33,27 +33,4 @@ class ApplicationController < ActionController::Base
     end
   end
 
-private
-
-  def get_jira_client
-    jira = current_user.jira
-    # if jira.site_url && jira.consumer_key && jira.private_key
-    if jira.access_token && jira.access_key
-      # add any extra configuration options for your instance of JIRA,
-      # e.g. :use_ssl, :ssl_verify_mode, :context_path, :site
-      options = {
-        :site => current_user.jira.site_url,
-        :context_path => '',
-        :private_key_file => 'rsakey.pem',
-        :consumer_key => current_user.jira.consumer_key
-      }
-
-      @jira_client = JIRA::Client.new(options)
-
-      # Add AccessToken if authorised previously.
-      @jira_client.set_access_token(
-        jira.access_token, jira.access_key
-      )
-    end
-  end
 end
