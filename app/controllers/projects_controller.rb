@@ -1,7 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!, :sub_check
-  before_filter :get_jira_client, only: :settings
-
+ 
   # GET /projects
   # GET /projects.json
   def index
@@ -48,7 +47,7 @@ class ProjectsController < ApplicationController
   # PUT /projects/1.json
   def update
     @project = Project.find(params[:id])
-    params[:project][:jira_id] = current_user.jira.id if params[:project][:jira_project_key].present? && current_user.jira.access_key.present? && current_user.jira.access_token.present?
+    # arams[:project][:jira_id] = current_user.jira.id if params[:project][:jira_project_key].present? && current_user.jira.access_key.present? && current_user.jira.access_token.present?
     authorize! :edit, @project, message: "Unarchive the project to edit."
 
     respond_to do |format|
@@ -77,6 +76,7 @@ class ProjectsController < ApplicationController
 
   def settings
     @project = Project.find(params[:project_id])
+    get_jira_data
     authorize! :invite, @project
     render "settings"
   end
@@ -106,12 +106,13 @@ class ProjectsController < ApplicationController
       options = {
         :site => jira.site_url,
         :context_path => '',
+        :private_key_file => 'rsakey.pem',
         :consumer_key => jira.consumer_key
       }
       @jira_client = JIRA::Client.new(options)
       @jira_client.set_access_token(jira.access_token, jira.access_token)
       @jira_data = @jira_client.Project.find(@project.jira_project_key) if @project.jira_project_key.present?
-     end
+    end
   end
   
   private
