@@ -4,4 +4,6 @@ class Jira < ActiveRecord::Base
   belongs_to :user
 
   validates :site_url, presence: true
+
+  scope :verified, where(verified: true)
 end
