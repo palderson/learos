@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20131112140156) do
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
     t.boolean  "verified",     :default => false
+    t.text     "public_key"
   end
 
   create_table "marketings", :force => true do |t|

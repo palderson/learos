@@ -10,28 +10,17 @@ module Integrations
     end
 
     def create
+      add_keys_to_params
       @jira = Jira.new(params[:jira].merge({user_id: current_user.id}))
-      
+
       if @jira.save
         generate_key_file(@jira.private_key)
-        redirect_to integrations_jira_connect_path(jira: { connect_to: @jira.id })
+        redirect_to integrations_jira_index_path
       else
         render :new
       end
     end
     
-    def edit
-    end
-
-    def update
-      if @jira.update_attributes(params[:jira].merge({user_id: current_user.id}))
-        generate_key_file(@jira.private_key)
-        redirect_to integrations_jira_connect_path
-      else
-        render :edit
-      end
-    end
-
     def destroy
       @jira.destroy
       redirect_to integrations_jira_index_path
@@ -41,7 +30,14 @@ module Integrations
       @jira = Jira.find(params[:id])
     end
 
-    private
+  private
+    def add_keys_to_params
+      keys = SSHKey.generate
+      params[:jira][:private_key] = keys.private_key
+      params[:jira][:public_key] = keys.public_key
+      params[:jira][:consumer_key] = SecureRandom.hex(16)
+    end
+    
     def generate_key_file(content)
       target = 'rsakey.pem'
       File.open(target, "w+") {|f| f.write(content) }

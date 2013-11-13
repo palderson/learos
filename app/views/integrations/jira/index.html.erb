@@ -3,16 +3,28 @@
 <% current_user.jiras.each do |jira| %>
   <div class="well">
   <% unless jira.verified %>
-  <%= simple_form_for :jira, url: integrations_jira_verify_path, html: { class: 'form-inline' } do |f| %>
-    <%= f.input :oauth_verifier, label: 'Verification Code' %>
-    <%= f.input :connect_to, as: :hidden, input_html: { value: jira.id } %>
-    <div class="control-group">
-      <div class="controls">
-        <%= f.button :submit, "Verify", class: 'btn btn-success span2' %>
+    <div class="well">
+      <h4>Create JIRA Application Link with these keys...</h4>
+      <div>
+        <p><strong>Consumer Key: </strong><%= jira.consumer_key %></p>
       </div>
+      <div>
+        <p><strong>Public Key:</strong></p>
+        <%= jira.public_key %>
+      </div>
+      <%= link_to "...and connnect", integrations_jira_connect_path(jira: {connect_to: jira.id}), class: 'btn btn-success', target: '_blank' %>
     </div>
-  <% end %>
-  <p>or</p>
+
+    <%= simple_form_for :jira, url: integrations_jira_verify_path, html: { class: 'form-inline' } do |f| %>
+      <%= f.input :oauth_verifier, label: 'Verification Code' %>
+      <%= f.input :connect_to, as: :hidden, input_html: { value: jira.id } %>
+      <div class="control-group">
+        <div class="controls">
+          <%= f.button :submit, "Verify", class: 'btn btn-success span2' %>
+        </div>
+      </div>
+    <% end %>
+    <p>or</p>
   <% end %>
   <%= link_to "Disconnect from #{jira.site_url}", integrations_jira_path(jira), method: :delete, class: 'btn btn-danger' %>
   </div>
