@@ -39,7 +39,7 @@ module Integrations
       options = {
         :site => @jira.site_url,
         :context_path => '',
-        :private_key_file => 'rsakey.pem',
+        :private_key_file => "#{Rails.root}/public/system/jira_keys/#{current_user.email.parameterize}/#{@jira.site_url.parameterize}/rsakey.pem",
         :consumer_key => @jira.consumer_key
       }
 

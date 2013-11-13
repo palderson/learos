@@ -14,7 +14,7 @@ module Integrations
       @jira = Jira.new(params[:jira].merge({user_id: current_user.id}))
 
       if @jira.save
-        generate_key_file(@jira.private_key)
+        generate_key_file(@jira.private_key, @jira.site_url)
         redirect_to integrations_jira_index_path
       else
         render :new
@@ -38,9 +38,10 @@ module Integrations
       params[:jira][:consumer_key] = SecureRandom.hex(16)
     end
     
-    def generate_key_file(content)
-      target = 'rsakey.pem'
-      File.open(target, "w+") {|f| f.write(content) }
+    def generate_key_file(content, site)
+      target = "#{Rails.root}/public/system/jira_keys/#{current_user.email.parameterize}/#{site.parameterize}"
+      FileUtils::mkdir_p(target)
+      File.open(target + "/rsakey.pem", "w+") {|f| f.write(content) }
     end
   end
 end
