@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
 
   def create_subscription_and_integrations
     subscription = self.create_subscription
-    subscription = self.create_jira
     subscription.save!
   end
 
