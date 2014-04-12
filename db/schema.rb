@@ -13,33 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20131019155605) do
 
-  create_table "billings", :force => true do |t|
-    t.text     "payment_processing_method"
-    t.text     "billing_process_steps"
-    t.text     "billing_update_requirements"
-    t.text     "contract_requirements"
-    t.integer  "project_id"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-    t.hstore   "data"
-  end
-
-  add_index "billings", ["data"], :name => "index_billings_on_data"
-  add_index "billings", ["project_id"], :name => "index_billings_on_project_id"
-
-  create_table "client_trainings", :force => true do |t|
-    t.string   "company_training_materials"
-    t.string   "user_training_materials"
-    t.integer  "project_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
-    t.string   "file_url"
-    t.hstore   "data"
-  end
-
-  add_index "client_trainings", ["data"], :name => "index_client_trainings_on_data"
-  add_index "client_trainings", ["project_id"], :name => "index_client_trainings_on_project_id"
-
   create_table "collaborations", :force => true do |t|
     t.integer  "project_id"
     t.integer  "user_id"
@@ -75,64 +48,6 @@ ActiveRecord::Schema.define(:version => 20131019155605) do
 
   add_index "dashboards", ["project_id"], :name => "index_dashboards_on_project_id"
 
-  create_table "goals", :force => true do |t|
-    t.text     "six_week_goals"
-    t.text     "three_month_goals"
-    t.text     "six_month_goals"
-    t.integer  "project_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-    t.hstore   "data"
-  end
-
-  add_index "goals", ["data"], :name => "index_goals_on_data"
-  add_index "goals", ["project_id"], :name => "index_goals_on_project_id"
-
-  create_table "internal_trainings", :force => true do |t|
-    t.string   "individual_training_materials"
-    t.string   "group_training_materials"
-    t.integer  "project_id"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.string   "file_url"
-    t.hstore   "data"
-  end
-
-  add_index "internal_trainings", ["data"], :name => "index_internal_trainings_on_data"
-  add_index "internal_trainings", ["project_id"], :name => "index_internal_trainings_on_project_id"
-
-  create_table "marketings", :force => true do |t|
-    t.text     "overview"
-    t.text     "external_messaging"
-    t.text     "internal_messaging"
-    t.string   "marketing_budget"
-    t.text     "alpha_invite_email"
-    t.text     "beta_invite_email"
-    t.integer  "project_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-    t.string   "file_url"
-    t.hstore   "data"
-  end
-
-  add_index "marketings", ["data"], :name => "index_marketings_on_data"
-  add_index "marketings", ["project_id"], :name => "index_marketings_on_project_id"
-
-  create_table "onboardings", :force => true do |t|
-    t.text     "step_one"
-    t.text     "step_two"
-    t.text     "step_three"
-    t.text     "step_four"
-    t.text     "step_five"
-    t.integer  "project_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.hstore   "data"
-  end
-
-  add_index "onboardings", ["data"], :name => "index_onboardings_on_data"
-  add_index "onboardings", ["project_id"], :name => "index_onboardings_on_project_id"
-
   create_table "overviews", :force => true do |t|
     t.text     "elevator_pitch"
     t.text     "value_proposition"
@@ -146,47 +61,6 @@ ActiveRecord::Schema.define(:version => 20131019155605) do
 
   add_index "overviews", ["data"], :name => "index_overviews_on_data"
   add_index "overviews", ["project_id"], :name => "index_overviews_on_project_id"
-
-  create_table "plans", :force => true do |t|
-    t.text     "attention"
-    t.text     "interest"
-    t.text     "desire"
-    t.text     "action"
-    t.integer  "project_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.hstore   "data"
-  end
-
-  add_index "plans", ["data"], :name => "index_plans_on_data"
-  add_index "plans", ["project_id"], :name => "index_plans_on_project_id"
-
-  create_table "products", :force => true do |t|
-    t.text     "description"
-    t.integer  "project_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.hstore   "data"
-  end
-
-  add_index "products", ["data"], :name => "index_products_on_data"
-  add_index "products", ["project_id"], :name => "index_products_on_project_id"
-
-  create_table "profiles", :force => true do |t|
-    t.text     "ideal_client"
-    t.string   "applicable_client_percentage"
-    t.text     "client_motivations"
-    t.string   "target_budget"
-    t.string   "purchase_decision_maker"
-    t.string   "product_user"
-    t.integer  "project_id"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.hstore   "data"
-  end
-
-  add_index "profiles", ["data"], :name => "index_profiles_on_data"
-  add_index "profiles", ["project_id"], :name => "index_profiles_on_project_id"
 
   create_table "projects", :force => true do |t|
     t.string   "title"
@@ -209,31 +83,6 @@ ActiveRecord::Schema.define(:version => 20131019155605) do
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
-  create_table "rollouts", :force => true do |t|
-    t.text     "what_went_well"
-    t.text     "what_could_have_gone_better"
-    t.text     "what_surprised_you"
-    t.text     "lesson_learned"
-    t.integer  "project_id"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-    t.hstore   "data"
-  end
-
-  add_index "rollouts", ["data"], :name => "index_rollouts_on_data"
-  add_index "rollouts", ["project_id"], :name => "index_rollouts_on_project_id"
-
-  create_table "servicings", :force => true do |t|
-    t.text     "description"
-    t.integer  "project_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.hstore   "data"
-  end
-
-  add_index "servicings", ["data"], :name => "index_servicings_on_data"
-  add_index "servicings", ["project_id"], :name => "index_servicings_on_project_id"
-
   create_table "subscription_plans", :force => true do |t|
     t.string   "name"
     t.decimal  "price"
@@ -255,19 +104,6 @@ ActiveRecord::Schema.define(:version => 20131019155605) do
 
   add_index "subscriptions", ["subscription_plan_id"], :name => "index_subscriptions_on_subscription_plan_id"
   add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
-
-  create_table "test_clients", :force => true do |t|
-    t.string   "first"
-    t.string   "second"
-    t.string   "third"
-    t.integer  "project_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.hstore   "data"
-  end
-
-  add_index "test_clients", ["data"], :name => "index_test_clients_on_data"
-  add_index "test_clients", ["project_id"], :name => "index_test_clients_on_project_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                :default => "", :null => false
