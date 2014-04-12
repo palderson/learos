@@ -13,42 +13,6 @@
       <li>
         <a href='#overview_tab', data-toggle='tab', remote: true>Overview</a>
       </li>
-      <li>
-        <a href='#profile_tab', data-toggle='tab', remote: true>Client Profile</a>
-      </li>
-      <li>
-        <a href='#goals_tab', data-toggle='tab', remote: true>Goals</a>
-      </li>
-      <li>
-        <a href='#product_tab', data-toggle='tab', remote: true>Product Dev</a>
-      </li>
-      <li>
-        <a href='#marketing_tab', data-toggle='tab', remote: true>Marketing</a>
-      </li>
-      <li>
-        <a href='#billing_tab', data-toggle='tab', remote: true>Billing</a>
-      </li>
-      <li>
-        <a href='#test_clients_tab', data-toggle='tab', remote: true>Test Clients</a>
-      </li>
-      <li>
-        <a href='#onboarding_tab', data-toggle='tab', remote: true>Client Onboarding</a>
-      </li>
-      <li>
-        <a href='#servicing_tab', data-toggle='tab', remote: true>Client Servicing</a>
-      </li>
-      <li>
-        <a href='#plan_tab', data-toggle='tab', remote: true>Sales Plan</a>
-      </li>
-      <li>
-        <a href='#internal_training_tab', data-toggle='tab', remote: true>Internal Training</a>
-      </li>
-      <li>
-        <a href='#client_training_tab', data-toggle='tab', remote: true>Client Training</a>
-      </li>
-      <li>
-        <a href='#rollout_tab', data-toggle='tab', remote: true>Retrospective</a>
-      </li>
     </ul>
   </div>
   <div class='span6'>  
@@ -58,42 +22,6 @@
       </div>
       <div id='overview_tab', class='tab-pane' style='padding:20px'>
         <%= render partial: 'overview/show', locals: { project: @project } %>
-      </div>
-      <div id='profile_tab', class='tab-pane' style='padding:20px'>
-        <%= render partial: 'profile/show', locals: { project: @project } %>
-      </div>
-      <div id='goals_tab', class='tab-pane' style='padding:20px'>
-        <%= render partial: 'goals/show', locals: { project: @project } %>
-      </div>
-      <div id='product_tab', class='tab-pane' style='padding:20px'>
-        <%= render partial: 'product/show', locals: { project: @project } %>
-      </div>
-      <div id='marketing_tab', class='tab-pane' style='padding:20px'>
-        <%= render partial: 'marketing/show', locals: { project: @project } %>
-      </div>
-      <div id='billing_tab', class='tab-pane' style='padding:20px'>
-        <%= render partial: 'billing/show', locals: { project: @project } %>
-      </div>
-      <div id='test_clients_tab', class='tab-pane' style='padding:20px'>
-        <%= render partial: 'test_clients/show', locals: { project: @project } %>
-      </div>
-      <div id='onboarding_tab', class='tab-pane' style='padding:20px'>
-        <%= render partial: 'onboarding/show', locals: { project: @project } %>
-      </div>
-      <div id='servicing_tab', class='tab-pane' style='padding:20px'>
-        <%= render partial: 'servicing/show', locals: { project: @project } %>
-      </div>
-      <div id='plan_tab', class='tab-pane' style='padding:20px'>
-        <%= render partial: 'plan/show', locals: { project: @project } %>
-      </div>
-      <div id='internal_training_tab', class='tab-pane' style='padding:20px'>
-        <%= render partial: 'internal_training/show', locals: { project: @project } %>
-      </div>
-      <div id='client_training_tab', class='tab-pane' style='padding:20px'>
-        <%= render partial: 'client_training/show', locals: { project: @project } %>
-      </div>
-      <div id='rollout_tab', class='tab-pane' style='padding:20px'>
-        <%= render partial: 'rollout/show', locals: { project: @project } %>
       </div>
     </div>
   </div>
