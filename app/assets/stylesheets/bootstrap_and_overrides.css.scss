@@ -1,7 +1,7 @@
 @import "bootstrap";
 
-body { 
-	padding-top: 60px; 
+body {
+	padding-top: 60px;
 	background-image: url("/assets/satinweave.png");
 }
 
@@ -35,10 +35,10 @@ h6 {
 
 .default_fields {
 	font-family: 'Gudea', sans-serif;
-}	
+}
 
 a {
-	font-family: 'Gudea', sans-serif;	
+	font-family: 'Gudea', sans-serif;
 }
 
 .p {
@@ -52,7 +52,7 @@ hr {
 }
 
 .table {
-	font-family: 'Gudea', sans-serif;	
+	font-family: 'Gudea', sans-serif;
 }
 
 textarea {
@@ -205,7 +205,7 @@ textarea {
 	box-shadow: 0px 0px 1px #CCCCCC;
 	background-color: #FFFFFF;
 	border-radius: 4px;
-}	
+}
 
 #blue_row {
 	padding-left: 30px;
@@ -431,4 +431,4 @@ textarea {
 	width: 510px;
 }
 
-@import "bootstrap-responsive";
+// @import "bootstrap-responsive";

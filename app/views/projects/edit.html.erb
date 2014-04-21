@@ -13,42 +13,6 @@
       <li>
         <a href='#overview_tab', data-toggle='tab', remote: true>Overview</a>
       </li>
-      <li>
-        <a href='#profile_tab', data-toggle='tab', remote: true>Client Profile</a>
-      </li>
-      <li>
-        <a href='#goals_tab', data-toggle='tab', remote: true>Goals</a>
-      </li>
-      <li>
-        <a href='#product_tab', data-toggle='tab', remote: true>Product Dev</a>
-      </li>
-      <li>
-        <a href='#marketing_tab', data-toggle='tab', remote: true>Marketing</a>
-      </li>
-      <li>
-        <a href='#billing_tab', data-toggle='tab', remote: true>Billing</a>
-      </li>
-      <li>
-        <a href='#test_clients_tab', data-toggle='tab', remote: true>Test Clients</a>
-      </li>
-      <li>
-        <a href='#onboarding_tab', data-toggle='tab', remote: true>Client Onboarding</a>
-      </li>
-      <li>
-        <a href='#servicing_tab', data-toggle='tab', remote: true>Client Servicing</a>
-      </li>
-      <li>
-        <a href='#plan_tab', data-toggle='tab', remote: true>Sales Plan</a>
-      </li>
-      <li>
-        <a href='#internal_training_tab', data-toggle='tab', remote: true>Internal Training</a>
-      </li>
-      <li>
-        <a href='#client_training_tab', data-toggle='tab', remote: true>Client Training</a>
-      </li>
-      <li>
-        <a href='#rollout_tab', data-toggle='tab', remote: true>Retrospective</a>
-      </li>
     </ul>
   </div>
   <div class='span6'>
@@ -60,66 +24,6 @@
         <div id='overview_tab', class='tab-pane' style='padding:20px'>
           <%= f.simple_fields_for :overview do |nf| %>
             <%= render partial: 'overview/form', locals: { f: nf } %>
-          <% end %>
-      </div>
-      <div id='profile_tab', class='tab-pane' style='padding:20px'>
-          <%= f.simple_fields_for :profile do |nf| %>
-            <%= render partial: 'profile/form', locals: { f: nf } %>
-          <% end %>
-      </div>
-      <div id='goals_tab', class='tab-pane' style='padding:20px'>
-          <%= f.simple_fields_for :goal do |nf| %>
-            <%= render partial: 'goals/form', locals: { f: nf } %>
-          <% end %>
-      </div>
-      <div id='product_tab', class='tab-pane' style='padding:20px'>
-          <%= f.simple_fields_for :product do |nf| %>
-            <%= render partial: 'product/form', locals: { f: nf } %>
-          <% end %>
-      </div>
-      <div id='marketing_tab', class='tab-pane' style='padding:20px'>
-          <%= f.simple_fields_for :marketing do |nf| %>
-            <%= render partial: 'marketing/form', locals: { f: nf } %>
-          <% end %>
-      </div>
-      <div id='billing_tab', class='tab-pane' style='padding:20px'>
-          <%= f.simple_fields_for :billing do |nf| %>
-            <%= render partial: 'billing/form', locals: { f: nf } %>
-          <% end %>
-      </div>
-      <div id='test_clients_tab', class='tab-pane' style='padding:20px'>
-          <%= f.simple_fields_for :test_client do |nf| %>
-            <%= render partial: 'test_clients/form', locals: { f: nf } %>
-          <% end %>
-      </div>
-      <div id='onboarding_tab', class='tab-pane' style='padding:20px'>
-          <%= f.simple_fields_for :onboarding do |nf| %>
-            <%= render partial: 'onboarding/form', locals: { f: nf } %>
-          <% end %>
-      </div>
-      <div id='servicing_tab', class='tab-pane' style='padding:20px'>
-          <%= f.simple_fields_for :servicing do |nf| %>
-            <%= render partial: 'servicing/form', locals: { f: nf } %>
-          <% end %>
-      </div>
-      <div id='plan_tab', class='tab-pane' style='padding:20px'>
-          <%= f.simple_fields_for :plan do |nf| %>
-            <%= render partial: 'plan/form', locals: { f: nf } %>
-          <% end %>
-      </div>
-      <div id='internal_training_tab', class='tab-pane' style='padding:20px'>
-          <%= f.simple_fields_for :internal_training do |nf| %>
-            <%= render partial: 'internal_training/form', locals: { f: nf } %>
-          <% end %>
-      </div>
-      <div id='client_training_tab', class='tab-pane' style='padding:20px'>
-          <%= f.simple_fields_for :client_training do |nf| %>
-            <%= render partial: 'client_training/form', locals: { f: nf } %>
-          <% end %>
-      </div>
-      <div id='rollout_tab', class='tab-pane' style='padding:20px'>
-          <%= f.simple_fields_for :rollout do |nf| %>
-            <%= render partial: 'rollout/form', locals: { f: nf } %>
           <% end %>
       </div>
       <div class="form-actions">

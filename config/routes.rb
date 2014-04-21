@@ -4,7 +4,7 @@ Learos::Application.routes.draw do
 
   resources :projects do
     get 'change_name', to: 'projects#change_name'
-    put 'comments', to: 'projects#comments'
+    patch 'comments', to: 'projects#comments'
     get 'archive', to: 'projects#archive'
     resources :collaborations
   end
@@ -18,17 +18,17 @@ Learos::Application.routes.draw do
   get "content/silver"
   get "content/platinum"
   authenticated :user do
-    root :to => 'home#index'
+    # root :to => 'home#index'
     get 'current_user', to: 'users#show'
   end
 
-  root :to => "home#index"
+  root "home#index"
   get 'landing', to: 'home#landing'
 
   devise_for :users
   devise_scope :user do
-    put 'update_plan', :to => 'registrations#update_plan'
-    put 'update_card', :to => 'subscriptions#update_card'
+    patch 'update_plan', :to => 'registrations#update_plan'
+    patch 'update_card', :to => 'subscriptions#update_card'
   end
   resources :users do
     resources :subscriptions
