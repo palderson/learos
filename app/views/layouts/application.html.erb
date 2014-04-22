@@ -1,79 +1,204 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Learos" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Learos" %>">
-    <%= stylesheet_link_tag "application", :media => "all" %>
-    <%= javascript_include_tag "https://js.stripe.com/v1/", "application" %>
-    <%= filepicker_js_include_tag %>
-    <%= csrf_meta_tags %>
-    <%= yield(:head) %>
-    <link href='http://fonts.googleapis.com/css?family=Gudea|Cherry+Swash' rel='stylesheet' type='text/css'>
-  </head>
-  <body class="<%= controller_name %> <%= action_name %>">
-    <div class="navbar navbar-fixed-top">
-      <nav class="navbar-inner">
-        <div class="container">
-          <div class="row">
-            <div class="span1"></div>
-            <div class="span10">
-              <%= render 'layouts/navigation' %>
-            </div> 
-            <div class="span1"></div> 
-          </div>  
-        </div>
-      </nav>
-    </div>
-    <div id="main" role="main">
-      <%- if current_page? root_path %>
-        <div class="row">
-          <div class="span1"></div>
-          <div class="span10">
-            <div id="top_header">
-              <h2>Business Intelligence at the Project Level</h2>
-              <%= link_to landing_path, :class => 'btn btn-large btn-success', :id => 'trial_button' do %>
-                Start Your 30 Day FREE Trial <i class='icon-arrow-right icon-white'></i>
-              <% end %> 
-              <h4 style='color:gray'>See the impact of every feature release in real-time</h4>
-              <br>
-            </div>  
-          </div>  
-          <div class="span1"></div>  
-        </div>
-        <div id="home_hero">
-          <div class="hero-unit">
-            <div class='row'>  
-              <div class="span1"></div>  
-              <div class='span10'>
-                <ul id='hero_list'>
-                  <div href=""><i class="icon-ok icon-white" style="margin-top:10px;"></i> Create your release plan</div><br>
-                  <div href=""><i class="icon-ok icon-white" style="margin-top:10px;"></i> Define your objectives</div><br>
-                  <div href=""><i class="icon-ok icon-white" style="margin-top:10px;"></i> Track the feature impact</div><br>
-                </ul>  
-                <br>
-              </div>
-              <div class="span1"></div>  
-            </div>      
-          </div>
-          <%= image_tag "macbook.png", :id => 'macbook' %>
-        </div>  
-      <% end %>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title><%= content_for?(:title) ? yield(:title) : "Learos" %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Learos" %>">
+
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "https://js.stripe.com/v1/", "application" %>
+  <%= filepicker_js_include_tag %>
+  <%= csrf_meta_tags %>
+
+  <%= yield(:head) %>
+
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body id="home2" class="<%= controller_name %> <%= action_name %>">
+  <header class="navbar navbar-inverse white" role="banner">
       <div class="container">
-        <div class="content">
-           <div class="row">
-              <div class="span1"></div>
-              <div class="span10">
-                  <%= render 'layouts/messages' %>
-                  <%= yield %>
-              </div>
-              <div class="span1"></div>
-          </div>
-          <footer>
-          </footer>
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a href="index.html" class="navbar-brand">Learos</a>
         </div>
-      </div> <!--! end of .container -->
-    </div> <!--! end of #main -->
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    Home alts
+                    <i class="fa fa-chevron-down"></i>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="index.html">Home 1 (Static)</a></li>
+              <li><a href="index2.html">Home 2 (Current)</a></li>
+              <li><a href="index3.html">Home 3 (Off-canvas menu)</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    Showcase
+                    <i class="fa fa-chevron-down"></i>
+                  </a>
+                  <ul class="dropdown-menu">
+              <li><a href="features.html">Features</a></li>
+              <li><a href="services.html">Services</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    Pricing
+                    <i class="fa fa-chevron-down"></i>
+                  </a>
+                  <ul class="dropdown-menu">
+              <li><a href="pricing.html">Pricing charts</a></li>
+              <li><a href="charts.html">Comparison tables</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    More pages
+                    <i class="fa fa-chevron-down"></i>
+                  </a>
+                  <ul class="dropdown-menu">
+              <li><a href="aboutus.html">About us</a></li>
+              <li><a href="contactus.html">Contact us</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="portfolio.html">Portfolio</a></li>
+              <li><a href="portfolio-item.html">Portfolio Item</a></li>
+              <li><a href="invoice.html">Invoice page</a></li>
+              <li><a href="timeline.html">Timeline Page</a></li>
+              <li><a href="docs.html">API Documentation</a></li>
+              <li><a href="support.html">Support</a></li>
+              <li><a href="coming-soon.html">Coming Soon</a></li>
+              <li><a href="status.html">Status</a></li>
+              <li><a href="signup.html">Sign Up & Sign In</a></li>
+              <li><a href="signup-rotate.html">Sign Up Miscellaneous</a></li>
+              <li><a href="404.html">404 Page</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    Blog
+                    <i class="fa fa-chevron-down"></i>
+                  </a>
+                  <ul class="dropdown-menu">
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="blogpost.html">Blog Post</a></li>
+                </ul>
+              </li>
+              <li>
+                  <a href="signup.html" class="signup visible-md visible-lg">Sign up free</a>
+              </li>
+            </ul>
+        </nav>
+      </div>
+  </header>
+
+  <div class="container">
+    <%= render 'layouts/messages' %>
+  </div>
+
+  <%= yield %>
+
+  <div id="footer-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 menu">
+          <h3>Overview</h3>
+          <ul>
+                <li>
+                    <a href="features.html">Features</a>
+                </li>
+                <li>
+                  <a href="services.html">Services</a>
+                </li>
+                <li>
+                    <a href="pricing.html">Pricing</a>
+                </li>
+                <li>
+                    <a href="support.html">Support</a>
+                </li>
+                <li>
+                    <a href="blog.html">Blog</a>
+                </li>
+                <li>
+                    <a href="blog.html">Coming soon</a>
+                </li>
+              </ul>
+        </div>
+        <div class="col-sm-3 menu">
+          <h3>Menu</h3>
+          <ul>
+                <li>
+                    <a href="features.html">About us</a>
+                </li>
+                <li>
+                  <a href="services.html">Contact us</a>
+                </li>
+                <li>
+                    <a href="aboutus.html">Jobs</a>
+                    <a href="aboutus.html" class="hiring">
+                      We're hiring!
+                    </a>
+                </li>
+                <li>
+                    <a href="support.html">Portfolio</a>
+                </li>
+                <li>
+                    <a href="blog.html">Status</a>
+                </li>
+              </ul>
+        </div>
+        <div class="col-sm-2 menu">
+          <h3>Social</h3>
+          <ul>
+                <li>
+                    <a href="features.html">Youtube</a>
+                </li>
+                <li>
+                  <a href="services.html">Facebook</a>
+                </li>
+                <li>
+                    <a href="pricing.html">Twitter</a>
+                </li>
+              </ul>
+        </div>
+        <div class="col-sm-4 newsletter">
+          <div class="signup clearfix">
+            <p>
+              Sign up for the newsletter and we'll inform you of updates, offers and more.
+            </p>
+            <form>
+              <input type="text" name="email" class="form-control" placeholder="Your email address" />
+              <input type="submit" value="Sign up" />
+            </form>
+          </div>
+          <a href="#">
+            <img src="assets/social/social-tw.png" alt="twitter" />
+          </a>
+          <a href="#">
+            <img src="assets/social/social-dbl.png" alt="dribbble" />
+          </a>
+        </div>
+      </div>
+      <div class="row credits">
+        <div class="col-md-12">
+          Copyright © 2014. React
+        </div>
+      </div>
+    </div>
+  </div>
+
   <%= yield :js %>
-  </body>
+
+</body>
 </html>

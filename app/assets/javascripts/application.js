@@ -12,5 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
-//= require_tree .
+//= require bootstrap/bootstrap.min
+//= require theme
+//= require gallery
+//= require jquery.externalscript
+//= require jquery.readyselector
+//= require projects
+//= require subscriptions

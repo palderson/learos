@@ -1,40 +1,144 @@
-<div class='well' id='home_page_well'>
-	<div class='row' id='blue_row'>
-		<div class='span4' id='blue_text'>
-			<h2>Build a plan and define your goals</h2>
-			<h3 id='home_features'>Invite collaborators and centralize your project information through customizable templates.</h3>
-		</div>
-		<div class='span5' id='blueprint_image'>
-			<%= image_tag 'bp_512.png' %>
+<div id="hero">
+	<a class="slide-nav prev" href="#">Prev</a>
+	<a class="slide-nav next" href="#">Next</a>
+	<nav>
+		<a class="active" href="#"></a>
+		<a href="#"></a>
+		<a href="#"></a>
+	</nav>
+	<div class="slides">
+		<div class="slide first active">
+			<div class="bg"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6 info">
+						<h1 class="hero-text">
+							Build a plan and define your goals.
+						</h1>
+						<p>
+							Invite collaborators and centralize your project information through customizable templates.
+						</p>
+						<div class="cta">
+							<a href="features.html" class="button-outline">
+								TRY IT FREE
+								<i class="fa fa-chevron-right"></i>
+							</a>
+						</div>
+					</div>
+					<div class="col-sm-6 hidden-xs mobiles">
+						<!-- <img src="images/static-hero.png" class="animated fadeInLeft" alt="devices" /> -->
+						<%= image_tag 'bp_512.png', class: "animated fadeInLeft img-responsive", alt: "devices" %>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	<hr>
-	<div class='row'>
-		<div class='span5'>
-			<%= image_tag 'apis.png' %>
-		</div>
-		<br>
-		<div class='span4' id='api_text'>	
-			<h2>Integrate your web services to track performance</h2>
-			<h3 id='home_features'>Map your project goals against realtime information gathered from the web's best analytics services.</h3>
-		</div>
-	</div>
-	<hr>
-	<div class='row' id='graph_row'>
-		<br>
-		<div class='span4' id='graph_text'>
-			<h2>Monitor the impact of your projects in realtime</h2>
-			<h3 id='home_features'>Bring transparency to the performance of your features to make more informed release decisions.</h3>
-		</div>
-		<div class='span5' id='graph_image'>
-			<%= image_tag 'graph.png' %>
-		</div>
-	</div>	
-	<br>	
 </div>
-<br>
-<div class='well' id='home_page_well_bottom'>
-	<%= link_to landing_path, :class => 'btn btn-large btn-success', :id => 'trial_button_bottom' do %>
-      Start Your 30 Day FREE Trial <i class='icon-arrow-right icon-white'></i>
-    <% end %> 
-</div>    
+
+<div id="features">
+	<div class="container">
+		<div class="row header">
+			<div class="col-md-12">
+				<h2>Need an easy way to customize your site?</h2>
+				<p>React is perfect for novice developers and experts alike.</p>
+			</div>
+		</div>
+		<div class="row feature">
+			<div class="col-md-6 info">
+				<h4>Integrate your web services to track performance</h4>
+				<p>
+					Map your project goals against realtime information gathered from the web's best analytics services.
+				</p>
+			</div>
+			<div class="col-md-6 image">
+				<%= image_tag 'apis.png', class: "img-responsive", alt: "feature1" %>
+			</div>
+		</div>
+		<div class="divider"></div>
+		<div class="row feature backwards">
+			<div class="col-md-6 info">
+				<h4>Monitor the impact of your projects in realtime</h4>
+				<p>
+					Bring transparency to the performance of your features to make more informed release decisions.
+				</p>
+			</div>
+			<div class="col-md-6 image">
+				<%= image_tag 'graph.png', class: "img-responsive", alt: "feature2"  %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="pricing">
+	<div class="container">
+		<div class="row header">
+			<h3>Business Intelligence at the Project Level</h3>
+			<p>See the impact of every feature release in real-time</p>
+		</div>
+	</div>
+</div>
+
+<div id="features-hover">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 images">
+				<img src="assets/services5.png" class="img-responsive active" alt="services1" />
+				<img src="assets/services6.png" class="img-responsive" alt="services2" />
+				<img src="assets/services7.png" class="img-responsive" alt="services3" />
+			</div>
+		</div>
+		<div class="row features">
+			<div class="col-md-4">
+				<div class="feature active">
+					<strong>Create your release plan</strong>
+					<p>
+						You can work with international customers right out of the box while you can keep staying in your country.
+					</p>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="feature">
+					<strong>Define your objectives</strong>
+					<p>
+						You can work with international customers right out of the box while you can keep staying in your country.
+					</p>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="feature">
+					<strong>Track the feature impact</strong>
+					<p>
+						You can work with international customers right out of the box while you can keep staying in your country.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="cta">
+	<p>
+		Start Your 30 Day FREE Trial!
+	</p>
+	<%= link_to "Sign up for free", landing_path %>
+</div>
+
+<div id="clients">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h3>Our Customers</h3>
+				<p>
+					These are some of our customers who have helped us by using our product.
+				</p>
+				<div class="logos">
+					<img src="assets/logos/google.png">
+					<img src="assets/logos/facebook.png">
+					<img src="assets/logos/apple.png">
+					<img src="assets/logos/stripe.png">
+					<img src="assets/logos/yahoo.png">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
