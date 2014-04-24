@@ -1,5 +1,5 @@
 class CollaborationsController < ApplicationController
-  before_filter :find_project
+  before_action :find_project
 
   def index
     authorize!(:invite, @project)

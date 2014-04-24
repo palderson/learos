@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_filter :authenticate_user!, :sub_check
+  before_action :authenticate_user!, :sub_check
 
   # GET /projects
   # GET /projects.json

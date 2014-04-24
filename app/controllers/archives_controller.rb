@@ -1,5 +1,5 @@
 class ArchivesController < ApplicationController
-  before_filter :authenticate_user!, :sub_check
+  before_action :authenticate_user!, :sub_check
 
   def index
     @projects = current_user.projects.archived

@@ -1,5 +1,5 @@
 class SubscriptionsController < ApplicationController
-  before_filter :find_subscription
+  before_action :find_subscription
 
   def new
   end
